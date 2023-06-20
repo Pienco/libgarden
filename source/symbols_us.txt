@@ -1,0 +1,150 @@
+memcpy = 0x2f85e4;
+memset = 0x2f83c8;
+wcslen = 0x10082c;
+wcsncpy = 0x1017f4;
+swprintf = 0x100f5c;
+malloc = 0x77a51c;
+alloc_aligned = 0x1328d8;
+
+GSPGPU_WriteHWRegs = 0x12aae4;
+GSPGPU_FlushDataCache = 0x136ef0;
+GX_Cmd4 = 0x136ff0;
+
+svcSleepThread = 0x12843c;
+
+returnToGame = 0x627bec;
+
+_ZN12_GLOBAL__N_126NETGAME_PACKET_00_RECEIVEDE = 0x181494;
+_ZN12_GLOBAL__N_116SYSTEM_TASK_HOOKE = 0x1b6dec;
+
+_Znwj = 0x13a008;
+_Znaj = 0x13a008;
+_ZdlPvj = 0x2f8958;
+_ZdaPv = 0x2f8958;
+
+_ZN4sead15CriticalSection4ExitEv = 0x138d44;
+
+_ZN4sead13ControllerMgr6IsHeldEm = 0x304a14;
+_ZN4sead13ControllerMgr9IsPressedEm = 0x5223e8;
+
+_ZN7netgame13EnqueuePacketEhhPKvj = 0x625488;
+_ZN7netgame14GetPlayerActorEhb = 0x5c3ea0;
+_ZN7netgame20GetPlayerCoordinatesEPmS0_hb = 0x5c13ac;
+
+_ZN7netgame10NetGameMgr11s_pInstanceE = 0x954648;
+_ZN7netgame10NetGameMgr8Receiver9GetBufferEh = 0x75fa00;
+_ZN7netgame10NetGameMgr8Receiver9GetPacketEh = 0x75fa28;
+_ZN7netgame10NetGameMgr8Receiver12SetIsEnabledEhb = 0x625a9c;
+_ZN7netgame10NetGameMgr8Receiver13SetWasHandledEhb = 0x625a8c;
+_ZNK7netgame10NetGameMgr13GetMyPlayerNoEv = 0x75f004;
+
+_ZN4item7MapItem5PlaceEv = 0x594d88;
+
+_ZN3map15GetCurrentMapIDEv = 0x2f7384;
+
+
+_ZN3oml9framework7ProcessnwEj = 0x52a488;
+_ZN3oml9framework7ProcessdlEPv = 0x313b24;
+_ZN3oml9framework7ProcessC2Ev = 0x522138;
+_ZN3oml9framework7ProcessD1Ev = 0x52218c;
+_ZN3oml9framework7Process7DestroyEPS1_ = 0x5251f0;
+_ZN3oml9framework7Process20ProcessStartupResultENS0_6ResultE = 0x5220e8;
+_ZN3oml9framework7Process8OnNotifyEv = 0x521710;
+
+_ZN3oml9framework14ProcessManager22s_pProcessDescriptionsE = 0x9762b4;
+_ZN3oml9framework14ProcessManager19s_pFactoryFunctionsE = 0x9762b8;
+_ZN3oml9framework14ProcessManager11CallCreatorENS0_9ProcessIDE = 0x5213c8;
+_ZN3oml9framework14ProcessManager13CallDestroyerENS0_9ProcessIDEPNS0_7ProcessE = 0x5213dc;
+_ZN3oml9framework14ProcessManager14GetDescriptionENS0_9ProcessIDE = 0x521394;
+
+_ZN3oml9framework14ProcessManager3GetEv = 0x5204dc;
+_ZN3oml9framework14ProcessManager13CreateProcessENS0_9ProcessIDEll = 0x52a3b4;
+_ZN3oml9framework14ProcessManager17CreateProcessImplENS0_9ProcessIDEll = 0x5202c0;
+
+_ZN6script11RenderTrace7SetTextEPKPKDsS4_ = 0x602480;
+_ZN6script11RenderTrace8SetText2EPKPKDs = 0x60231c;
+
+_ZN6script10RenderRuby12SetTextBoxesEPKN2nw3lyt7TextBoxES5_S5_S5_ = 0x5d748c;
+_ZN6script10RenderRuby10CommitTextEv = 0x5d77f8;
+_ZN6script10RenderRuby5ClearEv = 0x5d76cc;
+_ZN6script10RenderRubyC1Ejj = 0x5d7a7c;
+_ZN6script10RenderRubyD1Ev = 0x5d7fc4;
+
+_ZN6script12RenderGarden12SetTextBoxesEPN2nw3lyt7TextBoxES4_ = 0x5e3768;
+_ZN6script12RenderGarden10CommitTextEv = 0x5e3a64;
+_ZN6script12RenderGarden5ClearEv = 0x5e38d4;
+_ZN6script12RenderGardenC1Ej = 0x5e3bf8;
+_ZN6script12RenderGardenD1Ev = 0x5e3c64;
+
+_ZN4font3Mgr11s_pInstanceE = 0x9539cc;
+_ZNK4font3Mgr11GetFontNameENS_6FontIDE = 0x748d88;
+_ZNK4font3Mgr7GetFontENS_6FontIDE = 0x52ed74;
+
+_ZN2nw3lyt19ArcResourceAccessor10RegistFontEPKcPKNS_4font4FontE = 0x4b52f4;
+
+_ZN2nw3lyt4Pane11AppendChildEPS1_ = 0x4b73fc;
+_ZN2nw3lyt4Pane11RemoveChildEPS1_ = 0x4b7450;
+
+_ZN4ssys2ma9Allocator15GetGuiAllocatorEv = 0x56a838;
+_ZN4ssys2ma9Allocator20GetResourceAllocatorEv = 0x56a8ac;
+
+_ZN4ssys2ma3lyt9AnimationC1Ev = 0x126200;
+_ZN4ssys2ma3lyt9AnimationD1Ev = 0x56a374;
+_ZN4ssys2ma3lyt9Animation8SetFrameEf = 0x56a2c8;
+_ZN4ssys2ma3lyt9Animation10InitializeEPKcPKNS1_15ResAccInterfaceE = 0x56a0cc;
+_ZN4ssys2ma3lyt9Animation13IncreaseFrameEv = 0x56a02c;
+_ZNK4ssys2ma3lyt9Animation6IsDoneEv = 0x750dec;
+
+_ZN4ssys2ma3lyt15ArcResAccReaderC1Ev = 0x120d68;
+_ZN4ssys2ma3lyt15ArcResAccReaderD1Ev = 0x5689d8;
+_ZN4ssys2ma3lyt15ArcResAccReader7ReadArcEPKc = 0x56890c;
+_ZN4ssys2ma3lyt15ArcResAccReader5ClearEv = 0x133a20;
+
+_ZN4ssys2ma3lyt9ArcResAcc7SetDataEPKvPKc = 0x56a580;
+
+_ZN4ssys2ma9LoadSplit4ReadERKN4sead14SafeStringBaseIKcEEPNS2_4HeapEmm = 0x56b484;
+
+_ZN4sead7HeapMgr14GetCurrentHeapEv = 0x3047c8;
+_ZN4sead7ExpHeap10CreateRootEPvjPKNS_14SafeStringBaseIcEEb = 0x13351c;
+_ZN4sead7HeapMgr13s_pSystemHeapE = 0x95d3f8;
+_ZN4sead7HeapMgr13s_ppRootHeapsE = 0xae65cc;
+_ZN4sead14SafeStringBaseIKcED1Ev = 0x2f6da0;
+_ZN4sead14SafeStringBaseIKcED0Ev = 0x811da0;
+_ZN4sead14SafeStringBaseIKcE5SetNTEv = 0x8283d8;
+
+_ZN4ssys2ma3lyt6Layout5BuildEPKcPKNS1_15ArcResAccReaderEm = 0x569c6c;
+_ZN4ssys2ma3lyt6Layout8FindPaneEPKc = 0x569274;
+_ZN4ssys2ma3lyt6Layout11FindTextBoxEPKc = 0x569568;
+_ZN4ssys2ma3lyt6Layout7AnimateEv = 0x5696f8;
+_ZN4ssys2ma3lyt6Layout18UnbindAllAnimationEv = 0x133a70;
+_ZN4ssys2ma3lyt6Layout9FindGroupEPKc = 0x4b5648;
+_ZN4ssys2ma3lyt6Layout13BindAnimationEPNS1_9AnimationEPKN2nw3lyt5GroupEb = 0x569118;
+_ZN4ssys2ma3lyt6Layout15UnbindAnimationEPNS1_9AnimationEPKN2nw3lyt5GroupEb = 0x56946c;
+
+_ZN4ssys2ma3lyt9LayoutMgr3GetEv = 0x133a78;
+_ZN4ssys2ma3lyt9LayoutMgr8RegisterEPNS1_6Base2DEb = 0x56a954;
+
+_ZN6LayoutC1Ev = 0x126550;
+_ZN6LayoutD1Ev = 0x5c0214;
+
+_ZN15CommonScrollBarC1EPv = 0x29a0ec;
+_ZN15CommonScrollBar10InitializeEO20ScrollBarDescription = 0x299a14;
+_ZN15CommonScrollBar9SetParentEPN2nw3lyt4PaneE = 0x29811c;
+_ZN15CommonScrollBar7ProcessEv = 0x299d38;
+_ZN15CommonScrollBar8FinalizeEv = 0x133acc;
+_ZN15CommonScrollBarD1Ev = 0x29a2c4;
+
+_ZN4BaseD2Ev = 0x316fa8;
+_ZNK4Base13CanInitializeEv = 0x52a438;
+_ZN4Base27ProcessInitializationResultEN3oml9framework6ResultE = 0x521610;
+_ZNK4Base11CanFinalizeEv = 0x52a44c;
+_ZN4Base25ProcessFinalizationResultEN3oml9framework6ResultE = 0x521618;
+_ZNK4Base10CanProcessEv = 0x52a3a0;
+_ZN4Base23ProcessProcessingResultEN3oml9framework6ResultE = 0x521714;
+_ZNK4Base10CanStartupEv = 0x52a424;
+_ZN4Base4Unk0Ev = 0x748d08;
+
+_ZN12_GLOBAL__N_115SIMPLE_WTW_ADDRE = 0x650234;
+WEATHER_MOD = 0x62fbc8;
+
+

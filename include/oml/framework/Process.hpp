@@ -1,0 +1,77 @@
+#ifndef OML_FRAMEWORK_PROCESS_HPP
+#define OML_FRAMEWORK_PROCESS_HPP
+
+#include "types.h"
+
+#include <concepts>
+
+namespace oml::framework
+{
+
+	enum class Result
+	{
+		INVALID,
+		STOP,
+		SUCCESS,
+		FAILURE,
+	};
+
+	enum class ProcessID: u16
+	{
+		BEGIN = 0,
+		DESCRIPTION_AND_FACTORY_COUNT = 0x27f,
+
+		COUNT = 0x29d,
+	};
+
+	class Process
+	{
+
+	public:
+
+		MAKE_NONCOPYABLE(Process);
+
+		template<std::derived_from<Process> T>
+		static inline Process* Create() { return new T(); }
+		static void Destroy(Process*);
+
+		virtual ~Process();
+
+	protected:
+		virtual bool CanInitialize() const;
+		virtual Result Initialize();
+		virtual void ProcessInitializationResult(Result);
+		virtual bool CanFinalize() const;
+		virtual Result Finalize();
+		virtual void ProcessFinalizationResult(Result);
+		virtual bool CanProcess() const;
+		virtual Result DoProcess();
+		virtual void ProcessProcessingResult(Result);
+		virtual bool CanStartup() const;
+		virtual Result Startup();
+		virtual void ProcessStartupResult(Result);
+		virtual void OnNotify();
+
+	protected:
+
+		Process();
+
+		void* operator new(size_t size);
+		void operator delete(void* p);
+
+	private:
+
+		s32 m_Handle;
+		Process* m_pOther;
+		ProcessID m_ID;
+		u8 m_State;
+		u8 m_IsStopped;
+		u8 field6_0x10;
+		u8 field7_0x11;
+		u8 m_Param2;
+		u8 field9_0x13;
+	};
+	ASSERT_SIZE(Process, 0x14);
+}
+
+#endif
