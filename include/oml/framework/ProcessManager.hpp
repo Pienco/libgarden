@@ -17,14 +17,14 @@ namespace oml::framework
 		struct ProcessFactoryDescription
 		{
 			Creator<Process> creator;
-			Destroyer<Process> destroyer = Process::Destroy;
+			Destroyer<Process> destroyer;
 		};
 		ASSERT_SIZE(ProcessFactoryDescription, 8);
 
 		template<std::derived_from<Process> T>
 		static consteval ProcessFactoryDescription MakeFactoryDescription()
 		{
-			return { Process::Create<T>, Process::Destroy };
+			return { T::template Create<T>, T::Destroy };
 		}
 
 		template<size_t N>
@@ -55,8 +55,8 @@ namespace oml::framework
 	private:
 
 		static const s32 s_ProcessIDCount;
-		static const ProcessFactoryDescriptions<static_cast<size_t>(ProcessID::DESCRIPTION_AND_FACTORY_COUNT)>* const s_pFactoryFunctions;
-		static const ProcessDescriptions<static_cast<size_t>(ProcessID::DESCRIPTION_AND_FACTORY_COUNT)>* const s_pProcessDescriptions;
+		static const ProcessFactoryDescriptions<ProcessID::USED_COUNT>* const s_pFactoryFunctions;
+		static const ProcessDescriptions<ProcessID::USED_COUNT>* const s_pProcessDescriptions;
 
 		static USED Process* CallCreator(ProcessID id);
 		static USED void CallDestroyer(ProcessID id, Process* proc);

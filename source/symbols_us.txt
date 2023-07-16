@@ -1,8 +1,9 @@
 memcpy = 0x2f85e4;
-memset = 0x2f83c8;
 wcslen = 0x10082c;
 wcsncpy = 0x1017f4;
+wcscpy = 0x1017d8;
 swprintf = 0x100f5c;
+memset = 0x151148;
 malloc = 0x77a51c;
 alloc_aligned = 0x1328d8;
 
@@ -38,10 +39,18 @@ _ZN7netgame10NetGameMgr8Receiver12SetIsEnabledEhb = 0x625a9c;
 _ZN7netgame10NetGameMgr8Receiver13SetWasHandledEhb = 0x625a8c;
 _ZNK7netgame10NetGameMgr13GetMyPlayerNoEv = 0x75f004;
 
+_ZN4item4Item7GetNameEPN6script7WordPtrERKS0_Pv = 0x56e93c;
+
+_ZN4item4ItemC1ENS_2IDE = 0x2fcc14;
+_ZNK4item4Item7IsUsualEv = 0x2fcba0;
+_ZNK4item4Item7GetNameEPv = 0x2fea78;
+_ZNK4item4Item8GetIndexEv = 0x769dbc;
+
 _ZN4item7MapItem5PlaceEv = 0x594d88;
 
 _ZN3map15GetCurrentMapIDEv = 0x2f7384;
 
+_ZN11StageCommon12s_pStageHeapE = 0x953c4c;
 
 _ZN3oml9framework7ProcessnwEj = 0x52a488;
 _ZN3oml9framework7ProcessdlEPv = 0x313b24;
@@ -60,6 +69,13 @@ _ZN3oml9framework14ProcessManager14GetDescriptionENS0_9ProcessIDE = 0x521394;
 _ZN3oml9framework14ProcessManager3GetEv = 0x5204dc;
 _ZN3oml9framework14ProcessManager13CreateProcessENS0_9ProcessIDEll = 0x52a3b4;
 _ZN3oml9framework14ProcessManager17CreateProcessImplENS0_9ProcessIDEll = 0x5202c0;
+
+_ZN6script7WordPtrD2Ev = 0x308368;
+_ZN6script7WordPtr7GetWordEv = 0x5fda64;
+_ZNK6script7WordPtr7GetWordEv = 0x75dc78;
+_ZNK6script7WordPtr7GetSizeEv = 0x75dc60;
+
+_ZTVN6script7WordFixILj33EEE = 0x90b03c;
 
 _ZN6script11RenderTrace7SetTextEPKPKDsS4_ = 0x602480;
 _ZN6script11RenderTrace8SetText2EPKPKDs = 0x60231c;
@@ -80,11 +96,16 @@ _ZN4font3Mgr11s_pInstanceE = 0x9539cc;
 _ZNK4font3Mgr11GetFontNameENS_6FontIDE = 0x748d88;
 _ZNK4font3Mgr7GetFontENS_6FontIDE = 0x52ed74;
 
+_ZN2nw3lyt19ArcResourceAccessor10GetTextureEPKc = 0x4b6b64;
 _ZN2nw3lyt19ArcResourceAccessor10RegistFontEPKcPKNS_4font4FontE = 0x4b52f4;
 
 _ZN2nw3lyt4Pane11AppendChildEPS1_ = 0x4b73fc;
 _ZN2nw3lyt4Pane11RemoveChildEPS1_ = 0x4b7450;
 
+_ZN2nw3gfx8GetModelEPKvPKc = 0x4a7240;
+
+_ZTVN4ssys2ma9AllocatorE = 0x9073ac;
+_ZN4ssys2ma9AllocatorD1Ev = 0x56b23c;
 _ZN4ssys2ma9Allocator15GetGuiAllocatorEv = 0x56a838;
 _ZN4ssys2ma9Allocator20GetResourceAllocatorEv = 0x56a8ac;
 
@@ -104,6 +125,7 @@ _ZN4ssys2ma3lyt9ArcResAcc7SetDataEPKvPKc = 0x56a580;
 
 _ZN4ssys2ma9LoadSplit4ReadERKN4sead14SafeStringBaseIKcEEPNS2_4HeapEmm = 0x56b484;
 
+_ZN4sead7HeapMgr8AllocateEjPNS_4HeapEj = 0x1328d8;
 _ZN4sead7HeapMgr14GetCurrentHeapEv = 0x3047c8;
 _ZN4sead7ExpHeap10CreateRootEPvjPKNS_14SafeStringBaseIcEEb = 0x13351c;
 _ZN4sead7HeapMgr13s_pSystemHeapE = 0x95d3f8;
@@ -123,6 +145,13 @@ _ZN4ssys2ma3lyt6Layout15UnbindAnimationEPNS1_9AnimationEPKN2nw3lyt5GroupEb = 0x5
 
 _ZN4ssys2ma3lyt9LayoutMgr3GetEv = 0x133a78;
 _ZN4ssys2ma3lyt9LayoutMgr8RegisterEPNS1_6Base2DEb = 0x56a954;
+
+_ZN3g3d14ResourceLoaderC1Ev = 0x4eec1c;
+_ZN3g3d14ResourceLoader4ReadEmmm = 0x4eb42c;
+_ZN3g3d14ResourceLoader14InitializeCgfxEPN2nw2os10IAllocatorEPS0_b = 0x317c70;
+
+_ZN5fgobj8GetFgLutEv = 0x595874;
+_ZN5fgobj12s_ModelInfosE = 0x8791a0;
 
 _ZN6LayoutC1Ev = 0x126550;
 _ZN6LayoutD1Ev = 0x5c0214;

@@ -7,7 +7,7 @@
 namespace sead
 {
 
-	class ExpHeap : public Heap
+	class ExpHeap final : public Heap
 	{
 
 	public:

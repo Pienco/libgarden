@@ -14,6 +14,10 @@ namespace ssys::ma::lyt
 	public:
 
 		ArcResAccReader();
+		inline ArcResAccReader(const char* path) : ArcResAccReader()
+		{
+			ReadArc(path);
+		}
 		virtual ~ArcResAccReader() override;
 
 		bool ReadArc(const char* path);
@@ -23,6 +27,11 @@ namespace ssys::ma::lyt
 		inline void* RegisterFont(const char* name, const nw::font::Font* font)
 		{
 			return GetResourceAccessor()->RegistFont(name, font);
+		}
+
+		inline nw::lyt::TextureInfo GetTexture(const char* name)
+		{
+			return GetResourceAccessor()->GetTexture(name);
 		}
 
 		inline bool SetArc(const void* data)

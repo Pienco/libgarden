@@ -16,7 +16,7 @@ namespace sead
 		virtual u32 GetTypeInfo();
 		virtual void Destroy();
 		virtual void Adjust();
-		virtual void* Allocate(size_t);
+		virtual void* Allocate(size_t size, size_t alignment);
 		virtual void Free(void*);
 		virtual void ResizeFront();
 		virtual void ResizeBack();

@@ -30,14 +30,11 @@ namespace sead
 
 		static inline void InitializeCustom()
 		{
-			struct fml
-			{
-				u32 vtable;
-				const char* str;
-			};
-			fml f { 0, "RCE" };
-			ExpHeap::CreateRoot((void*)s_pCustomHeap, 0x331b8000 - s_pCustomHeap, (const SafeString*)&f);
+			static constexpr SafeString s {"Heap"};
+			ExpHeap::CreateRoot((void*)s_pCustomHeap, 0x331b8000 - s_pCustomHeap, &s);
 		}
+
+		static void* Allocate(size_t size, Heap* heap = nullptr, size_t alignment = sizeof(size_t));
 
 	private:
 

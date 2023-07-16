@@ -12,15 +12,15 @@ namespace state
 	template<typename T, typename Ret = void>
 	using MemberPointerType = Ret(T::*)();
 
-	template<typename Func, typename T, typename Ret = void>
-	class CallbackImpl
+	template<typename Func>
+	class CallbackBase
 	{
 
 	public:
 
 		using FuncType = Func;
 
-		constexpr CallbackImpl(Func func): m_Callback { func }
+		explicit constexpr CallbackBase(Func func): m_Callback { func }
 		{
 		}
 
@@ -29,35 +29,38 @@ namespace state
 			m_Callback = func;
 		}
 
-		constexpr void operator()(T* object)
-		{
-			if constexpr (std::is_same_v<Func, MemberPointerType<T, Ret>>)
-			{
-				(object->*m_Callback)();
-			}
-			else 
-			{
-				m_Callback(object);
-			}
-		}
-
-		constexpr void SetAndCall(T* object, Func func)
+		constexpr auto& operator=(Func func)
 		{
 			Set(func);
-			this->operator()(object);
+			return *this;
+		}
+
+		constexpr void operator()(auto&&... args)
+		{
+			m_Callback(std::forward<decltype(args)>(args)...);
+		}
+
+		constexpr void operator()(auto&& object, auto&&... args) requires (std::is_member_function_pointer_v<Func>)
+		{
+			(std::forward<decltype(object)>(object)->*m_Callback)(std::forward<decltype(args)>(args)...);
+		}
+
+		constexpr void SetAndCall(Func func, auto&&... args)
+		{
+			Set(func);
+			this->operator()(std::forward<decltype(args)>(args)...);
 		}
 
 	private:
 
 		Func m_Callback;
-
 	};
 
 	template<typename T, typename Ret = void>
-	using Callback = CallbackImpl<PointerType<T, Ret>, T, Ret>;
+	using Callback = CallbackBase<PointerType<T, Ret>>;
 
 	template<typename T, typename Ret = void>
-	using MemberCallback = CallbackImpl<MemberPointerType<T, Ret>, T, Ret>;
+	using MemberCallback = CallbackBase<MemberPointerType<T, Ret>>;
 
 }
 

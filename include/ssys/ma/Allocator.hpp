@@ -3,18 +3,21 @@
 
 #include "types.h"
 #include "sead/Heap.hpp"
+#include "nw/os/IAllocator.hpp"
 
 namespace ssys::ma
 {
 
-	class Allocator
+	class Allocator : public nw::os::IAllocator
 	{
 	
 	public:
 
-		virtual ~Allocator();
-		virtual void* Allocate(size_t size, size_t alignment);
-		virtual void Free(void* p);
+		constexpr Allocator() : m_pHeap { } { }
+		constexpr Allocator(sead::Heap* heap) : m_pHeap { heap } { }
+		virtual ~Allocator() override;
+		virtual void* Allocate(size_t size, size_t alignment) override;
+		virtual void Free(void* p) override;
 
 		inline sead::Heap* GetHeap() { return m_pHeap; }
 		inline void SetHeap(sead::Heap* heap) { m_pHeap = heap; }

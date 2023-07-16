@@ -164,7 +164,7 @@ namespace item
 		AMULET = 152,
 		TROPHY = 153,
 		SMP = 154,
-		COUNT = 0x9b,
+		END = 0x9b,
 	};
 }
 

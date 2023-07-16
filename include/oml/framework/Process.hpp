@@ -16,10 +16,10 @@ namespace oml::framework
 		FAILURE,
 	};
 
-	enum class ProcessID: u16
+	enum ProcessID: u16
 	{
 		BEGIN = 0,
-		DESCRIPTION_AND_FACTORY_COUNT = 0x27f,
+		USED_COUNT = 0x27f,
 
 		COUNT = 0x29d,
 	};
@@ -30,10 +30,6 @@ namespace oml::framework
 	public:
 
 		MAKE_NONCOPYABLE(Process);
-
-		template<std::derived_from<Process> T>
-		static inline Process* Create() { return new T(); }
-		static void Destroy(Process*);
 
 		virtual ~Process();
 
@@ -54,10 +50,16 @@ namespace oml::framework
 
 	protected:
 
+		friend class ProcessManager;
+
 		Process();
 
 		void* operator new(size_t size);
 		void operator delete(void* p);
+
+		template<std::derived_from<Process> T>
+		static inline Process* Create() { return new T(); }
+		static void Destroy(Process*);
 
 	private:
 

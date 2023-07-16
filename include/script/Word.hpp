@@ -14,7 +14,7 @@ namespace script
 		virtual constexpr ~IWord() = default;
 		virtual char16* GetWord() = 0;
 		virtual const char16* GetWord() const = 0;
-		virtual size_t GetLength() const = 0;
+		virtual size_t GetSize() const = 0;
 
 	};
 	ASSERT_SIZE(IWord, 4);
@@ -24,13 +24,13 @@ namespace script
 	
 	public:
 
-		constexpr WordPtr(char16* textBuffer, size_t length): m_pText(textBuffer), m_Length(length)
+		constexpr WordPtr(char16* textBuffer, size_t size): m_pText(textBuffer), m_Size(size)
 		{
 
 		}
 
 		template<size_t N>
-		constexpr WordPtr(char16(&textBuffer)[N]): m_pText(&textBuffer), m_Length(N)
+		constexpr WordPtr(char16(&textBuffer)[N]): m_pText(&textBuffer), m_Size(N)
 		{
 
 		}
@@ -38,12 +38,12 @@ namespace script
 		virtual ~WordPtr() override;
 		virtual char16* GetWord() override;
 		virtual const char16* GetWord() const override;
-		virtual size_t GetLength() const override;
+		virtual size_t GetSize() const override;
 
 	private:
 
 		char16* m_pText;
-		size_t m_Length;
+		size_t m_Size;
 	};
 	ASSERT_SIZE(WordPtr, 0xc);
 
@@ -54,22 +54,28 @@ namespace script
 
 	public:
 
-		constexpr WordFix(): WordPtr(m_TextBuffer.data(), N), m_Span {}, m_TextBuffer {}
+		constexpr WordFix(): WordPtr(m_TextBuffer.data(), N)
 		{
 		}
 
-		constexpr WordFix(const char16* str, size_t len) : WordPtr(m_TextBuffer.data(), len), m_Span {}
+		constexpr WordFix(const char16* str, size_t len) : WordFix()
 		{
-			std::copy(str, str + len, m_TextBuffer.begin());
+			std::copy(str, str + std::min(len, N), m_TextBuffer.begin());
 		}
 
-		constexpr WordFix(const char16(&str)[N]) : m_TextBuffer { std::to_array(str) }, WordPtr(m_TextBuffer.begin(), N), m_Span {}
+		constexpr WordFix(const char16(&str)[N]) : WordPtr(m_TextBuffer.data(), N), m_TextBuffer { std::to_array(str) }
+		{
+		}
+
+		constexpr WordFix(const std::array<char16, N>& str) : WordPtr(m_TextBuffer.data(), N), m_TextBuffer { str }
 		{
 		}
 
 		virtual constexpr ~WordFix() override = default;
 
 	private:
+
+		using Buffer = std::array<char16, N>;
 
 		struct Span
 		{
@@ -82,8 +88,8 @@ namespace script
 		};
 		ASSERT_SIZE(Span, 0xc);
 
-		Span m_Span;
-		std::array<char16, N> m_TextBuffer;
+		Span m_Span { };
+		Buffer m_TextBuffer { };
 	};
 	ASSERT_SIZE(WordFix<128u>, 0x118);
 	
@@ -94,7 +100,7 @@ namespace detail
 	template<size_t N>
 	struct CaptureStringLiteral
 	{
-		static constexpr size_t length = N;
+		static constexpr size_t size = N;
 
 		constexpr CaptureStringLiteral(const char16(&arr)[N])
 		{
@@ -106,11 +112,11 @@ namespace detail
 }
 
 template<detail::CaptureStringLiteral String>
-inline constexpr const script::WordPtr* operator""_wp()
+inline constexpr script::WordPtr operator""_wp()
 {
 	static constinit detail::CaptureStringLiteral copy { String };
-	static constexpr script::WordPtr internal { &copy.str[0], copy.length };
-	return &internal;
+	// static constexpr script::WordPtr wp { &copy.str[0], copy.sizr };
+	return script::WordPtr { copy.str, copy.size };
 }
 
 template<detail::CaptureStringLiteral String>

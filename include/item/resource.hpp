@@ -1,9 +1,9 @@
 #ifndef ITEM_RESOURCE_HPP
 #define ITEM_RESOURCE_HPP
 
-#include "types.h"
 #include "item/Kind.hpp"
 #include "item/ID.hpp"
+#include "item/ModelID.hpp"
 
 namespace item
 {
@@ -14,7 +14,7 @@ namespace item
 		u16	price;
 		u8 roomOrientation[6];
 		Kind kind;
-		u8 modelID;
+		ModelID modelID;
 		u8 unk[2];
 		s8 priceMultiplier;
 		u8 unk2[2];

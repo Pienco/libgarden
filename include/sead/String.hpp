@@ -12,10 +12,10 @@ namespace sead
 
 	public:
 
-		SafeStringBase(const T* string) : m_pString(string)
+		constexpr SafeStringBase(const T* string) : m_pString(string)
 		{
 		}
-		virtual ~SafeStringBase();
+		virtual constexpr ~SafeStringBase() {}
 		virtual void SetNT();
 
 		inline const T* GetString() const { return m_pString; }

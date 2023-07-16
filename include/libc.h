@@ -10,15 +10,14 @@ extern "C"
 
 void* malloc(size_t size);
 void free(void* ptr);
-void* alloc_aligned(size_t size, void* allocator, size_t alignment);
 
 int strcmp(const char* str1, const char* str2);
 void* memcpy(void* destination, const void* source, size_t num);
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wbuiltin-declaration-mismatch"
-void* memset(void* ptr, size_t num, int value);
-#pragma GCC diagnostic pop
+// #pragma GCC diagnostic push
+// #pragma GCC diagnostic ignored "-Wbuiltin-declaration-mismatch"
+// void* memset(void* ptr, size_t num, int value);
+// #pragma GCC diagnostic pop
 
 #ifdef __cplusplus
 #define CHAR16_TYPE char16_t

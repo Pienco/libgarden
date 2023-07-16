@@ -16,16 +16,6 @@
 
 #endif
 
-/// The maximum value of a u64.
-#define U64_MAX	UINT64_MAX
-
-/// would be nice if newlib had this already
-#ifndef SSIZE_MAX
-#ifdef SIZE_MAX
-#define SSIZE_MAX ((SIZE_MAX) >> 1)
-#endif
-#endif
-
 typedef uint8_t u8;   ///<  8-bit unsigned integer
 typedef uint16_t u16; ///< 16-bit unsigned integer
 typedef uint32_t u32; ///< 32-bit unsigned integer
@@ -47,55 +37,32 @@ typedef volatile s32 vs32; ///< 32-bit volatile signed integer.
 typedef volatile s64 vs64; ///< 64-bit volatile signed integer.
 
 
-typedef void (*ThreadFunc)(void *); ///< Thread entrypoint function.
-typedef void (*voidfn)(void);
-
-
-
 /// Creates a bitmask from a bit number.
 #define BIT(n) (1U<<(n))
 
-// Fix intellisense errors
-#ifdef _MSC_VER
+/// Aligns a struct (and other types?) to m, making sure that the size of the struct is a multiple of m.
+#define ALIGN(m)   __attribute__((aligned(m)))
+/// Packs a struct (and other types?) so it won't include padding bytes.
+#define PACKED     __attribute__((packed))
 
-    #define ALIGN(m)
-    #define PACKED
-    #define USED
-    #define UNUSED
-    #define DEPRECATED
-    #define NAKED
-    #define NORETURN
+#define USED       __attribute__((used))
+#define UNUSED     __attribute__((unused))
 
-#else
+/// Flags a function as deprecated.
+#define DEPRECATED __attribute__ ((deprecated))
 
-    /// Aligns a struct (and other types?) to m, making sure that the size of the struct is a multiple of m.
-    #define ALIGN(m)   __attribute__((aligned(m)))
-    /// Packs a struct (and other types?) so it won't include padding bytes.
-    #define PACKED     __attribute__((packed))
+#define NAKED __attribute__((naked))
+#define NORETURN __attribute__((noreturn))
 
-    #define USED       __attribute__((used))
-    #define UNUSED     __attribute__((unused))
+#define FORCE_INLINE __attribute__((always_inline))
+#define NO_INLINE __attribute__((noinline))
 
-    #ifndef LIBCTRU_NO_DEPRECATION
-        /// Flags a function as deprecated.
-        #define DEPRECATED __attribute__ ((deprecated))
-    #else
-        /// Flags a function as deprecated.
-        #define DEPRECATED
-    #endif
-    #define NAKED __attribute__((naked))
-    #define NORETURN __attribute__((noreturn))
+#define LIKELY(x) __builtin_expect((x), true)
+#define UNLIKELY(x) __builtin_expect((x), false)
 
-    #define FORCE_INLINE __attribute__((always_inline))
-    #define NO_INLINE __attribute__((noinline))
+#define THUMB  __attribute__((target("thumb")))
+#define ARM __attribute__((target("arm")))
 
-    #define LIKELY(x) __builtin_expect((x), true)
-    #define UNLIKELY(x) __builtin_expect((x), false)
-
-    #define THUMB  __attribute__((target("thumb")))
-    #define ARM __attribute__((target("arm")))
-
-#endif
 
 #define CUR_THREAD_HANDLE       0xFFFF8000
 #define CUR_PROCESS_HANDLE      0xFFFF8001
@@ -110,27 +77,27 @@ typedef void (*voidfn)(void);
 
 #ifdef __cplusplus
 
-    typedef char16_t char16;
+typedef char16_t char16;
 
-    template<size_t N>
-    using u8_array = std::array<u8, N>;
+template<size_t N>
+using u8_array = std::array<u8, N>;
 
-    template<size_t N>
-    using u16_array = std::array<u16, N>;
+template<size_t N>
+using u16_array = std::array<u16, N>;
 
-    template<size_t N>
-    using u32_array = std::array<u32, N>;
+template<size_t N>
+using u32_array = std::array<u32, N>;
 
-    template<size_t N>
-    using s8_array = std::array<s8, N>;
+template<size_t N>
+using s8_array = std::array<s8, N>;
 
-    template<size_t N>
-    using s16_array = std::array<s16, N>;
+template<size_t N>
+using s16_array = std::array<s16, N>;
 
-    template<size_t N>
-    using s32_array = std::array<s32, N>;
+template<size_t N>
+using s32_array = std::array<s32, N>;
 
-    #define MAKE_NONCOPYABLE(type) \
+#define MAKE_NONCOPYABLE(type) \
         type(type& other) = delete; \
         type& operator=(type& other) = delete
 
