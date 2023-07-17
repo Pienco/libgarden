@@ -102,7 +102,7 @@ _ZN2nw3lyt19ArcResourceAccessor10RegistFontEPKcPKNS_4font4FontE = 0x4b52f4;
 _ZN2nw3lyt4Pane11AppendChildEPS1_ = 0x4b73fc;
 _ZN2nw3lyt4Pane11RemoveChildEPS1_ = 0x4b7450;
 
-_ZN2nw3gfx8GetModelEPKvPKc = 0x4a7240;
+_ZN2nw3gfx8GetModelEPKPKvPKc = 0x4a7240;
 
 _ZTVN4ssys2ma9AllocatorE = 0x9073ac;
 _ZN4ssys2ma9AllocatorD1Ev = 0x56b23c;

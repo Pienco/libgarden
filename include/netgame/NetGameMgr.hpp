@@ -45,9 +45,9 @@ namespace netgame
 
 	private:
 
-		u8 pad0[0x58];
+		u8 data0[0x58];
 		Receiver m_Receiver;
-		u8 pad1[0x13208];
+		u8 data1[0x13208];
 		sead::CriticalSection m_CriticalSection;
 
 		static NetGameMgr* s_pInstance;

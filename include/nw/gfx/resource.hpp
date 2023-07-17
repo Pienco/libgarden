@@ -4,7 +4,7 @@
 namespace nw::gfx
 {
 
-	const void* GetModel(const void* cgfx, const char* name);
+	const void* GetModel(const void* const* cgfx, const char* name);
 
 	
 }

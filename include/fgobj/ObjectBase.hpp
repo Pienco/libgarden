@@ -8,12 +8,19 @@
 namespace fgobj
 {
 
+	enum class TextureID : u8
+	{
+		DEFAULT,
+		T_FG_OUTSIDE,
+		T_FG_OUTSIDE_2,
+	};
+
 	struct ModelInfo
 	{
 		const char* nameOutside;
 		const char* nameInside;
-		u8 flagOutside;
-		u8 flagInside;
+		TextureID textureOutside;
+		TextureID textureInside;
 	};
 	ASSERT_SIZE(ModelInfo, 0xc);
 

@@ -17,6 +17,7 @@ namespace g3d
 
 		static constexpr size_t CGFX_ALIGNMENT = 0x80;
 
+
 		ResourceLoader();
 
 		void Load(const sead::SafeString* path, sead::Heap* heap, size_t alignment = CGFX_ALIGNMENT);
@@ -38,9 +39,9 @@ namespace g3d
 			m_pCgfx = cgfx;
 		}
 
-		inline const void* GetCgfx() const
+		inline const void* const* GetCgfx()
 		{
-			return m_pCgfx;
+			return &m_pCgfx;
 		}
 
 	private:

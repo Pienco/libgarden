@@ -7,11 +7,15 @@ endif
 TOPDIR 		?= 	$(CURDIR)
 include $(DEVKITARM)/3ds_rules
 
+rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
+subdirs=$(sort $(dir $(call rwildcard,$1/,)))
+findindir=$(shell find $1 -name '$2')
+findallfiles=$(shell find $1 -type f)
 
-INCLUDES	:= 	include include/base include/oml/framework include/script include/ssys/ma/lyt
+INCLUDES	:= 	$(call subdirs,include)
 
 LIBDIRS		:= 	
-SOURCES 	:= 	source source/oml/framework source/base source/script source/ssys/ma/lyt
+SOURCES 	:= 	$(call subdirs,source)
 
 #---------------------------------------------------------------------------------
 # options for code generation

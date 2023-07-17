@@ -191,11 +191,11 @@ namespace util
 		constexpr auto begin_pos = [&]
 		{
 			constexpr auto find_begin = convert<C>("V = "_a);
-			constexpr auto res = convert<C>("::"_a);
+			constexpr auto colon = convert<C>("::"_a);
 			auto result = find_skip(func, find_begin);
 			if constexpr (SkipScopeNames)
 			{
-				for (size_t pos = find_skip(func, res, result); pos != func.size() && pos < end_pos; pos = find_skip(func, res, result))
+				for (size_t pos = find_skip(func, colon, result); pos != func.size() && pos < end_pos; pos = find_skip(func, colon, result))
 				{
 					result = pos;
 				}
