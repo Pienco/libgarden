@@ -1,168 +1,406 @@
 #ifndef MATH_VECTOR_HPP
 #define MATH_VECTOR_HPP
 
+#include "types.h"
 #include "util/pattern.hpp"
 
-template<typename T, u32 Dim>
-struct Vector
+#include <array>
+#include <cmath>
+
+namespace math
 {
-
-};
-
-template<typename T>
-struct Vector<T, 1>
-{
-	using Self = Vector<T, 1>;
-
-	constexpr T& operator[](int i)
+	template<typename T, size_t N>
+	struct Vector
 	{
-		return (&x)[i];
-	}
-	constexpr const T& operator[](int i) const
-	{
-		return (&x)[i];
-	}
+		using Self = Vector<T, N>;
+		using ValueType = T;
 
-	constexpr void Clamp(Self max)
-	{
-		clamp(x, max.x);
-	}
+		static consteval auto Dim()
+		{
+			return N;
+		}
 
-	friend constexpr Self operator+(Self left, Self right)
-	{
-		return { left.x + right.x };
-	}
-	friend constexpr Self operator-(Self left, Self right)
-	{
-		return { left.x - right.x };
-	}
-	friend constexpr Self operator*(Self left, T right)
-	{
-		return { left.x * right };
-	}
-	friend constexpr Self operator*(T left, Self right)
-	{
-		return { left * right.x };
-	}
+		template<size_t I>
+		FORCE_INLINE constexpr T& get()
+		{
+			return std::get<I>(elements);
+		}
 
-	T x;
+		template<size_t I>
+		FORCE_INLINE constexpr const T& get() const
+		{
+			return std::get<I>(elements);
+		}
 
-protected:
+		FORCE_INLINE constexpr T& operator[](size_t i)
+		{
+			return elements[i];
+		}
 
-	template<typename Vec>
-	static constexpr void VecOp(auto&& fn)
+		FORCE_INLINE constexpr const T& operator[](size_t i) const
+		{
+			return elements[i];
+		}
+
+		FORCE_INLINE constexpr T& at(size_t i)
+		{
+			return elements[i];
+		}
+
+		FORCE_INLINE constexpr const T& at(size_t i) const
+		{
+			return elements[i];
+		}
+
+		FORCE_INLINE constexpr T& x() requires (N >= 1)
+		{
+			return get<0>();
+		}
+		FORCE_INLINE constexpr T x() const requires (N >= 1)
+		{
+			return get<0>();
+		}
+		FORCE_INLINE constexpr T& y() requires (N >= 2)
+		{
+			return get<1>();
+		}
+		FORCE_INLINE constexpr T y() const requires (N >= 2)
+		{
+			return get<1>();
+		}
+		FORCE_INLINE constexpr T& z() requires (N >= 3)
+		{
+			return get<2>();
+		}
+		FORCE_INLINE constexpr T z() const requires (N >= 3)
+		{
+			return get<2>();
+		}
+		FORCE_INLINE constexpr T& w() requires (N >= 4)
+		{
+			return get<3>();
+		}
+		FORCE_INLINE constexpr T w() const requires (N >= 4)
+		{
+			return get<3>();
+		}
+
+		template<std::common_with<Self> S>
+		FORCE_INLINE constexpr void Clamp(S&& max)
+		{
+			Operation([this, max]<size_t I> FORCE_INLINE
+				{
+					if (this->get<I>() > max.template get<I>())
+						this->get<I>() = max.template get<I>();
+				});
+		}
+
+		template<std::common_with<Self> S>
+		FORCE_INLINE constexpr T Dot(S&& right) const
+		{
+			return Operation([this, right]<size_t I> FORCE_INLINE
+				{
+					return this->get<I>() * right.template get<I>();
+				},
+				[] FORCE_INLINE(auto&&... results)
+			{
+				return (... + results);
+			});
+		}
+
+		FORCE_INLINE constexpr T LengthSquared() const
+		{
+			return Dot(*this);
+		}
+
+		FORCE_INLINE constexpr T Length() const
+		{
+			return std::sqrt(LengthSquared());
+		}
+
+		template<std::common_with<Self> S1, std::common_with<Self> S2>
+		FORCE_INLINE friend constexpr Self operator+(S1&& left, S2&& right)
+		{
+			return ArithmeticOperation([] FORCE_INLINE(auto l, auto r)
+			{
+				return l + r;
+			}, std::forward<S1>(left), std::forward<S2>(right));
+		}
+
+		template<std::common_with<Self> S>
+		FORCE_INLINE constexpr Self& operator+=(S&& right)
+		{
+			Operation([this, right]<size_t I> FORCE_INLINE
+				{
+					this->get<I>() += right.template get<I>();
+				});
+			return *this;
+		}
+
+		template<std::common_with<Self> S1, std::common_with<Self> S2>
+		FORCE_INLINE friend constexpr Self operator-(S1&& left, S2&& right)
+		{
+			return ArithmeticOperation([] FORCE_INLINE(auto l, auto r)
+			{
+				return l - r;
+			}, std::forward<S1>(left), std::forward<S2>(right));
+		}
+
+		template<std::common_with<Self> S>
+		FORCE_INLINE constexpr Self& operator-=(S&& right)
+		{
+			Operation([this, right]<size_t I> FORCE_INLINE
+				{
+					this->get<I>() -= right.template get<I>();
+				});
+			return *this;
+		}
+
+		template<std::common_with<Self> S>
+		FORCE_INLINE friend constexpr Self operator*(S&& left, T&& right)
+		{
+			return ArithmeticOperation([] FORCE_INLINE(auto l, auto r)
+			{
+				return l * r;
+			}, std::forward<S>(left), std::forward<T>(right));
+		}
+
+		template<std::common_with<Self> S>
+		FORCE_INLINE friend constexpr Self operator*(T&& left, S&& right)
+		{
+			return operator*(std::forward<S>(right), std::forward<T>(left));
+		}
+
+		FORCE_INLINE constexpr Self& operator*=(T&& right)
+		{
+			Operation([this, right]<size_t I> FORCE_INLINE
+				{
+					this->get<I>() *= right;
+				});
+			return *this;
+		}
+
+		template<std::common_with<Self> S>
+		FORCE_INLINE friend constexpr Self operator/(S&& left, T&& right)
+		{
+			return ArithmeticOperation([] FORCE_INLINE(auto l, auto r)
+			{
+				return l / r;
+			}, std::forward<S>(left), std::forward<T>(right));
+		}
+
+		template<std::common_with<Self> S>
+		FORCE_INLINE friend constexpr Self operator/(T&& left, S&& right)
+		{
+			return operator/(std::forward<S>(right), std::forward<T>(left));
+		}
+
+		FORCE_INLINE constexpr Self& operator/=(T&& right)
+		{
+			Operation([this, right]<size_t I> FORCE_INLINE
+				{
+					this->get<I>() /= right;
+				});
+			return *this;
+		}
+
+		template<std::common_with<Self> S1, std::common_with<Self> S2>
+		FORCE_INLINE friend constexpr auto operator==(S1&& left, S2&& right)
+		{
+			return left.elements == right.elements;
+		}
+
+		std::array<T, N> elements;
+
+	private:
+
+		template<typename F, typename R>
+		FORCE_INLINE static constexpr auto Operation(F&& fn, R&& resultFn)
+		{
+			return util::expand_pattern<N>(std::forward<F>(fn), std::forward<R>(resultFn));
+		}
+
+		template<typename F>
+		FORCE_INLINE static constexpr void Operation(F&& fn)
+		{
+			util::expand_pattern<N>(std::forward<F>(fn));
+		}
+
+		template<typename F, typename L, typename R>
+		FORCE_INLINE static constexpr auto ArithmeticOperation(F&& fn, L&& left, R&& right)
+		{
+			return util::expand_braced_init<Self, N>([&]<size_t I> FORCE_INLINE
+				{
+					if constexpr (std::is_convertible_v<L, Self> && std::is_convertible_v<R, Self>)
+						return fn(left.template get<I>(), right.template get<I>());
+					else if constexpr (std::is_convertible_v<L, Self>)
+						return fn(left.template get<I>(), std::forward<R>(right));
+					else if constexpr (std::is_convertible_v<R, Self>)
+						return fn(std::forward<L>(left), right.template get<I>());
+				});
+		}
+
+	};
+
+	template<typename T, typename... U>
+	Vector(T, U...) -> Vector<T, 1 + sizeof...(U)>;
+
+	using Vector2s8 = Vector<s8, 2>;
+	using Vector2u8 = Vector<u8, 2>;
+	using Vector2s16 = Vector<s16, 2>;
+	using Vector2u16 = Vector<u16, 2>;
+	using Vector2u32 = Vector<u32, 2>;
+	using Vector2i = Vector<int, 2>;
+	using Vector3i = Vector<int, 3>;
+	using Vector2 = Vector<float, 2>;
+	using Vector3 = Vector<float, 3>;
+	using Vector4 = Vector<float, 4>;
+
+	static_assert(sizeof(Vector3) == 3 * sizeof(float));
+	static_assert(sizeof(Vector4) == 4 * sizeof(float));
+
+	template<typename T, size_t M, size_t N>
+	struct Matrix
 	{
-		expand_pattern<GetDim<Vec>()>(std::forward<decltype(fn)>(fn));
-	}
+		using Self = Matrix<T, M, N>;
+		using Row = Vector<T, N>;
+		using Column = Vector<T, M>;
 
-private:
+		static consteval size_t Width()
+		{
+			return N;
+		}
 
-	template<typename Vec>
-	static consteval size_t GetDim()
-	{
-		if constexpr (!requires { Vec::x; }) return 0;
-		if constexpr (!requires { Vec::y; }) return 1;
-		if constexpr (!requires { Vec::z; }) return 2;
-		if constexpr (!requires { Vec::w; }) return 3;
-		if constexpr (requires { Vec::w; }) return 4;
-	}
+		static consteval size_t Height()
+		{
+			return M;
+		}
 
-	template<size_t Index, typename Vec>
-	friend constexpr T& At(Vec& self)
-	{
-		static_assert(Index < GetDim<Vec>());
-		static_assert(requires { Vec::x; });
+		template<size_t I> requires (I < M)
+			FORCE_INLINE constexpr Row& get()
+		{
+			return std::get<I>(rows);
+		}
 
-		if constexpr (Index == 0) return self.x;
-		if constexpr (Index == 1) return self.y;
-		if constexpr (Index == 2) return self.z;
-		if constexpr (Index == 3) return self.w;
-	}
-};
-template<typename T>
-struct Vector<T, 2>: Vector<T, 1>
-{
-	using Self = Vector<T, 2>;
+		template<size_t I> requires (I < M)
+			FORCE_INLINE constexpr const Row& get() const
+		{
+			return std::get<I>(rows);
+		}
 
-	constexpr void Clamp(Self max)
-	{
-		Vector<T, 1>::Clamp({ max.x });
-		clamp(y, max.y);
-	}
+		template<size_t I, size_t J> requires (I < M&& J < N)
+			FORCE_INLINE constexpr T& get()
+		{
+			return get<I>().template get<J>();
+		}
 
-	friend constexpr Self operator+(Self left, Self right)
-	{
-		return { left.x + right.x, left.y + right.y };
-	}
-	friend constexpr Self& operator+=(Self& left, Self right)
-	{
-		left.x += right.x;
-		left.y += right.y;
-		return left;
-	}
-	friend constexpr Self operator-(Self left, Self right)
-	{
-		return { left.x - right.x, left.y - right.y };
-	}
-	friend constexpr Self operator*(Self left, Self right)
-	{
-		return { left.x * right.x, left.y * right.y };
-	}
-	friend constexpr Self operator*(Self left, T right)
-	{
-		return { left.x * right, left.y * right };
-	}
-	friend constexpr Self operator*(T left, Self right)
-	{
-		return right * left;
-	}
-	friend constexpr bool operator<(Self left, Self right)
-	{
-		return left.x < right.x&& left.y < right.y;
-	}
-	friend constexpr bool operator>(Self left, Self right)
-	{
-		return left.x > right.x && left.y > right.y;
-	}
-	friend constexpr bool operator>=(Self left, Self right)
-	{
-		return left.x >= right.x && left.y >= right.y;
-	}
-	friend constexpr bool operator==(Self left, Self right) = default;
+		template<size_t I, size_t J> requires (I < M&& J < N)
+			FORCE_INLINE constexpr const T& get() const
+		{
+			return get<I>().template get<J>();
+		}
 
-	T y;
-};
+		template<size_t I> requires (I < N)
+			FORCE_INLINE constexpr Column column() const
+		{
+			return util::expand_braced_init<Vector<T, M>, M>([&]<size_t J> FORCE_INLINE
+				{
+					return get<J, I>();
+				});
+		}
 
-template<typename T>
-struct Vector<T, 3>: Vector<T, 2>
-{
-	T z;
-};
-template<typename T>
-struct Vector<T, 4>: Vector<T, 3>
-{
-	T w;
-};
+		FORCE_INLINE constexpr T Trace() const
+		{
+			return Operation([this]<size_t I> FORCE_INLINE
+				{
+					return this->get<I, I>();
+				},
+				[](auto&&... results) FORCE_INLINE
+				{
+					return (... + results);
+				});
+		}
 
-typedef Vector<s32, 2> Vector2i;
-typedef Vector<s32, 3> Vector3i;
-typedef Vector<float, 2> Vector2;
-typedef Vector<float, 3> Vector3;
-typedef Vector<float, 4> Vector4;
+		FORCE_INLINE constexpr Matrix<T, N, M> Transpose() const
+		{
+			return util::expand_braced_init<Matrix<T, N, M>, N>([&]<size_t I> FORCE_INLINE
+				{
+					return util::expand_braced_init<Vector<T, M>, M>([&]<size_t J> FORCE_INLINE
+					{
+						return get<J, I>();
+					});
+				});
+		}
 
-ASSERT_SIZE(Vector3, 0xc);
-ASSERT_SIZE(Vector4, 0x10);
+		template<std::common_with<Self> L, std::common_with<Row> R>
+		FORCE_INLINE friend constexpr Column operator*(L&& left, R&& right)
+		{
+			return ArithmeticOperation<Column, M>([] FORCE_INLINE(auto l, auto r)
+			{
+				return l.Dot(r);
+			}, std::forward<L>(left), std::forward<R>(right));
+		}
 
-template<typename T, u32 Rows, u32 Columns>
-struct Matrix
-{
-	Vector<T, Columns> rows[Rows];
-};
+		// template<std::common_with<Self> L, typename R> requires (N == R::Height())
+		// FORCE_INLINE friend constexpr auto operator*(L&& left, R&& right)
+		// {
+		// 	return ArithmeticOperation<Matrix<T, M, R::Width()>, M>([] FORCE_INLINE(auto&& l, auto&& r)
+		// 	{
+		// 		return operator*(std::forward<decltype(l)>(l), std::forward<decltype(r)>(r));
+		// 	}, std::forward<L>(left), std::forward<R>(right));
+		// }
 
-typedef Matrix<float, 4, 4> Matrix4;
-typedef Matrix<float, 3, 4> Matrix34;
+		std::array<Vector<T, N>, M> rows;
 
-ASSERT_SIZE(Matrix4, 0x40);
-ASSERT_SIZE(Matrix34, 0x30);
+	private:
+
+		template<typename F, typename R>
+		FORCE_INLINE static constexpr auto Operation(F&& fn, R&& resultFn)
+		{
+			return util::expand_pattern<N>(std::forward<F>(fn), std::forward<R>(resultFn));
+		}
+
+		template<typename F>
+		FORCE_INLINE static constexpr void Operation(F&& fn)
+		{
+			util::expand_pattern<N>(std::forward<F>(fn));
+		}
+
+		template<typename Ret, size_t RetSize, typename L, typename R>
+		FORCE_INLINE static constexpr auto ArithmeticOperation(auto&& fn, L&& left, R&& right)
+		{
+			return util::expand_braced_init<Ret, RetSize>([&]<size_t I> FORCE_INLINE
+				{
+					if constexpr (std::is_convertible_v<L, Self> && std::is_convertible_v<R, Row>)
+						return fn(left.template get<I>(), std::forward<R>(right));
+					else return fn(std::forward<L>(left), right.template column<I>());
+				});
+		}
+	};
+
+	template<typename T, size_t N, std::same_as<Vector<T, N>>... U>
+	Matrix(Vector<T, N>, U...) -> Matrix<T, 1 + sizeof...(U), N>;
+
+	using Matrix2 = Matrix<float, 2, 2>;
+	using Matrix3 = Matrix<float, 3, 3>;
+	using Matrix34 = Matrix<float, 3, 4>;
+	using Matrix4 = Matrix<float, 4, 4>;
+}
+
+using Vector2s8 = math::Vector2s8; 
+using Vector2u8 = math::Vector2u8; 
+using Vector2s16 = math::Vector2s16;
+using Vector2u16 = math::Vector2u16;
+using Vector2u32 = math::Vector2u32;
+using Vector2i = math::Vector2i;
+using Vector3i = math::Vector3i;
+using Vector2 = math::Vector2;
+using Vector3 = math::Vector3;
+using Vector4 = math::Vector4;
+
+using Matrix2 = math::Matrix2;
+using Matrix3 = math::Matrix3;
+using Matrix34 = math::Matrix34;
+using Matrix4 = math::Matrix4;
 
 #endif

@@ -1,18 +1,18 @@
 #ifndef MAP_MAP_HPP
 #define MAP_MAP_HPP
 
-#include "types.h"
-
+#include "map/ItemMap.hpp"
+#include "map/ID.hpp"
+#include "math/Vector.hpp"
 
 namespace map
 {
+	ID GetCurrent();
 
-	enum class MapID : u8
-	{
-		DUMMY = 0xa5,
-	};
+	ItemMap* GetItemMap(ItemMapID id);
 
-	MapID GetCurrentMapID();
+
+	s32 GetRandom(s32 end);
 }
 
 #endif

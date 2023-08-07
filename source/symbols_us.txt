@@ -48,7 +48,11 @@ _ZNK4item4Item8GetIndexEv = 0x769dbc;
 
 _ZN4item7MapItem5PlaceEv = 0x594d88;
 
-_ZN3map15GetCurrentMapIDEv = 0x2f7384;
+_ZNK3map7ItemMap7GetItemEN4math6VectorIiLj2EEEh = 0x2fef9c;
+_ZN3map7ItemMap9PlaceItemERKN4item4ItemEN4math6VectorIiLj2EEEh = 0x2fca24;
+
+_ZN3map10GetCurrentEv = 0x2f7384;
+_ZN3map10GetItemMapENS_9ItemMapIDE = 0x2fe95c;
 
 _ZN11StageCommon12s_pStageHeapE = 0x953c4c;
 
@@ -173,7 +177,6 @@ _ZN4Base23ProcessProcessingResultEN3oml9framework6ResultE = 0x521714;
 _ZNK4Base10CanStartupEv = 0x52a424;
 _ZN4Base4Unk0Ev = 0x748d08;
 
-_ZN12_GLOBAL__N_115SIMPLE_WTW_ADDRE = 0x650234;
-WEATHER_MOD = 0x62fbc8;
+_ZN12RandomPlacer8DoRandomEPFvR17RandomPlacerUsualRS_RKNS_4InfoEEPS0_j = 0x2fdbd8;
 
-
+_ZN8BsGrowUp12s_CurrentMapE = 0x953bad;
