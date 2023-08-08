@@ -13,7 +13,8 @@ namespace ssys::ma
 
 	public:
 
-		bool Read(const sead::SafeStringBase<const char>& path, sead::Heap* heap, u32 alignment = 0x80, u32 memRegion = 0x80000);
+		bool Load(const sead::SafeStringBase<const char>& path, sead::Heap* heap, size_t alignment = 0x80, size_t buffer = 0x80000);
+		bool LoadBuffered(const sead::SafeString& path, sead::Heap* heap, size_t alignment = 0x80);
 
 		void* GetData() const { return m_pData; }
 

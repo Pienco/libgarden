@@ -128,6 +128,7 @@ _ZN4ssys2ma3lyt15ArcResAccReader5ClearEv = 0x133a20;
 _ZN4ssys2ma3lyt9ArcResAcc7SetDataEPKvPKc = 0x56a580;
 
 _ZN4ssys2ma9LoadSplit4ReadERKN4sead14SafeStringBaseIKcEEPNS2_4HeapEmm = 0x56b484;
+_ZN4ssys2ma9LoadSplit12LoadBufferedERKN4sead14SafeStringBaseIcEEPNS2_4HeapEj = 0x56b240;
 
 _ZN4sead7HeapMgr8AllocateEjPNS_4HeapEj = 0x1328d8;
 _ZN4sead7HeapMgr14GetCurrentHeapEv = 0x3047c8;
@@ -137,6 +138,8 @@ _ZN4sead7HeapMgr13s_ppRootHeapsE = 0xae65cc;
 _ZN4sead14SafeStringBaseIKcED1Ev = 0x2f6da0;
 _ZN4sead14SafeStringBaseIKcED0Ev = 0x811da0;
 _ZN4sead14SafeStringBaseIKcE5SetNTEv = 0x8283d8;
+_ZTVN4sead14SafeStringBaseIcEE = 0x90591c;
+_ZN4sead14SafeStringBaseIcE5SetNTEv = 0x8283d8;
 
 _ZN4ssys2ma3lyt6Layout5BuildEPKcPKNS1_15ArcResAccReaderEm = 0x569c6c;
 _ZN4ssys2ma3lyt6Layout8FindPaneEPKc = 0x569274;
@@ -151,6 +154,8 @@ _ZN4ssys2ma3lyt9LayoutMgr3GetEv = 0x133a78;
 _ZN4ssys2ma3lyt9LayoutMgr8RegisterEPNS1_6Base2DEb = 0x56a954;
 
 _ZN3g3d14ResourceLoaderC1Ev = 0x4eec1c;
+_ZN3g3d14ResourceLoader4LoadERKN4sead14SafeStringBaseIcEEPNS1_4HeapEj = 0x4eebe4;
+_ZN3g3d14ResourceLoader9LoadAsyncERKN4sead14SafeStringBaseIcEEPNS1_4HeapEj = 0x317c38;
 _ZN3g3d14ResourceLoader4ReadEmmm = 0x4eb42c;
 _ZN3g3d14ResourceLoader14InitializeCgfxEPN2nw2os10IAllocatorEPS0_b = 0x317c70;
 

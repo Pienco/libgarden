@@ -5,6 +5,7 @@
 #include "sead/String.hpp"
 #include "sead/HeapMgr.hpp"
 #include "nw/os/IAllocator.hpp"
+#include "ssys/ma/LoadSplit.hpp"
 #include <cstring>
 
 namespace g3d
@@ -20,7 +21,15 @@ namespace g3d
 
 		ResourceLoader();
 
-		void Load(const sead::SafeString* path, sead::Heap* heap, size_t alignment = CGFX_ALIGNMENT);
+		bool Load(const sead::SafeString& path, sead::Heap* heap, size_t alignment = CGFX_ALIGNMENT);
+		bool LoadAsync(const sead::SafeString& path, sead::Heap* heap, size_t alignment = CGFX_ALIGNMENT);
+		inline bool LoadBuffered(const sead::SafeString& path, sead::Heap* heap, size_t alignment = CGFX_ALIGNMENT)
+		{
+			const auto result = m_Loader.LoadBuffered(path, heap, alignment);
+			if (result && m_pBegin == nullptr)
+				SetCgfx(m_Loader.GetData());
+			return result;
+		}
 
 		inline void* Load(auto&& data, sead::Heap* heap = nullptr, size_t alignment = CGFX_ALIGNMENT)
 		{
@@ -48,7 +57,11 @@ namespace g3d
 		u8 m_Data[4];
 		const void* m_pBegin;
 		const void* m_pCgfx;
-		u8 m_Data2[0xfc];
+		const void* m_pCgfx2;
+		void* m_pVramA;
+		void* m_pVramB;
+		sead::Heap* m_pHeap;
+		ssys::ma::LoadSplit m_Loader;
 	};
 	ASSERT_SIZE(ResourceLoader, 0x108);
 }
