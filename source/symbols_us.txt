@@ -1,11 +1,11 @@
 memcpy = 0x2f85e4;
-wcslen = 0x10082c;
-wcsncpy = 0x1017f4;
-wcscpy = 0x1017d8;
-swprintf = 0x100f5c;
+wcslen_16 = 0x10082c;
+wcsncpy_16 = 0x1017f4;
+wcscpy_16 = 0x1017d8;
+swprintf_16 = 0x100f5c;
 memset = 0x151148;
 malloc = 0x77a51c;
-alloc_aligned = 0x1328d8;
+_ZnwjPN4sead4HeapEj = 0x1328d8;
 
 GSPGPU_WriteHWRegs = 0x12aae4;
 GSPGPU_FlushDataCache = 0x136ef0;
@@ -23,14 +23,21 @@ _Znaj = 0x13a008;
 _ZdlPvj = 0x2f8958;
 _ZdaPv = 0x2f8958;
 
+_ZnajPN4sead4HeapEj = 0x1328d8;
+
 _ZN4sead15CriticalSection4ExitEv = 0x138d44;
 
 _ZN4sead13ControllerMgr6IsHeldEm = 0x304a14;
 _ZN4sead13ControllerMgr9IsPressedEm = 0x5223e8;
 
+_ZN7netgame13IsMultiPlayerEv = 0x300838;
+_ZN7netgame16IsMultiplePlayerEv = 0x2fc990;
 _ZN7netgame13EnqueuePacketEhhPKvj = 0x625488;
 _ZN7netgame14GetPlayerActorEhb = 0x5c3ea0;
 _ZN7netgame20GetPlayerCoordinatesEPmS0_hb = 0x5c13ac;
+
+_ZN7netgame11s_TourStateE = 0x94ee08;
+_ZN7netgame21s_TourRequestPlayerNoE = 0x94ee0a;
 
 _ZN7netgame10NetGameMgr11s_pInstanceE = 0x954648;
 _ZN7netgame10NetGameMgr8Receiver9GetBufferEh = 0x75fa00;
@@ -38,6 +45,7 @@ _ZN7netgame10NetGameMgr8Receiver9GetPacketEh = 0x75fa28;
 _ZN7netgame10NetGameMgr8Receiver12SetIsEnabledEhb = 0x625a9c;
 _ZN7netgame10NetGameMgr8Receiver13SetWasHandledEhb = 0x625a8c;
 _ZNK7netgame10NetGameMgr13GetMyPlayerNoEv = 0x75f004;
+_ZN7netgame10NetGameMgr8Unknown15CheckEh = 0x76003c;
 
 _ZN4item4Item7GetNameEPN6script7WordPtrERKS0_Pv = 0x56e93c;
 
@@ -52,6 +60,7 @@ _ZNK3map7ItemMap7GetItemEN4math6VectorIiLj2EEEh = 0x2fef9c;
 _ZN3map7ItemMap9PlaceItemERKN4item4ItemEN4math6VectorIiLj2EEEh = 0x2fca24;
 
 _ZN3map10GetCurrentEv = 0x2f7384;
+_ZN3map9s_CurrentE = 0x958342;
 _ZN3map10GetItemMapENS_9ItemMapIDE = 0x2fe95c;
 
 _ZN11StageCommon12s_pStageHeapE = 0x953c4c;
@@ -63,6 +72,7 @@ _ZN3oml9framework7ProcessD1Ev = 0x52218c;
 _ZN3oml9framework7Process7DestroyEPS1_ = 0x5251f0;
 _ZN3oml9framework7Process20ProcessStartupResultENS0_6ResultE = 0x5220e8;
 _ZN3oml9framework7Process8OnNotifyEv = 0x521710;
+_ZN3oml9framework7Process10NotifyDoneEv = 0x520b5c;
 
 _ZN3oml9framework14ProcessManager22s_pProcessDescriptionsE = 0x9762b4;
 _ZN3oml9framework14ProcessManager19s_pFactoryFunctionsE = 0x9762b8;
@@ -113,9 +123,11 @@ _ZN4ssys2ma9AllocatorD1Ev = 0x56b23c;
 _ZN4ssys2ma9Allocator15GetGuiAllocatorEv = 0x56a838;
 _ZN4ssys2ma9Allocator20GetResourceAllocatorEv = 0x56a8ac;
 
+_ZN4ssys2ma3lyt9FrameCtrl8SetFrameEf = 0x56a2c8;
+_ZN4ssys2ma3lyt9FrameCtrl12SetLastFrameEv = 0x569ff0;
+
 _ZN4ssys2ma3lyt9AnimationC1Ev = 0x126200;
 _ZN4ssys2ma3lyt9AnimationD1Ev = 0x56a374;
-_ZN4ssys2ma3lyt9Animation8SetFrameEf = 0x56a2c8;
 _ZN4ssys2ma3lyt9Animation10InitializeEPKcPKNS1_15ResAccInterfaceE = 0x56a0cc;
 _ZN4ssys2ma3lyt9Animation13IncreaseFrameEv = 0x56a02c;
 _ZNK4ssys2ma3lyt9Animation6IsDoneEv = 0x750dec;
@@ -152,6 +164,7 @@ _ZN4ssys2ma3lyt6Layout15UnbindAnimationEPNS1_9AnimationEPKN2nw3lyt5GroupEb = 0x5
 
 _ZN4ssys2ma3lyt9LayoutMgr3GetEv = 0x133a78;
 _ZN4ssys2ma3lyt9LayoutMgr8RegisterEPNS1_6Base2DEb = 0x56a954;
+_ZN4ssys2ma3lyt9LayoutMgr11s_pInstanceE = 0x976c40;
 
 _ZN3g3d14ResourceLoaderC1Ev = 0x4eec1c;
 _ZN3g3d14ResourceLoader4LoadERKN4sead14SafeStringBaseIcEEPNS1_4HeapEj = 0x4eebe4;
@@ -164,6 +177,29 @@ _ZN5fgobj12s_ModelInfosE = 0x8791a0;
 
 _ZN6LayoutC1Ev = 0x126550;
 _ZN6LayoutD1Ev = 0x5c0214;
+
+_ZN18ButtonActionNodeExC1Ev = 0x2e059c;
+_ZN18ButtonActionNodeExD1Ev = 0x2e06ac;
+_ZN18ButtonActionNodeEx11ResetSelectEv = 0x2e01bc;
+
+_ZN16ButtonActionNodeC1Ev = 0x2b73ac;
+_ZN16ButtonActionNode10InitializeERKNS_4InfoE = 0x2b6fcc;
+_ZN16ButtonActionNodeD1Ev = 0x2b74c4;
+
+_ZN19ButtonActionControlC1Ev = 0x2f7fd0;
+_ZN19ButtonActionControlD1Ev = 0x2f8188;
+_ZNK19ButtonActionControl11IsSelectingEv = 0x724498;
+_ZNK19ButtonActionControl21GetPressedButtonIndexEv = 0x724214;
+_ZNK19ButtonActionControl22GetCurrentPressedIndexEv = 0x7241b0;
+_ZN19ButtonActionControl12BeginProcessEv = 0x2f779c;
+_ZN19ButtonActionControl15State_SelectingEv = 0x2f6928;
+_ZN19ButtonActionControl10InitializeERKNS_11DescriptionEPKc = 0x2f7810;
+_ZN19ButtonActionControl7AddNodeEP16ButtonActionNodeb = 0x2f7f30;
+_ZN19ButtonActionControl6UpdateEv = 0x2f7ba8;
+_ZN19ButtonActionControl14UnselectActiveEv = 0x2f7394;
+
+_ZN21ButtonActionControlEx10InitializeERKNS_11DescriptionE = 0x3281d8;
+_ZN21ButtonActionControlEx7AddNodeEP18ButtonActionNodeExb = 0x3282d4;
 
 _ZN15CommonScrollBarC1EPv = 0x29a0ec;
 _ZN15CommonScrollBar10InitializeEO20ScrollBarDescription = 0x299a14;
@@ -182,6 +218,79 @@ _ZN4Base23ProcessProcessingResultEN3oml9framework6ResultE = 0x521714;
 _ZNK4Base10CanStartupEv = 0x52a424;
 _ZN4Base4Unk0Ev = 0x748d08;
 
+_ZN8MenuBaseC2Ev = 0x6ab4a8;
+_ZN8MenuBaseD2Ev = 0x6ab508;
+_ZNK8MenuBase13CanInitializeEv = 0x6ab460;
+_ZNK8MenuBase11CanFinalizeEv = 0x6ab494;
+_ZN8MenuBase25ProcessFinalizationResultEN3oml9framework6ResultE = 0x6ab3a0;
+_ZNK8MenuBase10CanProcessEv = 0x6ab3c4;
+_ZN8MenuBase12FUN_006ab3d8Ev = 0x6ab3d8;
+_ZN8MenuBase7OnCloseEv = 0x19968c;
+_ZN8MenuBase12FUN_006ab3f4Ev = 0x6ab3f4;
+_ZN8MenuBase12FUN_006ab450Ev = 0x6ab450;
+_ZN8MenuBase12FUN_006ab3e0Ev = 0x6ab3e0;
+_ZN8MenuBase12FUN_006ab440Ev = 0x6ab440;
+_ZN8MenuBase12FUN_006ab3fcEv = 0x6ab3fc;
+_ZN8MenuBase12FUN_006ab3ecEv = 0x6ab3ec;
+_ZN8MenuBase12FUN_00767b30Ev = 0x767b30;
+
+_ZN5state4ModeI9BsMenuTabE6ChangeEMS1_FvvE = 0x81cc74;
+_ZN9BsMenuTabC2Ev = 0x6d98e0;
+_ZN9BsMenuTabD2Ev = 0x6d9ab8;
+_ZN9BsMenuTab8FinalizeEv = 0x6d98c0;
+_ZN9BsMenuTab10InitializeEv = 0x6d968c;
+_ZN9BsMenuTab9DoProcessEv = 0x6d978c;
+_ZN9BsMenuTab7StartupEv = 0x6d939c;
+_ZN9BsMenuTab8UpdateInEv = 0x6d59e4;
+_ZN9BsMenuTab6BindInEv = 0x6d7050;
+_ZN9BsMenuTab7BindOutEv = 0x6d75dc;
+_ZN9BsMenuTab9AnimateInEv = 0x6d7380;
+_ZN9BsMenuTab10AnimateOutEv = 0x6d7d5c;
+_ZN9BsMenuTab24UpdateUpperTabAppearanceEv = 0x6d6f54;
+_ZN9BsMenuTab24UpdateLowerTabAppearanceEv = 0x6d74a4;
+_ZN9BsMenuTab10CheckInputEv = 0x6d5ef0;
+_ZN9BsMenuTab13Trans_MenuOutEv = 0x6d671c;
+_ZN9BsMenuTab13State_MenuOutEv = 0x6d6690;
+_ZN9BsMenuTab13State_ImageUpEv = 0x6d80d4;
+_ZN9BsMenuTab23State_ExitIslandPressedEv = 0x6d8480;
+_ZN9BsMenuTab10State_WaitEv = 0x6d8f5c;
+_ZN9BsMenuTab12State_MenuInEv = 0x6d5f34;
+_ZN9BsMenuTab15State_TopTabOutEv = 0x6d6e20;
+_ZN9BsMenuTab18State_TabSelectionEv = 0x6d5f80;
+_ZN9BsMenuTab17State_TabChatExitEv = 0x6d7a48;
+_ZN9BsMenuTab16Trans_SwitchMenuEv = 0x6d7ae0;
+_ZN9BsMenuTab16State_SwitchMenuEv = 0x6d7894;
+_ZN9BsMenuTab17State_WaitMenuEndEv = 0x6d89c8;
+_ZN9BsMenuTab17CheckFriendOnlineEv = 0x6d8d38;
+_ZN9BsMenuTab7s_FlagsE = 0x950d68;
+_ZN9BsMenuTab16s_WasBackPressedE = 0x950d88;
+_ZN9BsMenuTab10s_TabMenusE = 0x854774;
+
+_ZN9BsMenuMgr16CanOpenMenuThinkEv = 0x5c4b04;
+_ZN9BsMenuMgr17CreateMenuProcessENS_4MenuEh = 0x6d2b4c;
+_ZN9BsMenuMgr11s_pInstanceE = 0x950d4c;
+
+_ZN12BsHandCursor7DisableEv = 0x1fa910;
+
+_ZN9BsMenuMap14s_IsMapVillageE = 0x950c30;
+
+_ZN8BsMenuBg8ChangeBgEl = 0x6953f0;
+_ZN8BsMenuBg11s_pInstanceE = 0x950718;
+
+_ZN15BsDemoCancelMgr11s_pInstanceE = 0x94fe54;
+
 _ZN12RandomPlacer8DoRandomEPFvR17RandomPlacerUsualRS_RKNS_4InfoEEPS0_j = 0x2fdbd8;
 
 _ZN8BsGrowUp12s_CurrentMapE = 0x953bad;
+
+_ZN8SvPlayer3GetEv = 0x2fba40;
+_ZN16SvBestFriendList3GetEv = 0x1df8b4;
+_ZNK16SvBestFriendList9HasFriendEv = 0x71e09c;
+
+_ZN4demo10CheckOrderENS_7OrderIDEb = 0x316da4;
+_ZN4demo30MakeOrderIslandForceLeaveThinkEv = 0x52d020;
+_ZN4demo20MakeOrderPlayerThinkEh = 0x52c6c8;
+
+_ZN8SoundMgr9PlaySoundE4SeIDf = 0x58de9c;
+
+_ZN15AcNpcSpResetsan15s_pMenuDelegateE = 0x950d98;

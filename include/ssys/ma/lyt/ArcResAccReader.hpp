@@ -42,6 +42,11 @@ namespace ssys::ma::lyt
 			return SetData(data, ".");
 		}
 
+		inline const void* GetArc()
+		{
+			return m_pArc;
+		}
+
 		void Clear();
 
 	private:

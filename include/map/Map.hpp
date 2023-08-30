@@ -7,7 +7,12 @@
 
 namespace map
 {
-	ID GetCurrent();
+	inline ID GetCurrent()
+	{
+		extern ID s_Current;
+		return s_Current;
+	}
+	inline bool IsCurrent(map::ID id) { return id == GetCurrent(); }
 
 	ItemMap* GetItemMap(ItemMapID id);
 

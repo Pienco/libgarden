@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "sead/String.hpp"
-#include "sead/HeapMgr.hpp"
+#include "sead/new.hpp"
 #include "nw/os/IAllocator.hpp"
 #include "ssys/ma/LoadSplit.hpp"
 #include <cstring>
@@ -33,7 +33,7 @@ namespace g3d
 
 		inline void* Load(auto&& data, sead::Heap* heap = nullptr, size_t alignment = CGFX_ALIGNMENT)
 		{
-			void* const mem = sead::HeapMgr::Allocate(data.size(), heap, alignment);
+			void* const mem = sead::AllocBuffer(data.size(), heap, alignment);
 			memcpy(mem, data.data(), data.size());
 			SetCgfx(mem);
 			return mem;

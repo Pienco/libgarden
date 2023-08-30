@@ -57,6 +57,8 @@ namespace oml::framework
 		void* operator new(size_t size);
 		void operator delete(void* p);
 
+		void NotifyDone();
+
 		template<std::derived_from<Process> T>
 		static inline Process* Create() { return new T(); }
 		static void Destroy(Process*);

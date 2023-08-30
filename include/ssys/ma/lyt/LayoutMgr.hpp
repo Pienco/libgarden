@@ -12,9 +12,13 @@ namespace ssys::ma::lyt
 
 	public:
 
-		static LayoutMgr* Get();
+		inline static LayoutMgr* Get() { return s_pInstance; }
 
 		void Register(Base2D* b2d, bool bottomScreen);
+
+	private:
+
+		static LayoutMgr* s_pInstance;
 	};
 
 

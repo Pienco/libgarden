@@ -7,6 +7,7 @@
 #include <cstdbool>
 #include <cstddef>
 #include <array>
+#include <concepts>
 
 #else
 
@@ -96,6 +97,9 @@ using s16_array = std::array<s16, N>;
 
 template<size_t N>
 using s32_array = std::array<s32, N>;
+
+template<typename T, typename U>
+concept SameDecayAs = std::same_as<std::decay_t<T>, std::decay_t<U>>;
 
 #define MAKE_NONCOPYABLE(type) \
         type(type& other) = delete; \

@@ -8,6 +8,7 @@
 using ArcReader = ssys::ma::lyt::ArcResAccReader;
 using Animation = ssys::ma::lyt::Animation;
 using Pane = nw::lyt::Pane;
+using Bounding = nw::lyt::Bounding;
 using Group = nw::lyt::Group;
 using TextBox = nw::lyt::TextBox;
 

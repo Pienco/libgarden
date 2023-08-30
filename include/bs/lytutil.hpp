@@ -6,11 +6,60 @@
 #include "script/RenderRuby.hpp"
 #include "script/RenderGarden.hpp"
 #include "ssys/ma/Allocator.hpp"
+#include "sead/new.hpp"
 #include "sead/HeapMgr.hpp"
-#include <cstring>
 
+#include <memory>
 
 #define REPLACE_2D_UI_HEAP ::lytutil::ScopedAllocatorReplacement allocatorReplacement;
+
+template<std::array Data>
+class ArcResource
+{
+
+public:
+
+	inline const void* Get() { return m_Data.get(); }
+
+private:
+
+	using Type = std::decay_t<decltype(Data)>;
+	std::unique_ptr<Type> m_Data { new (nullptr, 0x80) Type { Data } };
+};
+
+template<std::array Data, size_t AnimationCount>
+struct ArcComponents
+{
+	template<const char* LayoutName, std::array<const char*, AnimationCount> AnimationNames = { }>
+	inline void Initialize(u8 layer)
+	{
+		reader.SetArc(resource.Get());
+		layout.SetArcResAccReader(&reader);
+
+		layout.Build(LayoutName);
+		layout.SetLayer(layer);
+
+		for (size_t i = 0; i < AnimationCount; i++)
+			animations[i].Initialize(AnimationNames[i], &reader);
+	}
+
+	inline bool AnimateNext(size_t animIndex)
+	{
+		auto& anim = animations[animIndex];
+		if (!anim.IsDone())
+		{
+			anim.IncreaseFrame();
+			layout.Animate();
+			return false;
+		}
+		return true;
+	}
+
+	ArcResource<Data> resource;
+	ArcReader reader;
+	Layout layout;
+	std::array<Animation, AnimationCount> animations;
+};
 
 namespace lytutil
 {
@@ -22,12 +71,12 @@ namespace lytutil
 
 		using Allocator = ssys::ma::Allocator;
 
-		inline ScopedAllocatorReplacement(): m_pGuiAllocator(Allocator::GetGuiAllocator()), m_pResourceAllocator(Allocator::GetResourceAllocator())
+		inline ScopedAllocatorReplacement(sead::Heap* heap = sead::HeapMgr::GetSystemHeap()) 
+			: m_pGuiAllocator(Allocator::GetGuiAllocator()), m_pResourceAllocator(Allocator::GetResourceAllocator())
 		{
 			m_pGuiHeap = m_pGuiAllocator->GetHeap();
 			m_pResourceHeap = m_pResourceAllocator->GetHeap();
 
-			sead::Heap* const heap = sead::HeapMgr::GetSystemHeap();
 			m_pGuiAllocator->SetHeap(heap);
 			m_pResourceAllocator->SetHeap(heap);
 		}
@@ -57,27 +106,11 @@ namespace lytutil
 	}
 
 	template<RenderText T>
-	inline void SetTextBox(T& render, Layout* layout, const char* textBox)
+	inline void SetText(T& render, TextBox* textBox, const char16* text)
 	{
-		render.SetTextBoxes(layout->FindTextBox(textBox));
-	}
-
-	template<RenderText T>
-	inline void SetText(T& render, Layout* layout, const char* textBox, const char16* text)
-	{
-		SetTextBox(render, layout, textBox);
+		render.SetTextBoxes(textBox);
 		render.SetText(text);
 		render.CommitText();
-	}
-
-	inline bool SetArc(ArcReader& reader, Layout* layout, const char* name)
-	{
-		if (reader.ReadArc(name))
-		{
-			layout->SetArcResAccReader(&reader);
-			return true;
-		}
-		return false;
 	}
 
 	inline bool SetArc(ArcReader& reader, Layout* layout, const void* data)
@@ -88,13 +121,6 @@ namespace lytutil
 			return true;
 		}
 		return false;
-	}
-
-	inline void* AllocateArcMemory(auto&& data)
-	{
-		void* const mem = sead::HeapMgr::Allocate(data.size(), nullptr, 0x80);
-		memcpy(mem, data.data(), data.size());
-		return mem;
 	}
 
 	inline void BindAnimation(Pane* pane, Animation* anim, bool recursive, bool disable = false)

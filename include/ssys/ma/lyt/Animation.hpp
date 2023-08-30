@@ -14,21 +14,19 @@ namespace ssys::ma::lyt
 
 		Animation();
 
-		virtual ~Animation();
-		virtual void SetFrame(float frame) __attribute__((pcs("aapcs-vfp")));
-
-		// ARM inline void SetBeginFrame() { SetFrame(0.0f); }
-
+		virtual ~Animation() override;
 		
 		bool Initialize(const char* name, const ResAccInterface* resAcc);
 		bool IsDone() const;
 		void IncreaseFrame();
+		inline bool IsBound() { return m_IsBound == 1; }
+		inline bool IsUnbound() { return m_IsBound == 0; }
 		
 
 
 	private:
 
-		bool m_IsBound;
+		u8 m_IsBound;
 		u8 unk1;
 		s16 unk2;
 		s32 unk3;

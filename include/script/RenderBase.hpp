@@ -20,7 +20,8 @@ namespace script
 
 		inline void ClearBuf2()
 		{
-			*m_pBuf2 = 0;
+			if (m_pBuf2 != nullptr)
+				*m_pBuf2 = 0;
 		}
 
 	private:

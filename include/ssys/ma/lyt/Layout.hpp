@@ -8,6 +8,7 @@
 #include "nw/lyt/DrawInfo.hpp"
 #include "nw/lyt/Pane.hpp"
 #include "nw/lyt/TextBox.hpp"
+#include "nw/lyt/Bounding.hpp"
 #include "nw/lyt/Group.hpp"
 
 namespace ssys::ma::lyt

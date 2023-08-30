@@ -24,6 +24,8 @@ namespace state
 		{
 		}
 
+		constexpr CallbackBase() = default;
+
 		constexpr void Set(Func func)
 		{
 			m_Callback = func;

@@ -8,6 +8,17 @@
 namespace netgame
 {
 
+	enum PlayerNo : u8
+	{
+		PLAYER_0,
+		PLAYER_1,
+		PLAYER_2,
+		PLAYER_3,
+		INVALID = 4,
+		MY_NO = 4,
+		TARGET_ALL = 4,
+	};
+
 	class NetGameMgr
 	{
 
@@ -32,12 +43,30 @@ namespace netgame
 		};
 		ASSERT_SIZE(Receiver, 0x20);
 
+		class Unknown1
+		{
+		
+		public:
+
+			bool Check(u8 index);
+
+		private:
+
+			u8 data[0xc];
+
+		};
+		ASSERT_SIZE(Unknown1, 0xc);
+
 		inline Receiver* GetReceiver() { return &m_Receiver; }
+		inline Unknown1* GetUnk1() { return &m_Unk1; }
 
 		inline void EnterCriticalSection() { m_CriticalSection.Enter(); }
 		inline void ExitCriticalSection() { m_CriticalSection.Exit(); }
 
-		u8 GetMyPlayerNo() const;
+		inline bool IsNewPlayerJoined() const { return m_NewPlayerJoined; }
+		inline void UnsetNewPlayerJoined() { m_NewPlayerJoined = false; }
+
+		PlayerNo GetMyPlayerNo() const;
 
 		
 
@@ -47,12 +76,17 @@ namespace netgame
 
 		u8 data0[0x58];
 		Receiver m_Receiver;
-		u8 data1[0x13208];
+		u8 data2[0x77fc];
+		Unknown1 m_Unk1;
+		u8 data1[0xba00];
 		sead::CriticalSection m_CriticalSection;
+		u8 data3[0x17];
+		bool m_NewPlayerJoined;
+		u32 data4;
 
 		static NetGameMgr* s_pInstance;
 	};
-	ASSERT_SIZE(NetGameMgr, 0x1329c);
+	ASSERT_SIZE(NetGameMgr, 0x132b8);
 }
 
 #endif

@@ -35,12 +35,10 @@ namespace nw::lyt
 		{
 			m_Flags = visible ? m_Flags | 1 : m_Flags & (u8)(~1u);
 		}
+		inline void SetMatrixDirty() { m_Flags &= 0xcf; }
 		inline Vector3& GetTranslation() { return m_Translation; }
 		inline const Vector3* GetTranslation() const { return &m_Translation; }
-		inline void SetTranslation(const Vector3& translation)
-		{
-			m_Translation = translation;
-		}
+		inline void SetTranslation(const Vector3& translation) { m_Translation = translation; }
 		inline Pane* GetParent() { return m_pParent; }
 
 		void AppendChild(Pane* child);
