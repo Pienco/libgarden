@@ -23,9 +23,8 @@ SOURCES 	:= 	$(call subdirs,source)
 ARCH		:=	-march=armv6k+fp -mlittle-endian -mtune=mpcore -mfloat-abi=hard \
 				-mfpu=vfpv2 -mtp=soft
 
-CFLAGS		:=	-Wall -Wextra -Wpedantic -Wconversion -Os -mword-relocations -nostdlib -nostartfiles \
-				-fomit-frame-pointer -ffunction-sections -fno-strict-aliasing \
-				$(ARCH)
+CFLAGS		:=	$(ARCH) -Wall -Wextra -Wpedantic -Wconversion -Os -mword-relocations -nostdlib -nostartfiles \
+				-fomit-frame-pointer -ffunction-sections # -fno-strict-aliasing
 
 CFLAGS		+=	$(INCLUDE) -DARM11 -D_3DS -D__3DS__
 

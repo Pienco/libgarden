@@ -8,8 +8,8 @@ class AcPlayer
 
 public:
 
-	inline Vector3* GetPosition() { return (Vector3*)((u8*)this + 0x14); }
-	inline const Vector3* GetPosition() const { return (Vector3*)((u8*)this + 0x14); }
+	inline math::Vector3* GetPosition() { return (math::Vector3*)((u8*)this + 0x14); }
+	inline const math::Vector3* GetPosition() const { return (math::Vector3*)((u8*)this + 0x14); }
 
 private:
 

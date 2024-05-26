@@ -215,21 +215,21 @@ namespace math
 	private:
 
 		template<typename F, typename R>
-		FORCE_INLINE static constexpr auto Operation(F&& fn, R&& resultFn)
+		FORCE_INLINE static constexpr auto Operation(F&& fn, R&& combine)
 		{
-			return util::expand_pattern<N>(std::forward<F>(fn), std::forward<R>(resultFn));
+			return util::for_index_sequence<N>(std::forward<F>(fn), std::forward<R>(combine));
 		}
 
 		template<typename F>
 		FORCE_INLINE static constexpr void Operation(F&& fn)
 		{
-			util::expand_pattern<N>(std::forward<F>(fn));
+			util::for_index_sequence<N>(std::forward<F>(fn));
 		}
 
 		template<typename F, typename L, typename R>
 		FORCE_INLINE static constexpr auto ArithmeticOperation(F&& fn, L&& left, R&& right)
 		{
-			return util::expand_braced_init<Self, N>([&]<size_t I> FORCE_INLINE
+			return util::create<Self, N>([&]<size_t I> FORCE_INLINE
 				{
 					if constexpr (std::is_convertible_v<L, Self> && std::is_convertible_v<R, Self>)
 						return fn(left.template get<I>(), right.template get<I>());
@@ -303,7 +303,7 @@ namespace math
 		template<size_t I> requires (I < N)
 			FORCE_INLINE constexpr Column column() const
 		{
-			return util::expand_braced_init<Vector<T, M>, M>([&]<size_t J> FORCE_INLINE
+			return util::create<Vector<T, M>, M>([&]<size_t J> FORCE_INLINE
 				{
 					return get<J, I>();
 				});
@@ -323,9 +323,9 @@ namespace math
 
 		FORCE_INLINE constexpr Matrix<T, N, M> Transpose() const
 		{
-			return util::expand_braced_init<Matrix<T, N, M>, N>([&]<size_t I> FORCE_INLINE
+			return util::create<Matrix<T, N, M>, N>([&]<size_t I> FORCE_INLINE
 				{
-					return util::expand_braced_init<Vector<T, M>, M>([&]<size_t J> FORCE_INLINE
+					return util::create<Vector<T, M>, M>([&]<size_t J> FORCE_INLINE
 					{
 						return get<J, I>();
 					});
@@ -341,35 +341,26 @@ namespace math
 			}, std::forward<L>(left), std::forward<R>(right));
 		}
 
-		// template<std::common_with<Self> L, typename R> requires (N == R::Height())
-		// FORCE_INLINE friend constexpr auto operator*(L&& left, R&& right)
-		// {
-		// 	return ArithmeticOperation<Matrix<T, M, R::Width()>, M>([] FORCE_INLINE(auto&& l, auto&& r)
-		// 	{
-		// 		return operator*(std::forward<decltype(l)>(l), std::forward<decltype(r)>(r));
-		// 	}, std::forward<L>(left), std::forward<R>(right));
-		// }
-
 		std::array<Vector<T, N>, M> rows;
 
 	private:
 
 		template<typename F, typename R>
-		FORCE_INLINE static constexpr auto Operation(F&& fn, R&& resultFn)
+		FORCE_INLINE static constexpr auto Operation(F&& fn, R&& combine)
 		{
-			return util::expand_pattern<N>(std::forward<F>(fn), std::forward<R>(resultFn));
+			return util::for_index_sequence<N>(std::forward<F>(fn), std::forward<R>(combine));
 		}
 
 		template<typename F>
 		FORCE_INLINE static constexpr void Operation(F&& fn)
 		{
-			util::expand_pattern<N>(std::forward<F>(fn));
+			util::for_index_sequence<N>(std::forward<F>(fn));
 		}
 
 		template<typename Ret, size_t RetSize, typename L, typename R>
 		FORCE_INLINE static constexpr auto ArithmeticOperation(auto&& fn, L&& left, R&& right)
 		{
-			return util::expand_braced_init<Ret, RetSize>([&]<size_t I> FORCE_INLINE
+			return util::create<Ret, RetSize>([&]<size_t I> FORCE_INLINE
 				{
 					if constexpr (std::is_convertible_v<L, Self> && std::is_convertible_v<R, Row>)
 						return fn(left.template get<I>(), std::forward<R>(right));
@@ -386,21 +377,5 @@ namespace math
 	using Matrix34 = Matrix<float, 3, 4>;
 	using Matrix4 = Matrix<float, 4, 4>;
 }
-
-using Vector2s8 = math::Vector2s8; 
-using Vector2u8 = math::Vector2u8; 
-using Vector2s16 = math::Vector2s16;
-using Vector2u16 = math::Vector2u16;
-using Vector2u32 = math::Vector2u32;
-using Vector2i = math::Vector2i;
-using Vector3i = math::Vector3i;
-using Vector2 = math::Vector2;
-using Vector3 = math::Vector3;
-using Vector4 = math::Vector4;
-
-using Matrix2 = math::Matrix2;
-using Matrix3 = math::Matrix3;
-using Matrix34 = math::Matrix34;
-using Matrix4 = math::Matrix4;
 
 #endif

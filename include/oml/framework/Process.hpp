@@ -29,7 +29,8 @@ namespace oml::framework
 
 	public:
 
-		MAKE_NONCOPYABLE(Process);
+		Process(const Process&) = delete;
+		Process& operator=(const Process&) = delete;
 
 		virtual ~Process();
 

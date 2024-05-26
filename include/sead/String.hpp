@@ -55,7 +55,7 @@ namespace sead
 	};
 
 	template<size_t Length>
-	class FixedSafeString : public FixedSafeStringBase<char, Length>
+	class FixedSafeString final : public FixedSafeStringBase<char, Length>
 	{
 
 	};

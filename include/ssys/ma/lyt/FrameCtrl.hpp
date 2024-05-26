@@ -14,11 +14,16 @@ namespace ssys::ma::lyt
 
 		
 		virtual ~FrameCtrl();
-		virtual void SetFrame(float frame) __attribute__((pcs("aapcs-vfp")));
+		virtual inline void SetFrame(float frame) final // __attribute__((pcs("aapcs-vfp")))
+		{
+			m_PrevFrame = frame;
+			m_Frame = frame;
+			*(float*)(m_pNwAnim + 0x10) = frame;
+		} 
 		
 		inline void SetFirstFrame() { SetFrame(0.0f); }
 		inline void SetFrameR(float r) { SetFrame(m_FrameCount - r); }
-		void SetLastFrame();
+		inline void SetLastFrame() { SetFrame(m_FrameCount - 1.0f); }
 
 		inline void* GetNwAnim() { return m_pNwAnim; }
 		inline float GetFrame() const { return m_Frame; }
@@ -29,8 +34,10 @@ namespace ssys::ma::lyt
 
 		float m_FrameCount;
 		float m_Frame;
-		u8 m_Data2[0xc];
-		void* m_pNwAnim;
+		float m_PrevFrame;
+		float m_FrameIncrease;
+		u8 m_Loop;
+		u8* m_pNwAnim;
 	};
 	ASSERT_SIZE(FrameCtrl, 0x1c);
 }

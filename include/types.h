@@ -7,7 +7,6 @@
 #include <cstdbool>
 #include <cstddef>
 #include <array>
-#include <concepts>
 
 #else
 
@@ -64,10 +63,6 @@ typedef volatile s64 vs64; ///< 64-bit volatile signed integer.
 #define THUMB  __attribute__((target("thumb")))
 #define ARM __attribute__((target("arm")))
 
-
-#define CUR_THREAD_HANDLE       0xFFFF8000
-#define CUR_PROCESS_HANDLE      0xFFFF8001
-
 #define ASSERT_SIZE(type, size) static_assert(sizeof(type) == (size))
 #define ASSERT_OFFSET(type, member, offset) static_assert(offsetof(type, member) == (offset))
 
@@ -80,31 +75,5 @@ typedef volatile s64 vs64; ///< 64-bit volatile signed integer.
 
 typedef char16_t char16;
 
-template<size_t N>
-using u8_array = std::array<u8, N>;
-
-template<size_t N>
-using u16_array = std::array<u16, N>;
-
-template<size_t N>
-using u32_array = std::array<u32, N>;
-
-template<size_t N>
-using s8_array = std::array<s8, N>;
-
-template<size_t N>
-using s16_array = std::array<s16, N>;
-
-template<size_t N>
-using s32_array = std::array<s32, N>;
-
-template<typename T, typename U>
-concept SameDecayAs = std::same_as<std::decay_t<T>, std::decay_t<U>>;
-
-#define MAKE_NONCOPYABLE(type) \
-        type(type& other) = delete; \
-        type& operator=(type& other) = delete
-
 #endif
-
 #endif

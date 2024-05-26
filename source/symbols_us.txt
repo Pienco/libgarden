@@ -53,15 +53,16 @@ _ZN4item4ItemC1ENS_2IDE = 0x2fcc14;
 _ZNK4item4Item7IsUsualEv = 0x2fcba0;
 _ZNK4item4Item7GetNameEPv = 0x2fea78;
 _ZNK4item4Item8GetIndexEv = 0x769dbc;
+_ZNK4item4Item11GetIconNameEv = 0x5367dc;
 
 _ZN4item7MapItem5PlaceEv = 0x594d88;
 
-_ZNK3map7ItemMap7GetItemEN4math6VectorIiLj2EEEh = 0x2fef9c;
-_ZN3map7ItemMap9PlaceItemERKN4item4ItemEN4math6VectorIiLj2EEEh = 0x2fca24;
+_ZNK3map5Field7GetItemEN4math6VectorIiLj2EEEh = 0x2fef9c;
+_ZN3map5Field9PlaceItemERKN4item4ItemEN4math6VectorIiLj2EEEh = 0x2fca24;
 
 _ZN3map10GetCurrentEv = 0x2f7384;
 _ZN3map9s_CurrentE = 0x958342;
-_ZN3map10GetItemMapENS_9ItemMapIDE = 0x2fe95c;
+_ZN3map8GetFieldENS_7FieldIDE = 0x2fe95c;
 
 _ZN11StageCommon12s_pStageHeapE = 0x953c4c;
 
@@ -116,6 +117,10 @@ _ZN2nw3lyt19ArcResourceAccessor10RegistFontEPKcPKNS_4font4FontE = 0x4b52f4;
 _ZN2nw3lyt4Pane11AppendChildEPS1_ = 0x4b73fc;
 _ZN2nw3lyt4Pane11RemoveChildEPS1_ = 0x4b7450;
 
+_ZN2nw3lyt7Picture11GetMaterialEj = 0x73e364;
+
+_ZN2nw3lyt6TexMap6UpdateEv = 0x4bab50;
+
 _ZN2nw3gfx8GetModelEPKPKvPKc = 0x4a7240;
 
 _ZTVN4ssys2ma9AllocatorE = 0x9073ac;
@@ -123,8 +128,6 @@ _ZN4ssys2ma9AllocatorD1Ev = 0x56b23c;
 _ZN4ssys2ma9Allocator15GetGuiAllocatorEv = 0x56a838;
 _ZN4ssys2ma9Allocator20GetResourceAllocatorEv = 0x56a8ac;
 
-_ZN4ssys2ma3lyt9FrameCtrl8SetFrameEf = 0x56a2c8;
-_ZN4ssys2ma3lyt9FrameCtrl12SetLastFrameEv = 0x569ff0;
 
 _ZN4ssys2ma3lyt9AnimationC1Ev = 0x126200;
 _ZN4ssys2ma3lyt9AnimationD1Ev = 0x56a374;
@@ -155,6 +158,7 @@ _ZN4sead14SafeStringBaseIcE5SetNTEv = 0x8283d8;
 
 _ZN4ssys2ma3lyt6Layout5BuildEPKcPKNS1_15ArcResAccReaderEm = 0x569c6c;
 _ZN4ssys2ma3lyt6Layout8FindPaneEPKc = 0x569274;
+_ZN4ssys2ma3lyt6Layout11FindPictureEPKc = 0x56950c;
 _ZN4ssys2ma3lyt6Layout11FindTextBoxEPKc = 0x569568;
 _ZN4ssys2ma3lyt6Layout7AnimateEv = 0x5696f8;
 _ZN4ssys2ma3lyt6Layout18UnbindAllAnimationEv = 0x133a70;
@@ -188,15 +192,16 @@ _ZN16ButtonActionNodeD1Ev = 0x2b74c4;
 
 _ZN19ButtonActionControlC1Ev = 0x2f7fd0;
 _ZN19ButtonActionControlD1Ev = 0x2f8188;
-_ZNK19ButtonActionControl11IsSelectingEv = 0x724498;
-_ZNK19ButtonActionControl21GetPressedButtonIndexEv = 0x724214;
-_ZNK19ButtonActionControl22GetCurrentPressedIndexEv = 0x7241b0;
-_ZN19ButtonActionControl12BeginProcessEv = 0x2f779c;
+_ZNK19ButtonActionControl14IsSelectOkDoneEv = 0x724498;
+_ZNK19ButtonActionControl16GetSelectedIndexEv = 0x724214;
+_ZNK19ButtonActionControl15GetPressedIndexEv = 0x7241b0;
+_ZN19ButtonActionControl5ResetEv = 0x2f779c;
 _ZN19ButtonActionControl15State_SelectingEv = 0x2f6928;
 _ZN19ButtonActionControl10InitializeERKNS_11DescriptionEPKc = 0x2f7810;
 _ZN19ButtonActionControl7AddNodeEP16ButtonActionNodeb = 0x2f7f30;
 _ZN19ButtonActionControl6UpdateEv = 0x2f7ba8;
 _ZN19ButtonActionControl14UnselectActiveEv = 0x2f7394;
+_ZN19ButtonActionControl15UnselectCurrentEv = 0x2f6da4;
 
 _ZN21ButtonActionControlEx10InitializeERKNS_11DescriptionE = 0x3281d8;
 _ZN21ButtonActionControlEx7AddNodeEP18ButtonActionNodeExb = 0x3282d4;
@@ -266,6 +271,7 @@ _ZN9BsMenuTab7s_FlagsE = 0x950d68;
 _ZN9BsMenuTab16s_WasBackPressedE = 0x950d88;
 _ZN9BsMenuTab10s_TabMenusE = 0x854774;
 
+_ZN9BsMenuMgr9IsPressedEm = 0x6d4c24;
 _ZN9BsMenuMgr16CanOpenMenuThinkEv = 0x5c4b04;
 _ZN9BsMenuMgr17CreateMenuProcessENS_4MenuEh = 0x6d2b4c;
 _ZN9BsMenuMgr11s_pInstanceE = 0x950d4c;
@@ -284,6 +290,11 @@ _ZN12RandomPlacer8DoRandomEPFvR17RandomPlacerUsualRS_RKNS_4InfoEEPS0_j = 0x2fdbd
 _ZN8BsGrowUp12s_CurrentMapE = 0x953bad;
 
 _ZN8SvPlayer3GetEv = 0x2fba40;
+
+_ZNK17SvPlayerInventory7GetItemEjPNS_14ItemAppearanceE = 0x7250dc;
+_ZN17SvPlayerInventory7AddItemERKN4item4ItemENS_14ItemAppearanceEPS1_ = 0x3233a4;
+_ZN17SvPlayerInventory7SetItemEjRKN4item4ItemENS_14ItemAppearanceEPS1_ = 0x323484;
+
 _ZN16SvBestFriendList3GetEv = 0x1df8b4;
 _ZNK16SvBestFriendList9HasFriendEv = 0x71e09c;
 

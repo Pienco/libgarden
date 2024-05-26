@@ -1,8 +1,7 @@
 #ifndef SV_SVPLAYER_HPP
 #define SV_SVPLAYER_HPP
 
-#include "types.h"
-#include "item/Item.hpp"
+#include "sv/SvPlayerInventory.hpp"
 
 struct PACKED SvPlayerCharacter
 {
@@ -34,16 +33,20 @@ struct PACKED SvPlayerCharacter
 	Flags flags;
 	u8 data2[0x1d];
 	u8 flags2;
+	u8 data3[0x146c];
 };
 ASSERT_OFFSET(SvPlayerCharacter, SvPlayerCharacter::flags, 0x5701);
 ASSERT_OFFSET(SvPlayerCharacter, SvPlayerCharacter::flags2, 0x571f);
-// ASSERT_SIZE(SvPlayerCharacter, 0x6b8c);
+ASSERT_SIZE(SvPlayerCharacter, 0x6b8c);
 
 struct SvPlayer
 {
 	static SvPlayer* Get();
 
 	SvPlayerCharacter character;
+	u8 data[0x44];
+	SvPlayerInventory inventory;
 };
+ASSERT_OFFSET(SvPlayer, SvPlayer::inventory, 0x6bd0);
 
 #endif

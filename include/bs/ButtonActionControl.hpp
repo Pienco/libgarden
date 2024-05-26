@@ -10,13 +10,24 @@ class ButtonActionControl: ssys::st::List
 
 public:
 
-	enum Flag : u32
+	enum Flag: u32
 	{
-		IS_SELECTING_CURRENT = 1,
-		IS_SELECTING = 2,
+		OK_DONE = 1,
+		IS_SELECTING_OK = 2,
 		DISABLED = 8,
 		ENABLE_BUTTON_SHORTCUT = 0x40,
 		FLAG_80 = 0x80,
+		FLAG_100 = 0x100,
+	};
+
+	enum Flag2 : u8
+	{
+		ENABLE_CURSOR = 0x2,
+		ENABLE_CURSOR_PERMANENT = 0x4,
+		ENABLE_NODE_SHORTCUT = 0x8,
+		CAN_RELEASE = 0x10,
+		WAIT_FOR_SELECT_RELEASE = 0x20,
+		NODE_OK_IMMEDIATE = 0x40,
 	};
 
 	using Predicate = bool(*)();
@@ -39,7 +50,7 @@ public:
 
 	virtual ~ButtonActionControl() override;
 	virtual void UpdateState();
-	virtual void BeginProcess();
+	virtual void Reset();
 	virtual void Process();
 	virtual void ProcessOk();
 	virtual void CheckInputForNode();
@@ -52,7 +63,7 @@ public:
 	virtual void OnBegin();
 	virtual void FUN_002f7300();
 
-	inline void SetFlags(u32 flags, bool set = true) 
+	inline void SetFlags(u32 flags, bool set = true)
 	{
 		if (set) m_Flags |= flags;
 		else m_Flags &= ~flags;
@@ -67,22 +78,27 @@ public:
 	void Initialize(const Description& desc, const char* animNamePrefix = nullptr);
 	void AddNode(ButtonActionNode* node, bool updateAnimations = true);
 	void Update();
-	bool IsSelecting() const;
-	inline bool IsStateSelecting() const { return m_pFunc == &ButtonActionControl::State_Selecting; }
-	s32 GetPressedButtonIndex() const;
-	s32 GetCurrentPressedIndex() const;
+	bool IsSelectOkDone() const;
+	inline bool IsSelectOkOngoing() const { return m_pFunc == &ButtonActionControl::State_Selecting; }
+	s32 GetSelectedIndex() const;
+	s32 GetPressedIndex() const;
 	inline ButtonActionNode* GetCurrent() { return m_pCurrent; }
 	inline bool HasCurrent() const { return m_pCurrent != nullptr; }
 	void SetCursor(bool enable);
-	void Unselect();
+	void UnselectCurrent();
 	void UnselectActive();
+	inline void ResetAndUnselectCurrent()
+	{
+		UnselectCurrent();
+		Reset();
+	}
 
 private:
 
 	void State_Selecting();
 
 	using Func = void(ButtonActionControl::*)();
-	
+
 
 	Layout* m_pLayout;
 	Animation m_Touch;

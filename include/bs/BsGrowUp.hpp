@@ -97,14 +97,14 @@ class BsGrowUp
 
 public:
 
-	inline static map::ItemMap* GetCurrentMap()
+	inline static map::Field* GetCurrentField()
 	{
-		return map::GetItemMap(s_CurrentMap);
+		return map::GetField(s_CurrentMap);
 	}
 
 private:
 
-	static map::ItemMapID s_CurrentMap;
+	static map::FieldID s_CurrentMap;
 };
 
 #endif

@@ -6,6 +6,8 @@
 #include "bs/ButtonActionControlEx.hpp"
 #include "script/RenderGarden.hpp"
 
+#include "sead/EnumBitFlag.hpp"
+
 class BsMenuTab : public Base, public state::Mode<BsMenuTab>
 {
 	friend class state::Mode<BsMenuTab>;
@@ -44,25 +46,25 @@ public:
 	virtual ProcessResult DoProcess() override;
 	virtual ProcessResult Startup() override;
 
-	static inline void SetMenuIn()
+	static void SetMenuIn()
 	{
 		s_Flags &= ~Flags::MENU_IN_DONE;
 		s_Flags |= Flags::MENU_IN;
 	}
-	static inline void SetMenuInDone() { s_Flags |= Flags::MENU_IN_DONE; }
-	static inline void SetMenuOutDone() { s_Flags &= ~(Flags::MENU_IN | Flags::MENU_IN_DONE); }
-	static inline bool IsRequireMenuOut() { return s_Flags & Flags::MENU_OUT; }
-	static inline void SetMenuOut() { s_Flags &= ~Flags::MENU_OUT; }
+	static void SetMenuInDone() { s_Flags |= Flags::MENU_IN_DONE; }
+	static void SetMenuOutDone() { s_Flags &= ~(Flags::MENU_IN | Flags::MENU_IN_DONE); }
+	static bool IsRequireMenuOut() { return s_Flags & Flags::MENU_OUT; }
+	static void SetMenuOut() { s_Flags &= ~Flags::MENU_OUT; }
 
 	template<bool Out>
-	static inline void SetMenuInOut()
+	static void SetMenuInOut()
 	{
 		if constexpr (Out) SetMenuOut();
 		else SetMenuIn();
 	}
 
 	template<bool Out>
-	static inline void SetMenuInOutDone()
+	static void SetMenuInOutDone()
 	{
 		if constexpr (Out) SetMenuOutDone();
 		else SetMenuInDone();
@@ -70,7 +72,7 @@ public:
 
 protected:
 
-	using Bitset = u16;
+	using TabBits = sead::EnumBitFlag<TabID, u16>;
 
 	enum class Mode : u8
 	{
@@ -86,34 +88,18 @@ protected:
 		MENU_IN = 1 << 3,
 		MENU_IN_DONE = 1 << 4,
 		MENU_OUT = 1 << 5,
+		DO_NOT_UPDATE_BUTTONS = 1 << 11,
 		INVENTORY_TAB_ONLY = 1 << 14,
 	};
 
-	static constexpr bool CheckBit(u16 bits, TabID tab)
-	{
-		size_t index = (size_t)tab;
-		return bits & (1 << index);
-	}
-
-	static constexpr void SetBit(u16& dst, u16 bits, bool set = true)
-	{
-		if (set) dst |= bits;
-		else dst &= ~bits;
-	}
-
-	static consteval Bitset ToBits(auto... ids)
-	{
-		Bitset result = 0;
-		std::array<TabID, sizeof...(ids)> arr { ((TabID)ids)... };
-		for (auto id : arr) result |= 1 << id;
-		return result;
-	}
-
 	static bool CheckInput();
 
-	constexpr bool IsAnim(TabID tab) const { return CheckBit(m_BoundTabAnimsBits, tab); }
+	bool IsAnim(TabID tab) const { return m_BoundTabAnimsBits.IsSet(tab); }
+	bool IsVisible(TabID tab) const { return m_VisibleTabsBits.IsSet(tab); }
 
-	inline bool IsInventoryTabOnly() { return (s_Flags & Flags::INVENTORY_TAB_ONLY) != 0; }
+	bool IsTabOpen() const { return m_CurrentTab >= 0; }
+
+	bool IsInventoryTabOnly() const { return (s_Flags & Flags::INVENTORY_TAB_ONLY) != 0; }
 
 	void UpdateIn();
 	void BindIn();
@@ -157,7 +143,7 @@ protected:
 	bool m_Animating;
 	u8 m_IsOut;
 	bool m_NewFriendOnline;
-	bool m_TabSelection;
+	u8 m_TabSelection;
 	u8 m_TopTabMode;
 	bool m_AnimatingLower;
 	bool m_AnimatingOutLower;
@@ -180,9 +166,9 @@ protected:
 	s32 m_FriendOnTime;
 	s32 m_PlusOnTime;
 	s32 m_DialogMode;
-	Bitset m_DisableBits;
-	Bitset m_VisibleTabsBits;
-	Bitset m_BoundTabAnimsBits;
+	TabBits m_DisableBits;
+	TabBits m_VisibleTabsBits;
+	TabBits m_BoundTabAnimsBits;
 
 	static u32 s_Flags;
 	static bool s_WasBackPressed;

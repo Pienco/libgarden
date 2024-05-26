@@ -7,14 +7,13 @@
 
 namespace nw::lyt
 {
-	class TextureInfo
+	struct TextureInfo
 	{
 
-	public:
-
-	private:
-
-		u8 m_Data[0x14];
+	
+		std::array<u8, 0x10> data;
+		u8 format;
+		INSERT_PAD(3);
 	};
 	ASSERT_SIZE(TextureInfo, 0x14);
 

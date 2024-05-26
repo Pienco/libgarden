@@ -2,12 +2,16 @@
 #define OML_FRAMEWORK_PROCESSMANAGER_HPP
 
 #include "oml/framework/Process.hpp"
-#include "util/Factory.hpp"
 
 #include <concepts>
 
 namespace oml::framework
 {
+	template<typename T, typename... Args>
+	using Creator = T * (*)(Args&&... args);
+
+	template<typename T>
+	using Destroyer = void(*)(T*);
 
 	class ProcessManager
 	{

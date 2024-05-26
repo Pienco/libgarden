@@ -6,7 +6,7 @@
 #include "ssys/ma/lyt/Base2D.hpp"
 #include "ssys/ma/lyt/DummyLayout.hpp"
 #include "nw/lyt/DrawInfo.hpp"
-#include "nw/lyt/Pane.hpp"
+#include "nw/lyt/Picture.hpp"
 #include "nw/lyt/TextBox.hpp"
 #include "nw/lyt/Bounding.hpp"
 #include "nw/lyt/Group.hpp"
@@ -15,6 +15,7 @@ namespace ssys::ma::lyt
 {
 	using Pane = nw::lyt::Pane;
 	using TextBox = nw::lyt::TextBox;
+	using Picture = nw::lyt::Picture;
 	using Group = nw::lyt::Group;
 
 	class Layout : public Base2D
@@ -35,6 +36,7 @@ namespace ssys::ma::lyt
 		bool Build(const char* name, const ArcResAccReader* arcReader = nullptr, u32 unk = 0x5800);
 		Pane* FindPane(const char* name);
 		TextBox* FindTextBox(const char* name);
+		Picture* FindPicture(const char* name);
 		Group* FindGroup(const char* name);
 
 		void BindAnimation(Animation* anim, const Group* group, bool recursive = false);
@@ -46,7 +48,7 @@ namespace ssys::ma::lyt
 
 		DummyLayout m_Layout;
 		nw::lyt::DrawInfo m_DrawInfo;
-		Matrix34 m_ViewMatrix;
+		math::Matrix34 m_ViewMatrix;
 		ArcResAccReader* m_pArcReader;
 		u8 field58_0xf0;
 		u8 field59_0xf1;

@@ -17,8 +17,10 @@ public:
 		COUNT = 0x8c,
 	};
 
+	static inline BsMenuMgr* Get() { return s_pInstance; }
 	static bool CanOpenMenuThink();
 	static inline MenuBase* GetMenuProcess() { return s_pInstance->m_pProcess; }
+	static inline bool HasMenuProcess() { return GetMenuProcess() != nullptr; }
 	static bool CreateMenuProcess(Menu menu, u8 param = 1);
 	static inline void DisableHandCursor()
 	{
@@ -29,6 +31,8 @@ public:
 			s_pInstance->m_HandMode = 0;
 		}
 	} 
+
+	bool IsPressed(u32 input);
 	
 private:
 

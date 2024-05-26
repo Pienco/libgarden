@@ -22,7 +22,12 @@ namespace ssys::ma::lyt
 		inline bool IsBound() { return m_IsBound == 1; }
 		inline bool IsUnbound() { return m_IsBound == 0; }
 		
-
+		inline bool Finish()
+		{
+			if (IsDone()) return true;
+			IncreaseFrame();
+			return false;
+		}
 
 	private:
 

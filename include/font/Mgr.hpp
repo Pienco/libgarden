@@ -16,16 +16,28 @@ namespace font
 		UNK
 	};
 
+	struct FontInfo
+	{
+		const char* name;
+		const nw::font::Font* font;
+	};
+
 	class Mgr
 	{
 
 	public:
 
 		static inline Mgr* Get() { return s_pInstance; }
+		static inline FontInfo GetFontInfo(FontID font = FontID::GARDEN_MSG_16)
+		{
+			auto* const mgr = Get();
+			return { mgr->GetFontName(font)->GetString(), mgr->GetFont(font) };
+		}
 
 
 		const sead::FixedSafeString<32>* GetFontName(FontID font) const;
 		const nw::font::Font* GetFont(FontID font) const;
+
 
 	private:
 

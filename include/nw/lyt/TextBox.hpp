@@ -6,7 +6,7 @@
 namespace nw::lyt
 {
 
-	class TextBox : Pane
+	class TextBox final : Pane
 	{
 
 	public:

@@ -13,9 +13,9 @@ public:
 	virtual void ResetSelect() override;
 	virtual void TouchSelect(bool touch, bool sound) override;
 	virtual void Select(bool select, bool sound) override;
-	virtual void TouchSelectOk() override;
-	virtual void FinishOk() override;
-	virtual bool IsOkDone() const override;
+	virtual void BeginSelectOk() override;
+	virtual void EndSelectOk() override;
+	virtual bool IsOkOngoing() const override;
 	virtual void DoOk() override;
 
 	void SetIsSelectBack(bool set) { m_IsBack = set; }

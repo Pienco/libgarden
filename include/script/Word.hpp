@@ -36,9 +36,9 @@ namespace script
 		}
 
 		virtual ~WordPtr() override;
-		virtual char16* GetWord() override;
-		virtual const char16* GetWord() const override;
-		virtual size_t GetSize() const override;
+		virtual inline char16* GetWord() final override { return m_pText; }
+		virtual inline const char16* GetWord() const final override { return m_pText; }
+		virtual inline size_t GetSize() const final override { return m_Size; }
 
 	private:
 
@@ -72,6 +72,8 @@ namespace script
 		}
 
 		virtual constexpr ~WordFix() override = default;
+
+		static consteval auto GetSizeFix() { return N; }
 
 	private:
 

@@ -18,17 +18,17 @@ namespace map
 
 	struct Bg
 	{
-		u16 id;
+		BgID id;
 		std::array<ItemChunk*, 2> chunks;
 	};
 	ASSERT_SIZE(Bg, 0xc);
 
-	enum class ItemMapID : u8
+	enum class FieldID : u8
 	{
 		NONE
 	};
 
-	class ItemMap
+	class Field
 	{
 
 	public:
@@ -46,7 +46,7 @@ namespace map
 		s32 unk2;
 		std::array<ItemChunk*, 2> m_pItemChunks;
 	};
-	ASSERT_SIZE(ItemMap, 0x38);
+	ASSERT_SIZE(Field, 0x38);
 }
 
 #endif

@@ -12,38 +12,55 @@ public:
 
 	ButtonActionNode();
 	virtual ~ButtonActionNode();
-	virtual bool IsActive() const;
+	virtual inline bool IsActivated() const { return m_IsActive; }
 	virtual void ResetSelect();
 	virtual void FUN_002b72e0();
 	virtual bool IsTouch() const;
 	virtual bool IsCursorHover() const;
 	virtual void TouchSelect(bool touch, bool sound);
 	virtual void Select(bool select, bool sound);
-	virtual void TouchSelectOk();
-	virtual void FinishOk();
-	virtual bool IsOkDone() const;
+	virtual void BeginSelectOk();
+	virtual void EndSelectOk();
+	virtual bool IsOkOngoing() const;
 	virtual void DoOk();
 
 	struct Info
 	{
 		Pane* pane;
 		Group* group;
-		Vector2 pos;
+		math::Vector2 pos;
 		s32 input;
 		size_t index;
 		s32 unk;
 	};
 
 	void Initialize(const Info& info);
+	void InitializeAndEnableSound(const Info& info, SeID select, SeID ok)
+	{
+		EnableAllSound();
+		SetSe(select, ok);
+		Initialize(info);
+	}
 
 	inline void SetSoundEnabled(bool set) { m_SoundEnabled = set; }
 	inline void SetOkSoundEnabled(bool set) { m_OkSoundEnabled = set; }
-	inline void SetSe(SeID id) { m_Se2 = id; }
+	inline void EnableAllSound() 
+	{
+		SetSoundEnabled(true);
+		SetOkSoundEnabled(true);
+	}
+	inline void SetSe(SeID id) { m_Se = id; }
 	inline void SetSeOk(SeID id) { m_SeOk = id; }
+	inline void SetSe(SeID select, SeID ok)
+	{
+		m_Se = select;
+		m_SeOk = ok;
+	}
 	inline void Deactivate() { m_IsActive = false; }
 	inline void Activate() { m_IsActive = true; }
 	void Select(bool set = true);
 	inline void Unselect() { Select(false); }
+	inline auto GetIndex() const { return m_Index; }
 
 protected:
 
@@ -56,7 +73,7 @@ private:
 
 	Pane* m_pPane;
 	Group* m_pGroup;
-	Vector2 m_Position;
+	math::Vector2 m_Position;
 	Layout* m_pLayout;
 	Animation m_Touch;
 	Animation m_Select;
@@ -66,7 +83,7 @@ private:
 	u32 m_Input;
 	s32 m_Index;
 	SeID m_SeOk;
-	SeID m_Se2;
+	SeID m_Se;
 	u16 unk2;
 	u8 unk3;
 	bool m_IsPressed;

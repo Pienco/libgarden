@@ -4,6 +4,7 @@
 #include "ssys/ma/lyt/ArcResAcc.hpp"
 #include "ssys/ma/LoadSplit.hpp"
 #include "nw/font/Font.hpp"
+#include "font/Mgr.hpp"
 
 namespace ssys::ma::lyt
 {
@@ -29,6 +30,12 @@ namespace ssys::ma::lyt
 			return GetResourceAccessor()->RegistFont(name, font);
 		}
 
+		inline void* RegisterFont(font::FontID font = font::FontID::GARDEN_MSG_16)
+		{
+			const auto info = font::Mgr::GetFontInfo(font);
+			return RegisterFont(info.name, info.font);
+		}
+
 		inline nw::lyt::TextureInfo GetTexture(const char* name)
 		{
 			return GetResourceAccessor()->GetTexture(name);
@@ -36,8 +43,6 @@ namespace ssys::ma::lyt
 
 		inline bool SetArc(const void* data)
 		{
-			// ASSERT_OFFSET(ArcResAccReader, m_pArc, 0x158);
-
 			m_pArc = data;
 			return SetData(data, ".");
 		}

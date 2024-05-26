@@ -28,6 +28,22 @@ public:
 		ssys::ma::lyt::LayoutMgr::Get()->Register(this, bottomScreen);
 	}
 
+	inline void Initialize(const char* name, const ArcReader* reader = nullptr, u8 layer = 0, u32 unk = 0x5800)
+	{
+		Build(name, reader, unk);
+		SetLayer(layer);
+	}
+
+	FORCE_INLINE inline bool AnimateFinish(Animation& anim)
+	{
+		if (!anim.Finish())
+		{
+			Animate();
+			return false;
+		}
+		return true;
+	}
+
 private:
 
 };

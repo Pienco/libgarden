@@ -4,6 +4,7 @@
 #include "types.h"
 #include "item/resource.hpp"
 #include "script/Word.hpp"
+#include "util/concepts.hpp"
 
 namespace item
 {
@@ -51,6 +52,7 @@ namespace item
 	struct Item
 	{
 		constexpr Item(u32 data) : id((ID)(data & UINT16_MAX)), flags { (u16)(data >> 16) } { }
+		constexpr Item(ID id, Flags flags) : id(id), flags { flags } { }
 		constexpr Item() : id(ID::EMPTY), flags { } { }
 		Item(ID id);
 
@@ -74,6 +76,11 @@ namespace item
 		const char* GetIconName() const;
 		ItemName GetName(void* myDesign = nullptr) const;
 
+		static constexpr const Item& GetEmpty()
+		{
+			static constexpr Item item { };
+			return item;
+		}
 		static void GetName(script::WordPtr* out, const Item& item, void* myDesign = nullptr);
 
 		ID id;
@@ -85,6 +92,9 @@ namespace item
 
 	};
 	ASSERT_SIZE(Item, 4);
+
+	template<typename T>
+	concept ItemOrID = util::SimilarTo<T, Item> || util::SimilarTo<T, ID>;
 }
 
 #endif
