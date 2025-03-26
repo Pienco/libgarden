@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+#include <algorithm>
+
 namespace script
 {
 
@@ -40,6 +42,16 @@ namespace script
 		virtual inline const char16* GetWord() const final override { return m_pText; }
 		virtual inline size_t GetSize() const final override { return m_Size; }
 
+		constexpr const char16* data() const { return GetWord(); }
+		constexpr char16* data() { return GetWord(); }
+		constexpr const char16* begin() const { return data(); }
+		constexpr char16* begin() { return data(); }
+		constexpr const char16* end() const { return begin() + GetSize(); }
+		constexpr char16* end() { return begin() + GetSize(); }
+		constexpr const char16& operator[](size_t i) const { return m_pText[i]; }
+		constexpr char16& operator[](size_t i) { return m_pText[i]; }
+		constexpr size_t size() const { return GetSize(); }
+
 	private:
 
 		char16* m_pText;
@@ -48,7 +60,7 @@ namespace script
 	ASSERT_SIZE(WordPtr, 0xc);
 
 
-	template<size_t N>
+	template<size_t N> requires (N > 0)
 	class WordFix final : public WordPtr
 	{
 
@@ -56,11 +68,14 @@ namespace script
 
 		constexpr WordFix(): WordPtr(m_TextBuffer.data(), N)
 		{
+			m_TextBuffer[0] = u'\0';
 		}
 
 		constexpr WordFix(const char16* str, size_t len) : WordFix()
 		{
-			std::copy(str, str + std::min(len, N), m_TextBuffer.begin());
+			const size_t n = std::min(len, N - 1);
+			std::copy_n(str, n, m_TextBuffer.begin());
+			m_TextBuffer[n] = u'\0';
 		}
 
 		constexpr WordFix(const char16(&str)[N]) : WordPtr(m_TextBuffer.data(), N), m_TextBuffer { std::to_array(str) }
@@ -91,7 +106,7 @@ namespace script
 		ASSERT_SIZE(Span, 0xc);
 
 		Span m_Span { };
-		Buffer m_TextBuffer { };
+		Buffer m_TextBuffer;
 	};
 	ASSERT_SIZE(WordFix<128u>, 0x118);
 	

@@ -49,5 +49,6 @@ namespace state
 		const Info* m_pInfos;
 		size_t m_Count;
 	};
+	ASSERT_TEMPLATE_SIZE(Mode, 0x24);
 }
 #endif

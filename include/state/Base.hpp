@@ -23,6 +23,7 @@ namespace state
 		bool m_Enabled;
 		INSERT_PAD(3);
 	};
+	ASSERT_TEMPLATE_SIZE(Base, 0xc);
 }
 
 #endif

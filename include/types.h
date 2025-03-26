@@ -64,6 +64,7 @@ typedef volatile s64 vs64; ///< 64-bit volatile signed integer.
 #define ARM __attribute__((target("arm")))
 
 #define ASSERT_SIZE(type, size) static_assert(sizeof(type) == (size))
+#define ASSERT_TEMPLATE_SIZE(type, size) ASSERT_SIZE(type<decltype([]{})>, size)
 #define ASSERT_OFFSET(type, member, offset) static_assert(offsetof(type, member) == (offset))
 
 #define DO_CONCAT(x, y) x##y
