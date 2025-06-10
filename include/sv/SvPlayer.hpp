@@ -27,8 +27,8 @@ struct PACKED SvPlayerCharacter
 		FRIEND_LIST_UNLOCKED = 1 << 5,
 	};
 
-	inline bool IsTpcTabUnlocked() const { return (flags & Flags::TPC_TAB_UNLOCKED) != 0; }
-	inline bool IsFriendListUnlocked() const { return (flags2 & UnlockFlags2::FRIEND_LIST_UNLOCKED) != 0; }
+	bool IsTpcTabUnlocked() const { return (flags & Flags::TPC_TAB_UNLOCKED) != 0; }
+	bool IsFriendListUnlocked() const { return (flags2 & UnlockFlags2::FRIEND_LIST_UNLOCKED) != 0; }
 
 	Flags flags;
 	u8 data2[0x1d];

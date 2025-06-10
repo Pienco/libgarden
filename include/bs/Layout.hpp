@@ -23,18 +23,18 @@ public:
 	virtual void Draw() override;
 	virtual void Update() override;
 
-	inline void Register(bool bottomScreen = true)
+	void Register(bool bottomScreen = true)
 	{
 		ssys::ma::lyt::LayoutMgr::Get()->Register(this, bottomScreen);
 	}
 
-	inline void Initialize(const char* name, const ArcReader* reader = nullptr, u8 layer = 0, u32 unk = 0x5800)
+	void Initialize(const char* name, const ArcReader* reader = nullptr, u8 layer = 0, u32 unk = 0x5800)
 	{
 		Build(name, reader, unk);
 		SetLayer(layer);
 	}
 
-	FORCE_INLINE inline bool AnimateFinish(Animation& anim)
+	FORCE_INLINE bool AnimateFinish(Animation& anim)
 	{
 		if (!anim.Finish())
 		{

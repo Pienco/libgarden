@@ -12,7 +12,7 @@ public:
 
 	ButtonActionNode();
 	virtual ~ButtonActionNode();
-	virtual inline bool IsActivated() const { return m_IsActive; }
+	virtual bool IsActivated() const { return m_IsActive; }
 	virtual void ResetSelect();
 	virtual void FUN_002b72e0();
 	virtual bool IsTouch() const;
@@ -42,25 +42,25 @@ public:
 		Initialize(info);
 	}
 
-	inline void SetSoundEnabled(bool set) { m_SoundEnabled = set; }
-	inline void SetOkSoundEnabled(bool set) { m_OkSoundEnabled = set; }
-	inline void EnableAllSound() 
+	void SetSoundEnabled(bool set) { m_SoundEnabled = set; }
+	void SetOkSoundEnabled(bool set) { m_OkSoundEnabled = set; }
+	void EnableAllSound() 
 	{
 		SetSoundEnabled(true);
 		SetOkSoundEnabled(true);
 	}
-	inline void SetSe(SeID id) { m_Se = id; }
-	inline void SetSeOk(SeID id) { m_SeOk = id; }
-	inline void SetSe(SeID select, SeID ok)
+	void SetSe(SeID id) { m_Se = id; }
+	void SetSeOk(SeID id) { m_SeOk = id; }
+	void SetSe(SeID select, SeID ok)
 	{
 		m_Se = select;
 		m_SeOk = ok;
 	}
-	inline void Deactivate() { m_IsActive = false; }
-	inline void Activate() { m_IsActive = true; }
+	void Deactivate() { m_IsActive = false; }
+	void Activate() { m_IsActive = true; }
 	void Select(bool set = true);
-	inline void Unselect() { Select(false); }
-	inline auto GetIndex() const { return m_Index; }
+	void Unselect() { Select(false); }
+	auto GetIndex() const { return m_Index; }
 
 protected:
 

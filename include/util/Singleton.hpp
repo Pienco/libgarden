@@ -1,6 +1,7 @@
 #ifndef UTIL_SINGLETON_HPP
 #define UTIL_SINGLETON_HPP
 
+#include <type_traits>
 
 namespace util
 {
@@ -18,7 +19,7 @@ namespace util
 		constexpr Singleton& operator=(const Self&) = delete;
 		constexpr Singleton& operator=(Self&&) = delete;
 
-		static inline T* Get()
+		static T* Get()
 		{
 			return s_pInstance;
 		}

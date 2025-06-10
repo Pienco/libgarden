@@ -15,7 +15,7 @@ namespace ssys::ma::lyt
 	public:
 
 		ArcResAccReader();
-		inline ArcResAccReader(const char* path) : ArcResAccReader()
+		ArcResAccReader(const char* path) : ArcResAccReader()
 		{
 			ReadArc(path);
 		}
@@ -25,29 +25,29 @@ namespace ssys::ma::lyt
 
 		// bool ReadArcCustom(const char* path);
 		
-		inline void* RegisterFont(const char* name, const nw::font::Font* font)
+		void* RegisterFont(const char* name, const nw::font::Font* font)
 		{
 			return GetResourceAccessor()->RegistFont(name, font);
 		}
 
-		inline void* RegisterFont(font::FontID font = font::FontID::GARDEN_MSG_16)
+		void* RegisterFont(font::FontID font = font::FontID::GARDEN_MSG_16)
 		{
 			const auto info = font::Mgr::GetFontInfo(font);
 			return RegisterFont(info.name, info.font);
 		}
 
-		inline nw::lyt::TextureInfo GetTexture(const char* name)
+		nw::lyt::TextureInfo GetTexture(const char* name)
 		{
 			return GetResourceAccessor()->GetTexture(name);
 		}
 
-		inline bool SetArc(const void* data)
+		bool SetArc(const void* data)
 		{
 			m_pArc = data;
 			return SetData(data, ".");
 		}
 
-		inline const void* GetArc()
+		const void* GetArc()
 		{
 			return m_pArc;
 		}
@@ -56,7 +56,6 @@ namespace ssys::ma::lyt
 
 	private:
 
-		
 		u8 field1_0x148;
 		u8 field2_0x149;
 		u8 field3_0x14a;

@@ -17,7 +17,7 @@ namespace ssys::ma::lyt
 		virtual void Draw();
 		virtual void Update();
 
-		inline void SetLayer(u8 layer) { m_Layer = layer; }
+		void SetLayer(u8 layer) { m_Layer = layer; }
 
 	private:
 

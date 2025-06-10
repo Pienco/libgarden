@@ -97,7 +97,7 @@ class BsGrowUp
 
 public:
 
-	inline static map::Field* GetCurrentField()
+	static map::Field* GetCurrentField()
 	{
 		return map::GetField(s_CurrentMap);
 	}

@@ -36,7 +36,7 @@ public:
 	void SetParent(Pane* parent);
 	void Process();
 
-	inline s32 GetScroll() const
+	s32 GetScroll() const
 	{
 		return m_Scroll;
 	}

@@ -10,8 +10,8 @@ public:
 
 	using Func = void(*)();
 
-	static inline const Func* GetMenuDelegate() { return s_pMenuDelegate; }
-	static inline void DisableMenuDelegate() { s_pMenuDelegate = nullptr; }
+	static const Func* GetMenuDelegate() { return s_pMenuDelegate; }
+	static void DisableMenuDelegate() { s_pMenuDelegate = nullptr; }
 
 	
 

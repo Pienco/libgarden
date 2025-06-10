@@ -18,12 +18,11 @@ namespace g3d
 
 		static constexpr size_t CGFX_ALIGNMENT = 0x80;
 
-
 		ResourceLoader();
 
 		bool Load(const sead::SafeString& path, sead::Heap* heap, size_t alignment = CGFX_ALIGNMENT);
 		bool LoadAsync(const sead::SafeString& path, sead::Heap* heap, size_t alignment = CGFX_ALIGNMENT);
-		inline bool LoadBuffered(const sead::SafeString& path, sead::Heap* heap, size_t alignment = CGFX_ALIGNMENT)
+		bool LoadBuffered(const sead::SafeString& path, sead::Heap* heap, size_t alignment = CGFX_ALIGNMENT)
 		{
 			const auto result = m_Loader.LoadBuffered(path, heap, alignment);
 			if (result && m_pBegin == nullptr)
@@ -31,7 +30,7 @@ namespace g3d
 			return result;
 		}
 
-		inline void* Load(auto&& data, sead::Heap* heap = nullptr, size_t alignment = CGFX_ALIGNMENT)
+		void* Load(auto&& data, sead::Heap* heap = nullptr, size_t alignment = CGFX_ALIGNMENT)
 		{
 			void* const mem = sead::AllocBuffer(data.size(), heap, alignment);
 			memcpy(mem, data.data(), data.size());
@@ -41,14 +40,13 @@ namespace g3d
 		void Read(u32 area1 = 0x10000, u32 area2 = 0x10000, u32 area3 = 0x10000);
 		void InitializeCgfx(nw::os::IAllocator* alloc, ResourceLoader* additional = nullptr, bool unk = true);
 
-
-		inline void SetCgfx(const void* cgfx)
+		void SetCgfx(const void* cgfx)
 		{
 			m_pBegin = cgfx;
 			m_pCgfx = cgfx;
 		}
 
-		inline const void* const* GetCgfx()
+		const void* const* GetCgfx()
 		{
 			return &m_pCgfx;
 		}

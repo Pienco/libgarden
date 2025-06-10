@@ -12,24 +12,22 @@ namespace ssys::ma::lyt
 
 	public:
 
-		
 		virtual ~FrameCtrl();
-		virtual inline void SetFrame(float frame) final // __attribute__((pcs("aapcs-vfp")))
+		virtual void SetFrame(float frame) final // __attribute__((pcs("aapcs-vfp")))
 		{
 			m_PrevFrame = frame;
 			m_Frame = frame;
 			*(float*)(m_pNwAnim + 0x10) = frame;
 		} 
 		
-		inline void SetFirstFrame() { SetFrame(0.0f); }
-		inline void SetFrameR(float r) { SetFrame(m_FrameCount - r); }
-		inline void SetLastFrame() { SetFrame(m_FrameCount - 1.0f); }
+		void SetFirstFrame() { SetFrame(0.0f); }
+		void SetFrameR(float r) { SetFrame(m_FrameCount - r); }
+		void SetLastFrame() { SetFrame(m_FrameCount - 1.0f); }
 
-		inline void* GetNwAnim() { return m_pNwAnim; }
-		inline float GetFrame() const { return m_Frame; }
-		inline float GetFrameCount() const { return m_FrameCount; }
+		void* GetNwAnim() { return m_pNwAnim; }
+		float GetFrame() const { return m_Frame; }
+		float GetFrameCount() const { return m_FrameCount; }
 
-		
 	private:
 
 		float m_FrameCount;

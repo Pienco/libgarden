@@ -13,22 +13,22 @@ namespace sead
 
 		static Heap* GetCurrentHeap();
 
-		static inline Heap* GetRootHeap()
+		static Heap* GetRootHeap()
 		{
 			return (Heap*)0x30000000; // s_ppRootHeaps[0];
 		}
 
-		static inline Heap* GetSystemHeap()
+		static Heap* GetSystemHeap()
 		{
 			return s_pSystemHeap;
 		}
 
-		// static inline Heap* GetCustomHeap()
+		// static Heap* GetCustomHeap()
 		// {
 		// 	return (Heap*)s_pCustomHeap;
 		// }
 
-		// static inline void InitializeCustom()
+		// static void InitializeCustom()
 		// {
 		// 	static constexpr SafeString s {"Heap"};
 		// 	ExpHeap::CreateRoot((void*)s_pCustomHeap, 0x331b8000 - s_pCustomHeap, &s);

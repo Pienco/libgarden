@@ -10,7 +10,7 @@ public:
 
 	void ChangeBg(s32 index);
 
-	static inline BsMenuBg* Get() { return s_pInstance; }
+	static BsMenuBg* Get() { return s_pInstance; }
 
 private:
 

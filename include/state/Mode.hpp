@@ -23,10 +23,7 @@ namespace state
 
 		constexpr Mode() = default;
 
-		virtual inline const char* GetName(Func) const override
-		{
-			return nullptr;
-		}
+		virtual const char* GetName(Func) const override { return nullptr; }
 
 		void Change(Func f);
 

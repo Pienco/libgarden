@@ -12,7 +12,7 @@ namespace nw::lyt
 	
 	public:
 
-		inline void Set(const TextureInfo& info)
+		void Set(const TextureInfo& info)
 		{
 			data = info.data;
 			flags = ((info.format & 0xf) << 8) | (flags & 0xfffff0ff);

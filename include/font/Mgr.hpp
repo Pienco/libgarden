@@ -27,8 +27,8 @@ namespace font
 
 	public:
 
-		static inline Mgr* Get() { return s_pInstance; }
-		static inline FontInfo GetFontInfo(FontID font = FontID::GARDEN_MSG_16)
+		static Mgr* Get() { return s_pInstance; }
+		static FontInfo GetFontInfo(FontID font = FontID::GARDEN_MSG_16)
 		{
 			auto* const mgr = Get();
 			return { mgr->GetFontName(font)->GetString(), mgr->GetFont(font) };

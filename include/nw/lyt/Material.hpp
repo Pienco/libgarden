@@ -18,7 +18,7 @@ namespace nw::lyt
 
 		virtual ~Material();
 
-		inline void SetTexture(size_t index, const TextureInfo& info)
+		void SetTexture(size_t index, const TextureInfo& info)
 		{
 			((TexMap*)m_pElements)[index].Set(info);
 			m_Flags &= 0xfb;

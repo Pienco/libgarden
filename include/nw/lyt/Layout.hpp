@@ -12,10 +12,7 @@ namespace nw::lyt
 
 	public:
 
-		inline Pane* GetRootPane()
-		{
-			return m_pRootPane;
-		}
+		Pane* GetRootPane() { return m_pRootPane; }
 
 	private:
 

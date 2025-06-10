@@ -25,7 +25,7 @@ namespace script
 
 		// void SetText(const WordPtr* text);
 
-		inline void SetText(const char16* text)
+		void SetText(const char16* text)
 		{
 			static constexpr char16* CHAR16_NULLPTR = nullptr;
 

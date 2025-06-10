@@ -38,9 +38,9 @@ namespace script
 		}
 
 		virtual ~WordPtr() override;
-		virtual inline char16* GetWord() final override { return m_pText; }
-		virtual inline const char16* GetWord() const final override { return m_pText; }
-		virtual inline size_t GetSize() const final override { return m_Size; }
+		virtual char16* GetWord() final override { return m_pText; }
+		virtual const char16* GetWord() const final override { return m_pText; }
+		virtual size_t GetSize() const final override { return m_Size; }
 
 		constexpr const char16* data() const { return GetWord(); }
 		constexpr char16* data() { return GetWord(); }
@@ -66,7 +66,7 @@ namespace script
 
 	public:
 
-		constexpr WordFix(): WordPtr(m_TextBuffer.data(), N)
+		constexpr WordFix() : WordPtr(m_TextBuffer.data(), N)
 		{
 			m_TextBuffer[0] = u'\0';
 		}
@@ -96,7 +96,7 @@ namespace script
 
 		struct Span
 		{
-			u8 unk0;
+			u8 color;
 			u8 unk1;
 			u8 unk2;
 			u8 unk3;
@@ -109,7 +109,7 @@ namespace script
 		Buffer m_TextBuffer;
 	};
 	ASSERT_SIZE(WordFix<128u>, 0x118);
-	
+
 }
 
 namespace detail
@@ -129,7 +129,7 @@ namespace detail
 }
 
 template<detail::CaptureStringLiteral String>
-inline constexpr script::WordPtr operator""_wp()
+constexpr script::WordPtr operator""_wp()
 {
 	static constinit detail::CaptureStringLiteral copy { String };
 	// static constexpr script::WordPtr wp { &copy.str[0], copy.sizr };
@@ -137,7 +137,7 @@ inline constexpr script::WordPtr operator""_wp()
 }
 
 template<detail::CaptureStringLiteral String>
-inline constexpr auto operator""_wf()
+constexpr auto operator""_wf()
 {
 	return script::WordFix { String.str };
 }

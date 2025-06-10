@@ -8,7 +8,7 @@ class BsDemoCancelMgr : public Base
 
 public:
 
-	static inline void EnableCancel()
+	static void EnableCancel()
 	{
 		if (s_pInstance != nullptr)
 			s_pInstance->m_State = 1;

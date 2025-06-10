@@ -49,8 +49,6 @@ namespace oml::framework
 		virtual void ProcessStartupResult(Result);
 		virtual void OnNotify();
 
-	protected:
-
 		friend class ProcessManager;
 
 		Process();
@@ -61,7 +59,7 @@ namespace oml::framework
 		void NotifyDone();
 
 		template<std::derived_from<Process> T>
-		static inline Process* Create() { return new T(); }
+		static Process* Create() { return new T(); }
 		static void Destroy(Process*);
 
 	private:

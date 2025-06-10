@@ -8,7 +8,7 @@ class StageCommon
 
 public:
 
-	static inline sead::Heap* GetStageHeap()
+	static sead::Heap* GetStageHeap()
 	{
 		return s_pStageHeap;
 	} 

@@ -13,7 +13,6 @@ namespace nw::lyt
 
 	public:
 
-
 		virtual ~Pane() override;
 		virtual void GetType();
 		virtual void GetVertexColor();
@@ -32,20 +31,19 @@ namespace nw::lyt
 		virtual void UnbindAnimation(void* anim, bool recursive);
 
 
-		inline void SetVisible(bool visible = true)
+		void SetVisible(bool visible = true)
 		{
 			m_Flags = visible ? m_Flags | 1 : m_Flags & (u8)(~1u);
 		}
-		inline void SetMatrixDirty() { m_Flags &= 0xcf; }
-		inline math::Vector3& GetTranslation() { return m_Translation; }
-		inline const math::Vector3& GetTranslation() const { return m_Translation; }
-		inline math::Vector3 GetGlobalTranslation() const { return m_GlobalMatrix.column<3>(); }
-		inline void SetTranslation(const math::Vector3& translation) { m_Translation = translation; }
-		inline Pane* GetParent() { return m_pParent; }
+		void SetMatrixDirty() { m_Flags &= 0xcf; }
+		math::Vector3& GetTranslation() { return m_Translation; }
+		const math::Vector3& GetTranslation() const { return m_Translation; }
+		math::Vector3 GetGlobalTranslation() const { return m_GlobalMatrix.column<3>(); }
+		void SetTranslation(const math::Vector3& translation) { m_Translation = translation; }
+		Pane* GetParent() { return m_pParent; }
 
 		void AppendChild(Pane* child);
 		void RemoveChild(Pane* child);
-
 
 	private:
 

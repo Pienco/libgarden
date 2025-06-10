@@ -19,10 +19,10 @@ namespace ssys::ma::lyt
 		bool Initialize(const char* name, const ResAccInterface* resAcc);
 		bool IsDone() const;
 		void IncreaseFrame();
-		inline bool IsBound() { return m_IsBound == 1; }
-		inline bool IsUnbound() { return m_IsBound == 0; }
+		bool IsBound() const { return m_IsBound == 1; }
+		bool IsUnbound() const { return m_IsBound == 0; }
 		
-		inline bool Finish()
+		bool Finish()
 		{
 			if (IsDone()) return true;
 			IncreaseFrame();

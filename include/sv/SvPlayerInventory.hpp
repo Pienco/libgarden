@@ -20,7 +20,7 @@ struct SvPlayerInventory
 	bool AddItem(const item::Item& item, ItemAppearance appearance = DEFAULT, item::Item* out = nullptr);
 	bool SetItem(size_t index, const item::Item& item, ItemAppearance appearance = DEFAULT, item::Item* out = nullptr);
 
-	inline size_t GetCount(item::ItemOrID auto&& item) const
+	size_t GetCount(item::ItemOrID auto&& item) const
 	{
 		size_t result = 0;
 		for (size_t i = 0; i < SIZE; i++)
@@ -31,7 +31,7 @@ struct SvPlayerInventory
 		return result;
 	}
 
-	inline s32 Find(item::ItemOrID auto&& item) const
+	s32 Find(item::ItemOrID auto&& item) const
 	{
 		for (size_t i = 0; i < SIZE; i++)
 		{

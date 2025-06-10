@@ -48,7 +48,7 @@ namespace oml::framework
 
 		static ProcessManager* Get();
 
-		inline static Process* CreateProcess(ProcessID id, s32 unk0 = 0, s32 unk1 = 0)
+		static Process* CreateProcess(ProcessID id, s32 unk0 = 0, s32 unk1 = 0)
 		{
 			return Get()->CreateProcessImpl(id, unk0, unk1);
 		}

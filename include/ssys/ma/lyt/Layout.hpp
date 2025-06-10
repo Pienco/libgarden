@@ -26,8 +26,8 @@ namespace ssys::ma::lyt
 		Layout();
 		virtual ~Layout() override;
 
-		inline void SetArcResAccReader(ArcResAccReader* reader) { m_pArcReader = reader; }
-		inline Pane* GetRootPane()
+		void SetArcResAccReader(ArcResAccReader* reader) { m_pArcReader = reader; }
+		Pane* GetRootPane()
 		{
 			return m_Layout.GetRootPane();
 		}
@@ -42,7 +42,6 @@ namespace ssys::ma::lyt
 		void BindAnimation(Animation* anim, const Group* group, bool recursive = false);
 		void UnbindAnimation(Animation* anim, const Group* group, bool recursive = false);
 		void UnbindAllAnimation();
-
 
 	private:
 

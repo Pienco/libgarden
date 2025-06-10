@@ -14,7 +14,7 @@ namespace state
 		using Func = void(T::*)();
 
 		constexpr Base() = default;
-		virtual inline ~Base() { }
+		virtual ~Base() { }
 		virtual const char* GetName(Func) const = 0;
 
 	private:

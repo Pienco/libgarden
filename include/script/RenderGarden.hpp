@@ -22,7 +22,7 @@ namespace script
 
 		void SetTextBoxes(TextBox* textBox, TextBox* textBox2 = nullptr);
 		void SetText(const IWord* text);
-		inline void SetText(const char16* text = nullptr)
+		void SetText(const char16* text = nullptr)
 		{
 			static constexpr char16* CHAR16_NULLPTR = nullptr;
 			
@@ -37,7 +37,6 @@ namespace script
 
 		void CommitText();
 		void Clear();
-
 
 	private:
 

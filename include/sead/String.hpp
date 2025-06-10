@@ -15,11 +15,10 @@ namespace sead
 		constexpr SafeStringBase(const T* string) : m_pString(string)
 		{
 		}
-		virtual constexpr ~SafeStringBase() {}
+		virtual constexpr ~SafeStringBase() = default;
 		virtual void SetNT();
 
-		inline const T* GetString() const { return m_pString; }
-
+		const T* GetString() const { return m_pString; }
 
 	private:
 
@@ -38,7 +37,6 @@ namespace sead
 	private:
 
 		size_t m_Size;
-
 	};
 
 
@@ -51,7 +49,6 @@ namespace sead
 	private:
 
 		T m_String[Length];
-
 	};
 
 	template<size_t Length>
@@ -60,10 +57,22 @@ namespace sead
 
 	};
 
+	template<size_t Length>
+	class WFixedSafeString final : public FixedSafeStringBase<char16, Length>
+	{
+
+	};
+
+	extern template class FixedSafeString<24>;
 	extern template class FixedSafeString<32>;
+	extern template class FixedSafeString<64>;
+
+	extern template class WFixedSafeString<18>;
+	extern template class WFixedSafeString<32>;
+	extern template class WFixedSafeString<64>;
 
 	using SafeString = SafeStringBase<char>;
-	using SafeString16 = SafeStringBase<char16>;
+	using WSafeString = SafeStringBase<char16>;
 }
 
 #endif

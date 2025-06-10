@@ -19,7 +19,7 @@ namespace ssys::ma::lyt
 
 	protected:
 	
-		inline ArcResourceAccessorVRAM* GetResourceAccessor() { return &m_ArcResourceAccessor; }
+		ArcResourceAccessorVRAM* GetResourceAccessor() { return &m_ArcResourceAccessor; }
 
 	private:
 

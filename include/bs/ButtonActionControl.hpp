@@ -63,13 +63,13 @@ public:
 	virtual void OnBegin();
 	virtual void FUN_002f7300();
 
-	inline void SetFlags(u32 flags, bool set = true)
+	void SetFlags(u32 flags, bool set = true)
 	{
 		if (set) m_Flags |= flags;
 		else m_Flags &= ~flags;
 	}
 
-	inline void SetFlags2(u16 flags, bool set = true)
+	void SetFlags2(u16 flags, bool set = true)
 	{
 		if (set) m_Flags2 |= flags;
 		else m_Flags2 &= ~flags;
@@ -79,15 +79,15 @@ public:
 	void AddNode(ButtonActionNode* node, bool updateAnimations = true);
 	void Update();
 	bool IsSelectOkDone() const;
-	inline bool IsSelectOkOngoing() const { return m_pFunc == &ButtonActionControl::State_Selecting; }
+	bool IsSelectOkOngoing() const { return m_pFunc == &ButtonActionControl::State_Selecting; }
 	s32 GetSelectedIndex() const;
 	s32 GetPressedIndex() const;
-	inline ButtonActionNode* GetCurrent() { return m_pCurrent; }
-	inline bool HasCurrent() const { return m_pCurrent != nullptr; }
+	ButtonActionNode* GetCurrent() { return m_pCurrent; }
+	bool HasCurrent() const { return m_pCurrent != nullptr; }
 	void SetCursor(bool enable);
 	void UnselectCurrent();
 	void UnselectActive();
-	inline void ResetAndUnselectCurrent()
+	void ResetAndUnselectCurrent()
 	{
 		UnselectCurrent();
 		Reset();

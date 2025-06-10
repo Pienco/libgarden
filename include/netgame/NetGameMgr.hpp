@@ -57,20 +57,18 @@ namespace netgame
 		};
 		ASSERT_SIZE(Unknown1, 0xc);
 
-		inline Receiver* GetReceiver() { return &m_Receiver; }
-		inline Unknown1* GetUnk1() { return &m_Unk1; }
+		Receiver* GetReceiver() { return &m_Receiver; }
+		Unknown1* GetUnk1() { return &m_Unk1; }
 
-		inline void EnterCriticalSection() { m_CriticalSection.Enter(); }
-		inline void ExitCriticalSection() { m_CriticalSection.Exit(); }
+		void EnterCriticalSection() { m_CriticalSection.Enter(); }
+		void ExitCriticalSection() { m_CriticalSection.Exit(); }
 
-		inline bool IsNewPlayerJoined() const { return m_NewPlayerJoined; }
-		inline void UnsetNewPlayerJoined() { m_NewPlayerJoined = false; }
+		bool IsNewPlayerJoined() const { return m_NewPlayerJoined; }
+		void UnsetNewPlayerJoined() { m_NewPlayerJoined = false; }
 
 		PlayerNo GetMyPlayerNo() const;
 
-		
-
-		static inline NetGameMgr* Get() { return s_pInstance; }
+		static NetGameMgr* Get() { return s_pInstance; }
 
 	private:
 

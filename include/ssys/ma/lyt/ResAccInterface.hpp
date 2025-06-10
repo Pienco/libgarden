@@ -15,7 +15,7 @@ namespace ssys::ma::lyt
 
 	protected:
 
-		// inline void SetData(const void* data)
+		// void SetData(const void* data)
 		// {
 		// 	ASSERT_OFFSET(ResAccInterface, m_pData, 8);
 

@@ -16,9 +16,7 @@ namespace script
 
 	public:
 
-	public:
-
-		inline void ClearBuf2()
+		void ClearBuf2()
 		{
 			if (m_pBuf2 != nullptr)
 				*m_pBuf2 = 0;

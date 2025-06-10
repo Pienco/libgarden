@@ -17,12 +17,12 @@ public:
 		COUNT = 0x8c,
 	};
 
-	static inline BsMenuMgr* Get() { return s_pInstance; }
+	static BsMenuMgr* Get() { return s_pInstance; }
 	static bool CanOpenMenuThink();
-	static inline MenuBase* GetMenuProcess() { return s_pInstance->m_pProcess; }
-	static inline bool HasMenuProcess() { return GetMenuProcess() != nullptr; }
+	static MenuBase* GetMenuProcess() { return s_pInstance->m_pProcess; }
+	static bool HasMenuProcess() { return GetMenuProcess() != nullptr; }
 	static bool CreateMenuProcess(Menu menu, u8 param = 1);
-	static inline void DisableHandCursor()
+	static void DisableHandCursor()
 	{
 		if (s_pInstance->m_HandMode == 1)
 		{
