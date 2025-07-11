@@ -3,6 +3,6 @@
 
 #include "types.h"
 
-extern "C" void svcSleepThread(s64 time);
+// extern "C" void svcSleepThread(s64 time);
 
 #endif

@@ -1,9 +1,8 @@
-#ifndef MAP_ID_HPP
-#define MAP_ID_HPP
+#pragma once
 
 #include "types.h"
 
-namespace map
+namespace stage
 {
 	enum class ID : u8
 	{
@@ -167,6 +166,40 @@ namespace map
 		AMIIBO_CAMERA = 164,
 		DUMMY = 0xa5,
 	};
-}
 
-#endif
+	enum class Kind : u32
+	{
+		DEBUG = 1,
+		OUTDOOR_2 = 2,
+		OUTDOOR = 4,
+		INDOOR = 8,
+		SCREEN = 0x10,
+		VILLAGE = 0x20,
+		NPC_HOUSE = 0x40,
+		PLAYER_HOUSE = 0x80,
+		HOUSE_OR_GALLERY = 0x100,
+		DOWNTOWN = 0x200,
+		EXHIBITION = 0x400,
+		INCLUDE_SAVE = 0x800,
+		OUTDOOR_OTHER = 0x1000,
+		MUSEUM_SHOWROOM = 0x2000,
+		MODEL_HOUSE = 0x4000,
+		MUSEUM = 0x8000,
+		POLICE = 0x10000,
+		ON_ISLAND = 0x20000,
+		ISLAND = 0x40000,
+		TOUR = 0x80000,
+		ISLAND_HUT = 0x100000,
+		ISLAND_LEAVE = 0x200000,
+		TRAIN_STATION_ENVIRONMENT = 0x400000,
+		CLUB = 0x800000,
+		CAFE_ENVIRONMENT = 0x1000000,
+		HAS_W_OR_E_AND_N_OR_S_ENTRANCE = 0x2000000,
+		HAS_W_OR_E_ENTRANCE = 0x4000000,
+		MINI_GAME = 0x8000000,
+		AUTO_CAMP = 0x10000000,
+		RV_CAR_ENVIRONMENT = 0x20000000,
+	};
+
+	bool IsKind(Kind bits, ID id);
+}

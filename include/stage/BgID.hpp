@@ -1,9 +1,8 @@
-#ifndef MAP_BGID_HPP
-#define MAP_BGID_HPP
+#pragma once
 
 #include "types.h"
 
-namespace map
+namespace stage
 {
 	enum class BgID : u16
 	{
@@ -371,5 +370,3 @@ namespace map
 		COUNT = 0x0169,
 	};
 }
-
-#endif

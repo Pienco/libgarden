@@ -2,7 +2,7 @@
 #define BS_BSGROWUP_HPP
 
 #include "Base.hpp"
-#include "map/map.hpp"
+#include "stage/stage.hpp"
 #include "item/Item.hpp"
 
 #include <bit>
@@ -12,20 +12,20 @@ struct RandomPlacerUsual;
 struct RandomPlacer
 {
 	using Word = u16;
-	using Bits = std::array<Word, map::GetTownItemChunkCount() * map::GetChunkSize().y()>;
+	using Bits = std::array<Word, stage::GetTownItemChunkCount() * stage::GetChunkSize().y()>;
 
 	struct Info
 	{
 		size_t index;
 		size_t localIndex;
-		map::Position pos;
+		stage::Position pos;
 		Word bit;
 	};
 
 	using Func = void(*)(RandomPlacerUsual&, RandomPlacer&, const Info&);
 
 	THUMB size_t UpdateCount();
-	THUMB size_t UpdateCount(map::Position pos);
+	THUMB size_t UpdateCount(stage::Position pos);
 	THUMB bool Find(Info& out, s32 number) const;
 	THUMB void DoRandom(Func func, RandomPlacerUsual* rpu);
 	THUMB void DoRandom(Func func, RandomPlacerUsual* rpu, size_t maxCount);
@@ -97,14 +97,14 @@ class BsGrowUp
 
 public:
 
-	static map::Field* GetCurrentField()
+	static stage::Field* GetCurrentField()
 	{
-		return map::GetField(s_CurrentMap);
+		return stage::GetField(s_CurrentField);
 	}
 
 private:
 
-	static map::FieldID s_CurrentMap;
+	static stage::FieldID s_CurrentField;
 };
 
 #endif

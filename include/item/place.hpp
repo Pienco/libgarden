@@ -38,7 +38,7 @@ namespace item
 		u8 processFlags;
 		u8 flags;
 		std::array<u8, 3> spawnedItemPos;
-		u8 map;
+		u8 stage;
 		u8 x;
 		u8 y;
 	};

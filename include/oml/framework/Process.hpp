@@ -34,6 +34,8 @@ namespace oml::framework
 
 		virtual ~Process();
 
+		void Stop();
+
 	protected:
 		virtual bool CanInitialize() const;
 		virtual Result Initialize();

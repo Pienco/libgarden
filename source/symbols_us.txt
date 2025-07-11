@@ -1,27 +1,27 @@
-memcpy = 0x2f85e4;
+# memcpy = 0x2f85e4;
 wcslen_16 = 0x10082c;
 wcsncpy_16 = 0x1017f4;
 wcscpy_16 = 0x1017d8;
 swprintf_16 = 0x100f5c;
-memset = 0x151148;
-malloc = 0x77a51c;
+# memset = 0x151148;
+# malloc = 0x77a51c;
 _ZnwjPN4sead4HeapEj = 0x1328d8;
 
-GSPGPU_WriteHWRegs = 0x12aae4;
-GSPGPU_FlushDataCache = 0x136ef0;
+# GSPGPU_WriteHWRegs = 0x12aae4;
+# GSPGPU_FlushDataCache = 0x136ef0;
 GX_Cmd4 = 0x136ff0;
 
-svcSleepThread = 0x12843c;
+# svcSleepThread = 0x12843c;
 
 returnToGame = 0x627bec;
 
 _ZN12_GLOBAL__N_126NETGAME_PACKET_00_RECEIVEDE = 0x181494;
 _ZN12_GLOBAL__N_116SYSTEM_TASK_HOOKE = 0x1b6dec;
 
-_Znwj = 0x13a008;
-_Znaj = 0x13a008;
-_ZdlPvj = 0x2f8958;
-_ZdaPv = 0x2f8958;
+# _Znwj = 0x13a008;
+# _Znaj = 0x13a008;
+# _ZdlPvj = 0x2f8958;
+# _ZdaPv = 0x2f8958;
 
 _ZnajPN4sead4HeapEj = 0x1328d8;
 
@@ -32,9 +32,20 @@ _ZN4sead13ControllerMgr9IsPressedEm = 0x5223e8;
 
 _ZN7netgame13IsMultiPlayerEv = 0x300838;
 _ZN7netgame16IsMultiplePlayerEv = 0x2fc990;
+_ZN7netgame14GetNetgameTypeEv = 0x305ed8;
+_ZN7netgame12ExistsPlayerENS_8PlayerNoE = 0x6259d8;
+_ZN7netgame6IsHostEv = 0x30b824;
+_ZN7netgame7GetMaskENS_8PlayerNoE = 0x625750;
+_ZN7netgame14IsFieldControlEv = 0x61b278;
+_ZN7netgame14GetPlayerCountEv = 0x626168;
 _ZN7netgame13EnqueuePacketEhhPKvj = 0x625488;
-_ZN7netgame14GetPlayerActorEhb = 0x5c3ea0;
-_ZN7netgame20GetPlayerCoordinatesEPmS0_hb = 0x5c13ac;
+_ZN7netgame13EnqueuePacketEhNS_8PlayerNoEPKvj = 0x625488;
+_ZN7netgame14GetPlayerStateENS_8PlayerNoE = 0x5c3ddc;
+_ZN7netgame9GetPlayerENS_8PlayerNoEb = 0x5c3ea0;
+_ZN7netgame17GetPlayerPositionERlS0_NS_8PlayerNoEb = 0x5c13ac;
+
+_ZN7netgame15MachineBitTable3AddENS_8PlayerNoE = 0x62557c;
+_ZN7netgame15MachineBitTable5ResetEv = 0x625740;
 
 _ZN7netgame11s_TourStateE = 0x94ee08;
 _ZN7netgame21s_TourRequestPlayerNoE = 0x94ee0a;
@@ -45,7 +56,23 @@ _ZN7netgame10NetGameMgr8Receiver9GetPacketEh = 0x75fa28;
 _ZN7netgame10NetGameMgr8Receiver12SetIsEnabledEhb = 0x625a9c;
 _ZN7netgame10NetGameMgr8Receiver13SetWasHandledEhb = 0x625a8c;
 _ZNK7netgame10NetGameMgr13GetMyPlayerNoEv = 0x75f004;
+_ZNK7netgame10NetGameMgr14GetPlayerCountEv = 0x75eff8;
 _ZN7netgame10NetGameMgr8Unknown15CheckEh = 0x76003c;
+_ZN7netgame10NetGameMgr15FieldControlMgr8SetStageENS_8PlayerNoEN5stage2IDE = 0x6229e4;
+_ZN7netgame10NetGameMgr15FieldControlMgr18UpdateFieldControlENS_8PlayerNoEb = 0x62287c;
+_ZN7netgame10NetGameMgr15FieldControlMgr23PlayerStageUpdatePacket3SetENS_8PlayerNoEbN5stage2IDEbbS3_ = 0x626348;
+_ZNK7netgame10NetGameMgr15FieldControlMgr22GetTransitioningPlayerEv = 0x75f318;
+_ZNK7netgame10NetGameMgr15FieldControlMgr12PlayerStages14GetPlayerCountEN5stage2IDE = 0x75f874;
+_ZN7netgame10NetGameMgr9IslandMgr10ChooseTourEN5stage6TourIDE = 0x61fdc0;
+_ZN7netgame10NetGameMgr9IslandMgr21UpdatePlayerTourSplitEhh = 0x61ea30;
+_ZN7netgame10NetGameMgr9IslandMgr16RetireFromIslandEv = 0x61e954;
+_ZN7netgame10NetGameMgr9IslandMgr20CanRetireRandomMatchEv = 0x75f1c4;
+_ZN7netgame10NetGameMgr9IslandMgr24RequestRandomMatchSeeOffEv = 0x61fd78;
+_ZN7netgame10NetGameMgr9IslandMgr16ConfirmLeaveSelfEv = 0x61f018;
+_ZN7netgame10NetGameMgr9IslandMgr21IsRetiringRandomMatchEv = 0x75f140;
+
+_ZNK7netgame25DirectItemPlacementPacket5PlaceEv = 0x594d88;
+_ZNK7netgame25DirectItemPlacementPacket4SendEv = 0x594e04;
 
 _ZN4item4Item7GetNameEPN6script7WordPtrERKS0_Pv = 0x56e93c;
 
@@ -57,12 +84,21 @@ _ZNK4item4Item11GetIconNameEv = 0x5367dc;
 
 _ZN4item7MapItem5PlaceEv = 0x594d88;
 
-_ZNK3map5Field7GetItemEN4math6VectorIiLj2EEEh = 0x2fef9c;
-_ZN3map5Field9PlaceItemERKN4item4ItemEN4math6VectorIiLj2EEEh = 0x2fca24;
+_ZN5stage5Field7GetItemEN4math6VectorIlLj2EEEh = 0x2fef9c;
+_ZNK5stage5Field7GetItemEN4math6VectorIiLj2EEEh = 0x2fef9c;
+_ZN5stage5Field9PlaceItemERKN4item4ItemEN4math6VectorIiLj2EEEh = 0x2fca24;
 
-_ZN3map10GetCurrentEv = 0x2f7384;
-_ZN3map9s_CurrentE = 0x958342;
-_ZN3map8GetFieldENS_7FieldIDE = 0x2fe95c;
+_ZN5stage10GetCurrentEv = 0x2f7384;
+_ZN5stage9s_CurrentE = 0x958342;
+_ZN5stage6IsKindENS_4KindENS_2IDE = 0x2f7414;
+_ZN5stage8GetFieldENS_7FieldIDE = 0x2fe95c;
+_ZN5stage15GetCurrentFieldEv = 0x6a690c;
+_ZNK5stage4Rect5beginEv = 0x748f3c;
+_ZNK5stage4Rect3endEv = 0x748f04;
+_ZN5stageneERKNS_4Rect8iteratorES3_ = 0x748ea4;
+_ZN5stage4Rect8iteratorppEv = 0x52f7f0;
+_ZN5stage9GetHeightERKN4math6VectorIfLj3EEEh = 0x6c67b0;
+_ZN5stage16GetHeightDefaultERKN4math6VectorIfLj3EEENS_7FieldIDE = 0x6c6e28;
 
 _ZN11StageCommon12s_pStageHeapE = 0x953c4c;
 
@@ -70,6 +106,7 @@ _ZN3oml9framework7ProcessnwEj = 0x52a488;
 _ZN3oml9framework7ProcessdlEPv = 0x313b24;
 _ZN3oml9framework7ProcessC2Ev = 0x522138;
 _ZN3oml9framework7ProcessD1Ev = 0x52218c;
+_ZN3oml9framework7Process4StopEv = 0x521754;
 _ZN3oml9framework7Process7DestroyEPS1_ = 0x5251f0;
 _ZN3oml9framework7Process20ProcessStartupResultENS0_6ResultE = 0x5220e8;
 _ZN3oml9framework7Process8OnNotifyEv = 0x521710;
@@ -287,7 +324,13 @@ _ZN15BsDemoCancelMgr11s_pInstanceE = 0x94fe54;
 
 _ZN12RandomPlacer8DoRandomEPFvR17RandomPlacerUsualRS_RKNS_4InfoEEPS0_j = 0x2fdbd8;
 
-_ZN8BsGrowUp12s_CurrentMapE = 0x953bad;
+_ZN8BsGrowUp14s_CurrentStageE = 0x953bad;
+
+_ZN16BsInsectFieldMgr12CreateInsectEN4item8InsectIDERKN4math6VectorIfLj3EEERKNS3_ItLj3EEE = 0x2ac924;
+_ZN16BsInsectFieldMgr11s_pInstanceE = 0x950534;
+
+_ZN14BsFishFieldMgr10CreateFishEN4item6FishIDERKN4math6VectorIfLj3EEERKNS3_ItLj3EEE = 0x25450c;
+_ZN14BsFishFieldMgr11s_pInstanceE = 0x950278;
 
 _ZN8SvPlayer3GetEv = 0x2fba40;
 
@@ -305,3 +348,7 @@ _ZN4demo20MakeOrderPlayerThinkEh = 0x52c6c8;
 _ZN8SoundMgr9PlaySoundE4SeIDf = 0x58de9c;
 
 _ZN15AcNpcSpResetsan15s_pMenuDelegateE = 0x950d98;
+
+_ZNK8AcPlayer15GetScratchStateEv = 0x6576f8;
+_ZN8AcPlayer14ActionPosition3SetERKN4math6VectorIfLj3EEE = 0x5d4c88;
+_ZN8AcPlayer8DoActionEhPN7netgame11PlayerStateEb = 0x64db90;

@@ -1,7 +1,7 @@
 #ifndef AC_ACNPCSPRESETSAN_HPP
 #define AC_ACNPCSPRESETSAN_HPP
 
-#include "types.h"
+#include "common.hpp"
 
 class AcNpcSpResetsan
 {
@@ -12,8 +12,6 @@ public:
 
 	static const Func* GetMenuDelegate() { return s_pMenuDelegate; }
 	static void DisableMenuDelegate() { s_pMenuDelegate = nullptr; }
-
-	
 
 private:
 

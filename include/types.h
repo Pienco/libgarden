@@ -4,7 +4,6 @@
 #ifdef __cplusplus
 
 #include <cstdint>
-#include <cstdbool>
 #include <cstddef>
 #include <array>
 
@@ -55,7 +54,7 @@ typedef volatile s64 vs64; ///< 64-bit volatile signed integer.
 #define NORETURN __attribute__((noreturn))
 
 #define FORCE_INLINE __attribute__((always_inline))
-#define NO_INLINE __attribute__((noinline))
+#define NOINLINE __attribute__((noinline))
 
 #define LIKELY(x) __builtin_expect((x), true)
 #define UNLIKELY(x) __builtin_expect((x), false)

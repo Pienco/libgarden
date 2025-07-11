@@ -68,6 +68,7 @@ namespace item
 			return *this;
 		}
 
+		u32* GetValue() { return (u32*)&id; }
 		bool IsEmpty() const;
 		bool IsUsual() const;
 		const ParamItemEntry* GetParamItemEntry() const;

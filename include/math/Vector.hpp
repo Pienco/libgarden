@@ -378,4 +378,6 @@ namespace math
 	using Matrix4 = Matrix<float, 4, 4>;
 }
 
+using namespace math;
+
 #endif
