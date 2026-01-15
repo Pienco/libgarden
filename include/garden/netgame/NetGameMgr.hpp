@@ -152,7 +152,7 @@ namespace netgame
 
 		void FiniNet();
 
-		bool SendRawPacket(PlayerNo target, const void* const* data, const size_t* sizes, size_t count, u8 type,
+		bool SendRawPacket(PlayerNo target, const void* const* parts, const size_t* partSizes, size_t partCount, u8 type,
 			u32 unknown1, u32 unknown2, u32 unknown3);
 
 		static NetGameMgr* Get() { return s_pInstance; }

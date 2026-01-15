@@ -46,4 +46,6 @@ struct SvPlayerInventory
 	ItemArray& GetItems() { return items; }
 
 	ItemArray items;
+	u8 data[0x1cf8];
 };
+ASSERT_SIZE(SvPlayerInventory, 0x1d38);

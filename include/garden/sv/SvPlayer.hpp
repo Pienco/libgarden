@@ -50,7 +50,9 @@ struct SvPlayer
 	SvPlayerCharacter character;
 	u8 data[0x44];
 	SvPlayerInventory inventory;
+	u8 data2[0x1b78];
 };
 ASSERT_OFFSET(SvPlayer, SvPlayer::inventory, 0x6bd0);
+ASSERT_SIZE(SvPlayer, 0xa480);
 
 #endif
