@@ -146,6 +146,10 @@ _ZN7netgame11s_SetTourIDE = 0x94ee09;
 _ZN7netgame11s_TourStateE = 0x94ee08;
 _ZN7netgame19s_ForceLeaveRequestE = 0x94ee0c;
 
+_ZN7netgame12GetIslandMapEv = 0x6a7988;
+
+_ZN10IslandData11s_pInstanceE = 0x954238;
+
 _ZN7netgame13FriendListMgr14FindBestFriendERKmRKNS_8AvatarIdE = 0x75f598;
 
 _ZN7netgame25StageTransitionTourResultEv = 0x61f204;

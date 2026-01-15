@@ -1,6 +1,7 @@
 #pragma once
 
 #include "NetGameMgr.hpp"
+#include "../sv/SvIslandMap.hpp"
 
 class AcPlayer;
 
@@ -51,4 +52,8 @@ namespace netgame
 	void EnqueuePacket(u8 type, PlayerNo target, const void* data = nullptr, size_t size = 0);
 
 	void* GetStatePacket(StatePacketID id);
+
+	SvIslandMap* GetIslandMap();
+
+	inline NetGameMgr* GetMgr() { return NetGameMgr::Get(); }
 }
