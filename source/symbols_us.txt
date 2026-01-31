@@ -1,11 +1,9 @@
-# memcpy = 0x2f85e4;
-wcslen_16 = 0x10082c;
-wcsncpy_16 = 0x1017f4;
-wcscpy_16 = 0x1017d8;
-swprintf_16 = 0x100f5c;
-# memset = 0x151148;
-# malloc = 0x77a51c;
+wcslen = 0x10082c;
+wcsncpy = 0x1017f4;
+wcscpy = 0x1017d8;
+swprintf = 0x100f5c;
 _ZnwjPN4sead4HeapEj = 0x1328d8;
+_ZnajPN4sead4HeapEj = 0x1328d8;
 
 glGetError = 0x127d94;
 nngxGetCmdlistParameteri = 0x127ef0;
@@ -16,16 +14,7 @@ nngxValidateState = 0x7b27b4;
 _ZN2nn2os15CriticalSection5EnterEv = 0x13647c;
 _ZN2nn2os15CriticalSection4ExitEv = 0x136520;
 
-# GSPGPU_WriteHWRegs = 0x12aae4;
-# GSPGPU_FlushDataCache = 0x136ef0;
-GX_Cmd4 = 0x136ff0;
-
 __cb_current_command_buffer = 0x975a9c;
-
-# _Znwj = 0x13a008;
-# _Znaj = 0x13a008;
-# _ZdlPvj = 0x2f8958;
-# _ZdaPv = 0x2f8958;
 
 _ZTVN2nn3pia6common14StationAddressE = 0x90152c;
 
@@ -37,8 +26,6 @@ _ZN2nn3pia4inet24NexSessionSearchCriteria11SetGameModeEm = 0x40b298;
 _ZN2nn3pia4inet24NexSessionSearchCriteria18SetMinParticipantsEt = 0x40b378;
 _ZN2nn3pia4inet24NexSessionSearchCriteria18SetMaxParticipantsEt = 0x40b358;
 _ZN2nn3pia4inet24NexSessionSearchCriteria13SetOpenedOnlyEb = 0x40b304;
-
-_ZnajPN4sead4HeapEj = 0x1328d8;
 
 _ZN4sead15CriticalSection4ExitEv = 0x138d44;
 
@@ -72,6 +59,7 @@ _ZN7netgame13EnqueuePacketEhNS_8PlayerNoEPKvj = 0x625488;
 _Z14PlayerGetStateN7netgame8PlayerNoE = 0x5c3ddc;
 _Z14PlayerGetActorN7netgame8PlayerNoEb = 0x5c3ea0;
 _Z17PlayerGetPositionRlS_N7netgame8PlayerNoEb = 0x5c13ac;
+_Z26PlayerGetPositionForCamerav = 0x5c3238;
 
 _ZN7netgame7InitNetEv = 0x617be8;
 _ZN7netgame7StopNetEv = 0x627368;
@@ -164,13 +152,16 @@ _ZNK5fgobj17DirectPlacePacket4SendEv = 0x594e04;
 _ZN8SvFgNameC1ENS_2IDE = 0x2fcc14;
 _ZNK8SvFgName7IsUsualEv = 0x2fcba0;
 _ZNK8SvFgName7IsEmptyEv = 0x2fcb84;
+_ZNK8SvFgName9GetFgKindEv = 0x2fccd0;
 _ZNK8SvFgName7GetNameEPv = 0x2fea78;
+_ZN8SvFgName7s_EmptyE = 0x95cffc;
+
 _ZNK8SvFgName8GetIndexEv = 0x769dbc;
 _ZNK8SvFgName11GetIconNameEv = 0x5367dc;
-_ZNK8SvFgName14ToInsectFishIDEv = 0x6d9ba8;
+_ZN4item14ToInsectFishIDERK8SvFgName = 0x6d9ba8;
 
-_ZN5stage5Field7GetItemEN4math6VectorIlLj2EEEh = 0x2fef9c;
-_ZNK5stage5Field7GetItemEN4math6VectorIiLj2EEEh = 0x2fef9c;
+_ZN5Field5GetFgEllh = 0x2fef9c;
+_ZNK5Field5GetFgEllh = 0x2fef9c;
 _ZN5stage5Field9PlaceItemERK8SvFgNameEN4math6VectorIiLj2EEEh = 0x2fca24;
 
 _ZN5stage10GetCurrentEv = 0x2f7384;
@@ -178,14 +169,15 @@ _ZN5stage7GetNextEv = 0x5b4c08;
 _ZN5stage9s_CurrentE = 0x958342;
 _ZN5stage6IsKindENS_4KindENS_4NameE = 0x2f7414;
 _ZN5stage8GetFieldENS_9FieldNameE = 0x2fe95c;
-_ZN5stage15GetCurrentFieldEv = 0x6a690c;
-_ZNK5stage4Rect5beginEv = 0x748f3c;
-_ZNK5stage4Rect3endEv = 0x748f04;
-_ZN5stageneERKNS_4Rect8iteratorES3_ = 0x748ea4;
-_ZN5stage4Rect8iteratorppEv = 0x52f7f0;
-_ZN5stage9GetHeightERKN4math6VectorIfLj3EEENS_9FieldNameE = 0x6c67b0;
-_ZN5stage16GetHeightDefaultERKN4math6VectorIfLj3EEENS_9FieldNameE = 0x6c6e28;
-_ZN5stage10ToPositionERlS0_RKN4math6VectorIfLj3EEE = 0x316fac;
+_ZN6FdInfo15GetCurrentFieldEv = 0x6a690c;
+_ZNK9FieldRect5beginEv = 0x748f3c;
+_ZNK9FieldRect3endEv = 0x748f04;
+_ZneRKN9FieldRect8iteratorES2_ = 0x748ea4;
+_ZN9FieldRect8iteratorppEv = 0x52f7f0;
+_ZN6FdInfo9GetHeightERKN2nn4math6VectorIfLj3EEE9FieldName = 0x6c67b0;
+_ZN6FdInfo16GetHeightDefaultERKN2nn4math6VectorIfLj3EEE9FieldName = 0x6c6e28;
+
+_ZN6FdInfo6ToUnitERlS0_RKN2nn4math6VectorIfLj3EEE = 0x316fac;
 
 _ZN5stage16GetTransitionMgrEv = 0x308154;
 _ZN5stage13TransitionMgr14SetReturnParamEv = 0x5b64ac;
@@ -276,14 +268,14 @@ _ZN2nw3lyt19ArcResourceAccessor10RegistFontEPKcPKNS_4font4FontE = 0x4b52f4;
 
 _ZN2nw3lyt4Pane11AppendChildEPS1_ = 0x4b73fc;
 _ZN2nw3lyt4Pane11RemoveChildEPS1_ = 0x4b7450;
-_ZN2nw3lyt4Pane12UpdateMatrixERKNS0_8DrawInfoE = 0x4b7474;
+_ZN2nw3lyt4Pane12CalculateMtxERKNS0_8DrawInfoE = 0x4b7474;
 
 _ZN2nw3lyt7Picture11GetMaterialEj = 0x73e364;
 
 _ZN2nw3lyt7TextBoxD1Ev = 0x4bc824;
-_ZN2nw3lyt7TextBox6GenCmdEPmRNS0_8DrawInfoERNS0_6DrawerE = 0x73e7a8;
-_ZN2nw3lyt7TextBox16CreateTextBufferEtm = 0x13b9bc;
-_ZN2nw3lyt7TextBox7SetTextEPKDstt = 0x4bc5c0;
+_ZN2nw3lyt7TextBox19MakeUniformDataSelfEPmRNS0_8DrawInfoERNS0_6DrawerE = 0x73e7a8;
+_ZN2nw3lyt7TextBox17AllocStringBufferEtm = 0x13b9bc;
+_ZN2nw3lyt7TextBox9SetStringEPKDstt = 0x4bc5c0;
 _ZTVN2nw3lyt7TextBoxE = 0x902d98;
 
 _ZN2nw3lyt8MaterialD1Ev = 0x4be8a8;
@@ -358,6 +350,10 @@ _ZN5fgobj17GetUnitLockHandleEhhN5stage4NameE = 0x5a11bc;
 _ZN5fgobj8LockUnitENS_9PlaceTypeEhhN5stage4NameEb = 0x5a13c4;
 _ZN5fgobj10UnlockUnitEhhN5stage4NameE12PlayerNumber = 0x5a1278;
 _ZN5fgobj11s_UnitLocksE = 0x9b51c4;
+
+_ZN5fgobj29FindPlaceableUnitAroundPlayerERlS0_RhNS_22FindUnitForPlayerCheckEb = 0x5990ac;
+
+_ZN6camera16RevertUpwardTiltEv = 0x68f680;
 
 _ZN6LayoutC1Ev = 0x126550;
 _ZN6LayoutD1Ev = 0x5c0214;
@@ -494,16 +490,16 @@ _ZN8BsGrowUp14s_CurrentStageE = 0x953bad;
 
 _ZN8BsFtrMgr14CreateFtrActorERKNS_12CreateFtrArgE = 0x690f8c;
 
-_ZN16BsInsectFieldMgr12CreateInsectEN4item8InsectIDERKN4math6VectorIfLj3EEERKNS3_ItLj3EEE = 0x2ac924;
+_ZN16BsInsectFieldMgr12CreateInsectEN4item8InsectIDERKN2nn4math6VectorIfLj3EEERKNS4_ItLj3EEE = 0x2ac924;
 _ZN16BsInsectFieldMgr11s_pInstanceE = 0x950534;
 
-_ZN14BsFishFieldMgr10CreateFishEN4item6FishIDERKN4math6VectorIfLj3EEERKNS3_ItLj3EEE = 0x25450c;
+_ZN14BsFishFieldMgr10CreateFishEN4item6FishIDERKN2nn4math6VectorIfLj3EEERKNS4_ItLj3EEE = 0x25450c;
 _ZN14BsFishFieldMgr11s_pInstanceE = 0x950278;
 
-_ZN9BsShowMgr4ShowERK8SvFgNameRKN4math6VectorIfLj3EEE = 0x6da7fc;
-_ZN9BsShowMgr20InitializeFromPacketEN7netgame8PlayerNoERKNS0_10ShowPacketE = 0x6da6e0;
+_ZN9BsShowMgr4ShowERK8SvFgNameRKN2nn4math6VectorIfLj3EEE = 0x6da7fc;
+_ZN9BsShowMgr20InitializeFromPacketEN7netgame8PlayerNoERKNS_10ShowPacketE = 0x6da6e0;
 
-_ZN8SvPlayer3GetEv = 0x2fba40;
+_Z18SvGetCurrentPlayerv = 0x2fba40;
 
 _ZNK17SvPlayerInventory7GetItemEjPNS_14ItemAppearanceE = 0x7250dc;
 _ZN17SvPlayerInventory7AddItemERK8SvFgNameENS_14ItemAppearanceEPS1_ = 0x3233a4;
@@ -521,7 +517,7 @@ _ZN4demo22RevokeNetgameLockOrderEv = 0x52cc00;
 
 _ZN8SoundMgr9PlaySoundE4SeIDf = 0x58de9c;
 
-_ZNK5Actor13GetPositionToERN4math6VectorIfLj3EEEtfb = 0x76330c;
+_ZNK5Actor13GetPositionToERN2nn4math6VectorIfLj3EEEtfb = 0x76330c;
 
 _ZN15AcNpcSpResetsan15s_pMenuDelegateE = 0x950d98;
 

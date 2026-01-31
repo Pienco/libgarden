@@ -1,5 +1,4 @@
-#ifndef BS_BSMENUTAB_HPP
-#define BS_BSMENUTAB_HPP
+#pragma once
 
 #include "Base.hpp"
 #include "ButtonActionControlEx.hpp"
@@ -43,8 +42,8 @@ public:
 	virtual ~BsMenuTab() override;
 	virtual ProcessResult Initialize() override;
 	virtual ProcessResult Finalize() override;
-	virtual ProcessResult DoProcess() override;
-	virtual ProcessResult Startup() override;
+	virtual ProcessResult Calc() override;
+	virtual ProcessResult Draw() override;
 
 	static void SetMenuIn()
 	{
@@ -175,5 +174,3 @@ protected:
 };
 ASSERT_SIZE(state::Mode<BsMenuTab>, 0x24);
 ASSERT_SIZE(BsMenuTab, 0x19b8);
-
-#endif

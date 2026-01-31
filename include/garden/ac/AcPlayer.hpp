@@ -87,7 +87,7 @@ public:
 	Vector3 GetFacingPosition(float distance, bool withHeight = false) const
 	{
 		Vector3 result;
-		GetPositionTo(result, GetRotation()[1], distance, withHeight);
+		GetPositionTo(result, GetRotation().y, distance, withHeight);
 		return result;
 	}
 

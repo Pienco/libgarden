@@ -1,5 +1,4 @@
-#ifndef SV_SVPLAYER_HPP
-#define SV_SVPLAYER_HPP
+#pragma once
 
 #include "SvPlayerInventory.hpp"
 
@@ -7,15 +6,6 @@ struct PACKED SvPlayerCharacter
 {
 	static constexpr size_t nameSize = 9;
 
-	// u32 checksum;
-	// u8 hairstyle;
-	// u8 haircolor;
-	// u8 face;
-	// u8 eyecolor;
-	// u8 tan;
-	// u8 unk;
-	// item::Item outfit[7];
-	// item::Item heldItem;
 	u8 data0[0x55a8];
 	std::array<char16_t, nameSize> name;
 	u8 data1[0x147];
@@ -45,8 +35,6 @@ ASSERT_SIZE(SvPlayerCharacter, 0x6b8c);
 
 struct SvPlayer
 {
-	static SvPlayer* Get();
-
 	SvPlayerCharacter character;
 	u8 data[0x44];
 	SvPlayerInventory inventory;
@@ -54,5 +42,3 @@ struct SvPlayer
 };
 ASSERT_OFFSET(SvPlayer, SvPlayer::inventory, 0x6bd0);
 ASSERT_SIZE(SvPlayer, 0xa480);
-
-#endif

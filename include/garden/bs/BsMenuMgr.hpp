@@ -1,11 +1,10 @@
-#ifndef BS_BSMENUMGR_HPP
-#define BS_BSMENUMGR_HPP
+#pragma once
 
-#include "bs/MenuBase.hpp"
-#include "state/Mode.hpp"
-#include "bs/BsMenuTab.hpp"
-#include "bs/BsMenuBg.hpp"
-#include "bs/BsHandCursor.hpp"
+#include "MenuBase.hpp"
+#include "../state/Mode.hpp"
+#include "BsMenuTab.hpp"
+#include "BsMenuBg.hpp"
+#include "BsHandCursor.hpp"
 
 class BsMenuMgr : public Base, state::Mode<BsMenuMgr>
 {

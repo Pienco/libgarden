@@ -7,6 +7,6 @@ struct SvStrc
 {
 	SvStrcName name;
 	u8 pad;
-	math::Vector2u8 position;
+	Vector2u8 position;
 };
 ASSERT_SIZE(SvStrc, 0x4);

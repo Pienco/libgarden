@@ -10,7 +10,8 @@ namespace fgobj
 	{
 		Position8 pos;
 		stage::Name stage;
-		u8 flags;
+		u8 unlockConfirm : 4;
+		bool pending : 1;
 		PlaceType type;
 
 		constexpr bool IsLock() const { return stage != stage::Name::DUMMY; }

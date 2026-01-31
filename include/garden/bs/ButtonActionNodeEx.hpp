@@ -1,13 +1,10 @@
-#ifndef BS_BUTTONACTIONNODEEX_HPP
-#define BS_BUTTONACTIONNODEEX_HPP
+#pragma once
 
 #include "ButtonActionNode.hpp"
 
 class ButtonActionNodeEx final : public ButtonActionNode
 {
-
 public:
-
 	ButtonActionNodeEx();
 	virtual ~ButtonActionNodeEx() override;
 	virtual void ResetSelect() override;
@@ -24,7 +21,6 @@ public:
 	void SetIsBack(bool set) { SetIsSelectBack(set); SetIsOkBack(set); }
 
 private:
-
 	Animation m_TouchBack;
 	Animation m_SelectBack;
 	Animation m_TouchOkBack;
@@ -35,5 +31,3 @@ private:
 	u8 unk3;
 };
 ASSERT_SIZE(ButtonActionNodeEx, 0x184);
-
-#endif

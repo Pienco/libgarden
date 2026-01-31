@@ -1,5 +1,4 @@
-#ifndef SEAD_NEW_HPP
-#define SEAD_NEW_HPP
+#pragma once
 
 #include <nn/types.h>
 
@@ -37,4 +36,3 @@ namespace sead
 		delete[] ptr;
 	}
 }
-#endif

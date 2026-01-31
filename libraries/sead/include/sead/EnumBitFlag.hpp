@@ -1,12 +1,10 @@
-#ifndef SEAD_ENUMBITFLAG_HPP
-#define SEAD_ENUMBITFLAG_HPP
+#pragma once
 
 #include <concepts>
 #include <type_traits>
 
 namespace sead
 {
-
 	template <typename Enum, typename Storage> requires (std::is_enum_v<Enum>)
 	struct EnumBitFlag
 	{
@@ -71,9 +69,6 @@ namespace sead
 			}
 		}
 
-
 		Storage value { };
 	};
 }
-
-#endif

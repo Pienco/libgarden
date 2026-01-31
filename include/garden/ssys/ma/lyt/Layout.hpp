@@ -45,7 +45,7 @@ namespace ssys::ma::lyt
 	private:
 		DummyLayout m_Layout;
 		nw::lyt::DrawInfo m_DrawInfo;
-		math::Matrix34 m_ViewMatrix;
+		nn::math::MTX34 m_ViewMatrix;
 		ArcResAccReader* m_pArcReader;
 		u8 field58_0xf0;
 		u8 field59_0xf1;

@@ -1,5 +1,4 @@
-#ifndef BS_BSGROWUP_HPP
-#define BS_BSGROWUP_HPP
+#pragma once
 
 #include "Base.hpp"
 #include "../stage/stage.hpp"
@@ -91,7 +90,6 @@ struct RandomPlacerUsual
 };
 ASSERT_SIZE(RandomPlacerUsual, 0x58c8);
 
-
 class BsGrowUp
 {
 
@@ -104,7 +102,5 @@ public:
 
 private:
 
-	static stage::FieldID s_CurrentField;
+	static stage::FieldName s_CurrentField;
 };
-
-#endif

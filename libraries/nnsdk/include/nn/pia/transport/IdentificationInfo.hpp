@@ -8,11 +8,6 @@ namespace nn::pia::transport
 	{
 
 	private:
-		// IdentificationToken m_identificationToken;
-		// PlayerName m_playerName;
-		// u8 m_platformID;
-		// u8 _padding[3];
-		// u32 m_ackID;
 		u8 data[0x4c];
 	};
 	static_assert(sizeof(IdentificationInfo) == 0x4c);

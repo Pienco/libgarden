@@ -6,11 +6,10 @@
 
 class Actor : public Base
 {
-
 public:
 
 	using Angle16 = u16;
-	using Angle3u16 = Vector<u16, 3>;
+	using Angle3u16 = Vector3u16;
 
 	Vector3& GetPosition() { return m_Position; }
 	const Vector3& GetPosition() const { return m_Position; }

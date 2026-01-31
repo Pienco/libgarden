@@ -1,17 +1,12 @@
-#ifndef BS_BSHANDCURSOR_HPP
-#define BS_BSHANDCURSOR_HPP
+#pragma once
 
-#include "bs/Base.hpp"
+#include "Base.hpp"
 
 class BsHandCursor : public Base
 {
-
 public:
-
 	void Disable();
 
 private:
 
 };
-
-#endif

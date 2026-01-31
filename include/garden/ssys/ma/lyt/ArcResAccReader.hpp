@@ -1,5 +1,4 @@
-#ifndef SSYS_MA_LYT_ARCRESACCREADER_HPP
-#define SSYS_MA_LYT_ARCRESACCREADER_HPP
+#pragma once
 
 #include "ArcResAcc.hpp"
 #include "../LoadSplit.hpp"
@@ -8,12 +7,9 @@
 
 namespace ssys::ma::lyt
 {
-
 	class ArcResAccReader final : public ArcResAcc
 	{
-
 	public:
-
 		ArcResAccReader();
 		ArcResAccReader(const char* path) : ArcResAccReader()
 		{
@@ -55,7 +51,6 @@ namespace ssys::ma::lyt
 		void Clear();
 
 	private:
-
 		u8 field1_0x148;
 		u8 field2_0x149;
 		u8 field3_0x14a;
@@ -77,5 +72,3 @@ namespace ssys::ma::lyt
 	};
 	ASSERT_SIZE(ArcResAccReader, 0x248);
 }
-
-#endif

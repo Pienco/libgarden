@@ -1,5 +1,4 @@
-#ifndef G3D_RESOURCELOADER_HPP
-#define G3D_RESOURCELOADER_HPP
+#pragma once
 
 #include "../ssys/ma/LoadSplit.hpp"
 
@@ -11,12 +10,9 @@
 
 namespace g3d
 {
-
 	class ResourceLoader
 	{
-	
 	public:
-
 		static constexpr size_t CGFX_ALIGNMENT = 0x80;
 
 		ResourceLoader();
@@ -64,5 +60,3 @@ namespace g3d
 	};
 	ASSERT_SIZE(ResourceLoader, 0x108);
 }
-
-#endif

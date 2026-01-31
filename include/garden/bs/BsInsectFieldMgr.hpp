@@ -1,14 +1,11 @@
-#ifndef BS_BSINSECTFIELDMGR_HPP
-#define BS_BSINSECTFIELDMGR_HPP
+#pragma once
 
 #include "../ac/Actor.hpp"
 #include "../netgame/InsectState.hpp"
 
 class BsInsectFieldMgr : public Base
 {
-
 public:
-
 	struct ListInsectEntry
 	{
 		Actor* actor;
@@ -43,7 +40,6 @@ public:
 	void CreateInsect(InsectID id, const Vector3& pos, const Angle3u16& rotation);
 
 private:
-
 	u8 m_Alloc[0x8];
 	ListInsectEntry* m_pNewest;
 	ListInsectEntry* m_pFree;
@@ -62,5 +58,3 @@ private:
 	static BsInsectFieldMgr* s_pInstance;
 };
 ASSERT_SIZE(BsInsectFieldMgr, 0x13bc);
-
-#endif

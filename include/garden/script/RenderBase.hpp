@@ -2,7 +2,7 @@
 
 #include "Tag.hpp"
 
-#include <nn/math/Vector.hpp>
+#include <nn/math/VEC2.hpp>
 
 #include <nw/font/TagProcessorBase.hpp>
 #include <nw/ut/Color.hpp>
@@ -27,7 +27,7 @@ namespace script
 
 	private:
 		std::array<Color8, 2> m_TextColors;
-		math::Vector2 m_FontSize;
+		nn::math::VEC2 m_FontSize;
 		char16* m_pText;
 		size_t m_Len;
 		s32 m_Count;

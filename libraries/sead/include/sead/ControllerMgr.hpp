@@ -1,5 +1,4 @@
-#ifndef SEAD_CONTROLLERMGR_HPP
-#define SEAD_CONTROLLERMGR_HPP
+#pragma once
 
 #include <nn/types.h>
 
@@ -8,5 +7,3 @@ namespace sead
 
 	
 }
-
-#endif

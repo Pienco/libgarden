@@ -26,4 +26,6 @@ namespace nn::pia
 
 	using PrincipalId = u32;
 
+	using StationIndex = u8;
+
 }

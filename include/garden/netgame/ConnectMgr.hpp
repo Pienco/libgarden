@@ -15,7 +15,7 @@ namespace netgame
 			LOCAL,
 			FRIEND_MATCH,
 			RANDOM_MATCH,
-			UNKNOWN,
+			BEST_FRIEND,
 			DATASTORE,
 			INDEPENDENT,
 			NONE

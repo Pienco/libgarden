@@ -1,5 +1,4 @@
-#ifndef LIBC_H
-#define LIBC_H
+#pragma once
 
 #include <nn/types.h>
 
@@ -13,11 +12,6 @@ void free(void* ptr);
 
 int strcmp(const char* str1, const char* str2);
 void* memcpy(void* destination, const void* source, size_t num);
-
-// #pragma GCC diagnostic push
-// #pragma GCC diagnostic ignored "-Wbuiltin-declaration-mismatch"
-// void* memset(void* ptr, size_t num, int value);
-// #pragma GCC diagnostic pop
 
 #ifdef __cplusplus
 #define CHAR16_TYPE wchar_t
@@ -34,6 +28,4 @@ int swprintf(CHAR16_TYPE* ws, size_t len, const CHAR16_TYPE* format, ...);
 
 #ifdef __cplusplus
 }
-#endif
-
 #endif

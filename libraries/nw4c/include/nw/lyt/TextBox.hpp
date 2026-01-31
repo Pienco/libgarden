@@ -25,23 +25,23 @@ namespace nw::lyt
 			RIGHT,
 		};
 
-		TextBox(math::Vector2 size, const font::Font* font, u16 maxCharCount, const char16* text, u16 length, Material* material) :
+		TextBox(nn::math::VEC2 size, const font::Font* font, u16 maxCharCount, const char16* text, u16 length, Material* material) :
 			Pane {size},
 			m_pFont {font},
 			m_pMaterial {material}
 		{
-			CreateTextBuffer(maxCharCount);
-			SetText(text, 0, length);
+			AllocStringBuffer(maxCharCount);
+			SetString(text, 0, length);
 		}
 
 		virtual ~TextBox() override;
 
-		virtual u32* GenCmd(u32* cmdbuf, DrawInfo& info, Drawer& drawer) override;
+		virtual u32* MakeUniformDataSelf(u32* cmdbuf, DrawInfo& info, Drawer& drawer) override;
 
-		virtual void CreateTextBuffer(u16 len, u32 options = 0);
-		virtual void DestroyTextBuffer();
-		virtual u16 SetText(const char16* text, u16 index = 0);
-		virtual u16 SetText(const char16* text, u16 index, u16 length);
+		virtual void AllocStringBuffer(u16 len, u32 options = 0);
+		virtual void FreeStringBuffer();
+		virtual u16 SetString(const char16* text, u16 index = 0);
+		virtual u16 SetString(const char16* text, u16 index, u16 length);
 
 		void SetColors(ut::Color8 top, ut::Color8 bottom) { m_Colors = {top, bottom}; }
 		void SetFontSize(const Vector2& value) { UpdateDirty(m_FontSize, value); }
@@ -85,11 +85,11 @@ namespace nw::lyt
 		char16* m_pText {};
 		std::array<ut::Color8, 2> m_Colors {ut::Color8::White(), ut::Color8::White()};
 		const font::Font* m_pFont;
-		Vector2 m_FontSize {1.0f, 1.0f};
+		nn::math::VEC2 m_FontSize {1.0f, 1.0f};
 		float m_LineSpace {};
 		float m_CharSpace {};
 		font::TagProcessorBase<char16>* m_pTagProcessor {};
-		u16 m_TextBufferSize; // in bytes
+		u16 m_StringBufferSize; // in bytes
 		u16 m_CharCount;
 		u8 m_TextOrigin {GetOrigin()};
 		TextAlignment m_TextAlignment {TextAlignment::ORIGIN};

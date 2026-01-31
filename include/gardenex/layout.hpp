@@ -1,9 +1,13 @@
 #pragma once
 
-#include <nw/lyt/TextBox.hpp>
 #include <garden/font/Mgr.hpp>
 #include <garden/ssys/ma/lyt/LayoutMgr.hpp>
 #include <garden/script/RenderMain.hpp>
+
+#include <nw/lyt/TextBox.hpp>
+#include <nw/font/TextWriterBase.hpp>
+
+#include <nn/gx/gx.h>
 
 namespace gardenex
 {
@@ -13,7 +17,7 @@ namespace gardenex
 		inline constinit nw::lyt::DrawInfo dummyDrawInfo {};
 	}
 
-	inline nw::lyt::TextBox CreateTextBox(math::Vector2 size, u16 maxCharCount, const char16* text, u16 length)
+	inline nw::lyt::TextBox CreateTextBox(Vector2 size, u16 maxCharCount, const char16* text, u16 length)
 	{
 		return {size, font::Mgr::Get()->GetFont(font::GARDEN_MSG_16), maxCharCount, text, length, &detail::dummyMaterial};
 	}
@@ -56,4 +60,95 @@ namespace gardenex
 		matrix.data[1][3] = forTextWriter ? 1.0f : 0.0f;
 		return matrix;
 	};
+
+	template<u32 Capacity>
+	struct TextDisplayMem
+	{
+		TextDisplayMem()
+		{
+			nw::font::CharWriter::InitDispStringBuffer(m_Buffer, Capacity);
+		}
+
+		nw::font::DispStringBuffer* GetBuffer()
+		{
+			return reinterpret_cast<nw::font::DispStringBuffer*>(&m_Buffer[0]);
+		}
+
+		alignas(u32) u8 m_Buffer[nw::font::CharWriter::GetDispStringBufferSize(Capacity)];
+	};
+
+	struct PrintTextScope
+	{
+		PrintTextScope(nw::font::WideTextWriter& writer, float width, float height,
+			font::FontID font = font::FontID::GARDEN_MSG_16) : writer {writer}
+		{
+			writer.SetFont(font::Mgr::Get()->GetFont(font));
+			writer.SetFontSize(width, height);
+			writer.SetTagProcessor(&GetDummyTagProcessor());
+			writer.StartPrint();
+		}
+
+		~PrintTextScope()
+		{
+			ssys::ma::lyt::LayoutMgr::Get()->GetDrawer().BuildTextCommand(&writer);
+		}
+
+		PrintTextScope(const PrintTextScope&) = delete;
+		PrintTextScope(PrintTextScope&&) = delete;
+		PrintTextScope& operator=(const PrintTextScope&) = delete;
+		PrintTextScope& operator=(PrintTextScope&&) = delete;
+
+		nw::font::WideTextWriter& writer;
+	};
+
+	inline constinit nn::math::MTX34 textViewMtx
+	{
+		1.0f, 0.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f, 0.0f,
+		0.0f, 0.0f, 1.0f, 0.0f
+	};
+
+	inline size_t DrawText(const nn::math::MTX34& viewMtx, nw::font::WideTextWriter& writer)
+	{
+		auto& drawer = ssys::ma::lyt::LayoutMgr::Get()->GetDrawer();
+		u32* cmdbuf = drawer.DrawBegin();
+		u32* begin = cmdbuf;
+		cmdbuf = drawer.SetProjectionMtx(cmdbuf, gardenex::GetProjectionMatrix(false, true));
+		cmdbuf = drawer.SetViewMtx(cmdbuf, viewMtx);
+		cmdbuf = writer.UseCommandBuffer(cmdbuf, &drawer);
+		__cb_current_command_buffer = drawer.DrawEnd(cmdbuf);
+		return __cb_current_command_buffer - begin;
+	}
+
+	inline size_t DrawTextWithShadow(const nn::math::MTX34& viewMtx, nw::font::WideTextWriter& writer)
+	{
+		auto& drawer = ssys::ma::lyt::LayoutMgr::Get()->GetDrawer();
+		u32* cmdbuf = drawer.DrawBegin();
+		u32* begin = cmdbuf;
+		cmdbuf = drawer.SetProjectionMtx(cmdbuf, gardenex::GetProjectionMatrix(false, true));
+		u32* save = cmdbuf;
+		cmdbuf = drawer.SetViewMtx(cmdbuf, viewMtx);
+		cmdbuf = writer.UseCommandBuffer(cmdbuf, &drawer);
+		u32 posX = save[6];
+		u32 posY = save[10];
+		u32 colorMap = save[36];
+		*(float*)&save[6] += 1.0f;
+		*(float*)&save[10] += 1.0f;
+		save[36] = 0xff000000;
+		size_t size = cmdbuf - save;
+		memcpy(cmdbuf, save, size * sizeof(u32));
+		cmdbuf[6] = posX;
+		cmdbuf[10] = posY;
+		cmdbuf[36] = colorMap;
+		cmdbuf += size;
+		__cb_current_command_buffer = drawer.DrawEnd(cmdbuf);
+		return __cb_current_command_buffer - begin;
+	}
+
+	inline size_t DrawText(nn::math::VEC2 position, nw::font::WideTextWriter& writer)
+	{
+		textViewMtx.data[0][3] = position.x;
+		textViewMtx.data[1][3] = position.y;
+		return DrawTextWithShadow(textViewMtx, writer);
+	}
 }

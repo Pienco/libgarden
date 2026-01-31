@@ -14,28 +14,33 @@ struct PACKED PlayerAction
 	{
 		static constexpr float scale = 4.0f;
 		static constexpr float invScale = 1.0f / scale;
+
+		static constexpr s16 Scale(float value)
+		{
+			return static_cast<s16>(value * scale);
+		}
 	};
 
 	struct PACKED CompactXZ : public CompactBase
 	{
 		constexpr CompactXZ() = default;
 		explicit constexpr CompactXZ(const Vector3& vec)
-			: vector {static_cast<s16>(vec[0] * scale), static_cast<s16>(vec[2] * scale)}
+			: vector {Scale(vec.x), Scale(vec.z)}
 		{
 		}
 
 		constexpr void Set(const Vector3& vec)
 		{
-			vector = {static_cast<s16>(vec[0] * scale), static_cast<s16>(vec[2] * scale)};
+			vector =  {Scale(vec.x), Scale(vec.z)};
 		}
 
 		constexpr Vector3 Get() const
 		{
-			return { GetX(), 0.0f, GetZ() };
+			return {GetX(), 0.0f, GetZ()};
 		}
 
-		float GetX() const { return vector[0] * invScale; }
-		float GetZ() const { return vector[2] * invScale; }
+		float GetX() const { return vector.x * invScale; }
+		float GetZ() const { return vector.y * invScale; }
 
 		Vector2s16 vector;
 	};
@@ -45,13 +50,13 @@ struct PACKED PlayerAction
 	{
 		constexpr CompactXYZ() = default;
 		explicit constexpr CompactXYZ(const Vector3& pos)
-			:  vector {static_cast<s16>(pos[0] * scale), static_cast<s16>(pos[1] * scale), static_cast<s16>(pos[2] * scale)}
+			:  vector {Scale(pos.x), Scale(pos.y), Scale(pos.z)}
 		{
 		}
 
 		constexpr void Set(const Vector3& pos)
 		{
-			vector = {static_cast<s16>(pos[0] * scale), static_cast<s16>(pos[1] * scale), static_cast<s16>(pos[2] * scale)};
+			vector = {Scale(pos.x), Scale(pos.y), Scale(pos.z)};
 		}
 
 		constexpr Vector3 Get() const
@@ -59,9 +64,9 @@ struct PACKED PlayerAction
 			return {GetX(), GetY(), GetZ()};
 		}
 
-		float GetX() const { return vector[0] * invScale; }
-		float GetY() const { return vector[1] * invScale; }
-		float GetZ() const { return vector[2] * invScale; }
+		float GetX() const { return vector.x * invScale; }
+		float GetY() const { return vector.y * invScale; }
+		float GetZ() const { return vector.z * invScale; }
 
 		Vector3s16 vector;
 	};
@@ -1651,7 +1656,7 @@ struct PACKED PlayerAction
 	}
 
 	template<typename T> requires (sizeof(T) <= sizeof(data) && std::is_trivially_destructible_v<T>)
-	T* ConstructAction(auto&&... args)
+	constexpr T* ConstructAction(auto&&... args)
 	{
 		return new (data) T {std::forward<decltype(args)>(args)...};
 	}

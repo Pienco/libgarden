@@ -1,15 +1,12 @@
-#ifndef BS_BUTTONACTIONNODE_HPP
-#define BS_BUTTONACTIONNODE_HPP
+#pragma once
 
 #include "Layout.hpp"
 #include "../ssys/st/ListNode.hpp"
-#include "../SoundMgr.hpp"
+#include "../sound/SoundMgr.hpp"
 
 class ButtonActionNode : ssys::st::ListNode
 {
-
 public:
-
 	ButtonActionNode();
 	virtual ~ButtonActionNode();
 	virtual bool IsActivated() const { return m_IsActive; }
@@ -28,7 +25,7 @@ public:
 	{
 		Pane* pane;
 		Group* group;
-		math::Vector2 pos;
+		Vector2 pos;
 		s32 input;
 		size_t index;
 		s32 unk;
@@ -63,17 +60,14 @@ public:
 	auto GetIndex() const { return m_Index; }
 
 protected:
-
 	virtual void Animate(Animation& anim, bool set);
 	virtual void PlayOkSound();
 	virtual void PlaySound();
 
-
 private:
-
 	Pane* m_pPane;
 	Group* m_pGroup;
-	math::Vector2 m_Position;
+	nn::math::VEC2 m_Position;
 	Layout* m_pLayout;
 	Animation m_Touch;
 	Animation m_Select;
@@ -95,5 +89,3 @@ private:
 	bool m_IsAvailable;
 };
 ASSERT_SIZE(ButtonActionNode, 0xe0);
-
-#endif

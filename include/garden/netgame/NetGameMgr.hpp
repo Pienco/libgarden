@@ -132,8 +132,6 @@ namespace netgame
 
 		bool IsPlayerAssigned() const { return m_IsPlayerAssigned; }
 
-
-
 		bool IsMultiPlayer() const;
 
 		bool ConnectRandomMatch();
@@ -161,7 +159,7 @@ namespace netgame
 		u8 data0[0x10];
 		PacketQueue m_PacketQueue;
 		Receiver m_Receiver;
-		u8 m_SyncMgr[0x2c];
+		u8 m_SendMgr[0x2c];
 		TransitionMgr m_TransitionMgr;
 		AvatarMgr m_AvatarMgr;
 		StageMgr m_StageMgr;

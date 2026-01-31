@@ -1,5 +1,4 @@
-#ifndef NW_LYT_ARCRESOURCEACCESSOR_HPP
-#define NW_LYT_ARCRESOURCEACCESSOR_HPP
+#pragma once
 
 #include <nw/lyt/ResourceAccessor.hpp>
 
@@ -11,8 +10,6 @@ namespace nw::lyt
 {
 	struct TextureInfo
 	{
-
-	
 		std::array<u8, 0x10> data;
 		u8 format;
 		INSERT_PAD(3);
@@ -35,5 +32,3 @@ namespace nw::lyt
 	};
 	ASSERT_SIZE(ArcResourceAccessor, 0x13c);
 }
-
-#endif

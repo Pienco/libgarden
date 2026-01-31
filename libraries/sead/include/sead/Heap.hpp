@@ -1,16 +1,12 @@
-#ifndef SEAD_HEAP_HPP
-#define SEAD_HEAP_HPP
+#pragma once
 
 #include <nn/types.h>
 
 namespace sead
 {
-
 	class Heap
 	{
-
 	public:
-
 		virtual ~Heap();
 		virtual void SetupTypeInfo();
 		virtual u32 GetTypeInfo();
@@ -34,10 +30,7 @@ namespace sead
 
 
 	private:
-
 		u8 m_Data[0x70];
 	};
 	ASSERT_SIZE(Heap, 0x74);
 }
-
-#endif

@@ -12,3 +12,4 @@ PlayerState* PlayerGetState(netgame::PlayerNo player = netgame::PlayerNo::INVALI
 AcPlayer* PlayerGetActor(netgame::PlayerNo player, bool skipCheck = true);
 inline AcPlayer* PlayerGetMyActor(bool skipCheck = true) { return PlayerGetActor(netgame::PlayerNo::MY_NO, skipCheck); }
 bool PlayerGetPosition(s32& x, s32& y, netgame::PlayerNo no = netgame::PlayerNo::MY_NO, bool skipCheck = true);
+const Vector3* PlayerGetPositionForCamera();

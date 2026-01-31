@@ -17,7 +17,7 @@ namespace script
 		void * m_pUnk0;
 		size_t m_Size;
 		s32 m_Unk1;
-		math::Vector2 m_Unk2;
+		nn::math::VEC2 m_Unk2;
 	};
 	ASSERT_SIZE(RenderMain, 0x44);
 }

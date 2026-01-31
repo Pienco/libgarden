@@ -1,19 +1,14 @@
-#ifndef SSYS_MA_LYT_FRAMECTRL_HPP
-#define SSYS_MA_LYT_FRAMECTRL_HPP
+#pragma once
 
 #include <nn/types.h>
 
-
 namespace ssys::ma::lyt
 {
-
 	class FrameCtrl
 	{
-
 	public:
-
 		virtual ~FrameCtrl();
-		virtual void SetFrame(float frame) final // __attribute__((pcs("aapcs-vfp")))
+		virtual void SetFrame(float frame) final
 		{
 			m_PrevFrame = frame;
 			m_Frame = frame;
@@ -29,7 +24,6 @@ namespace ssys::ma::lyt
 		float GetFrameCount() const { return m_FrameCount; }
 
 	private:
-
 		float m_FrameCount;
 		float m_Frame;
 		float m_PrevFrame;
@@ -39,5 +33,3 @@ namespace ssys::ma::lyt
 	};
 	ASSERT_SIZE(FrameCtrl, 0x1c);
 }
-
-#endif

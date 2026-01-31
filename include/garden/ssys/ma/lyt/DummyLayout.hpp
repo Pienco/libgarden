@@ -1,11 +1,9 @@
-#ifndef SSYS_MA_LYT_DUMMYLAYOUT_HPP
-#define SSYS_MA_LYT_DUMMYLAYOUT_HPP
+#pragma once
 
 #include "nw/lyt/Layout.hpp"
 
 namespace ssys::ma::lyt
 {
-
 	class DummyLayout : public nw::lyt::Layout
 	{
 
@@ -16,5 +14,3 @@ namespace ssys::ma::lyt
 	};
 	ASSERT_SIZE(DummyLayout, 0x20);
 }
-
-#endif

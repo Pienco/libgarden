@@ -10,7 +10,6 @@ namespace netgame
 	class AvatarMgr : public net::SystemCallback
 	{
 	public:
-
 		struct Principal
 		{
 			u32 GetPrincipalId() const { return principalId; }
@@ -25,8 +24,12 @@ namespace netgame
 			StationId station;
 		};
 
-		struct AvatarInfo : public AvatarInfoBase
+		struct AvatarInfo
 		{
+			u32 GetPrincipalId() const { return base.principalId; }
+			AvatarId GetAvatarId() const { return base.avatarId; }
+
+			AvatarInfoBase base;
 			void* senderHandle;
 			s32 unk;
 		};
@@ -35,11 +38,13 @@ namespace netgame
 		PlayerNo GetPlayerNo(const StationId& id) const;
 		StationId GetStationId(PlayerNo player) const
 		{
-			if (player < 4) return m_Infos[player].station;
+			if (player < 4) return m_Infos[player].base.station;
 			return {};
 		}
 
 		const AvatarInfo* GetAvatarInfo(PlayerNo player) const;
+
+		void Process();
 
 	private:
 		struct FriendCode
@@ -52,8 +57,8 @@ namespace netgame
 
 		s32 unk;
 		AvatarInfo m_Infos[count];
-		AvatarInfoBase m_Bases[count];
-		s32 m_State[count];
+		AvatarInfoBase m_JoinInfos[count];
+		s32 m_UpdateTick[count];
 		FriendCode m_FriendCodes[count];
 		StationId m_Station1;
 		StationId m_Station2;

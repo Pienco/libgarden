@@ -1,14 +1,11 @@
-#ifndef BS_BUTTONACTIONCONTROLEX_HPP
-#define BS_BUTTONACTIONCONTROLEX_HPP
+#pragma once
 
 #include "ButtonActionControl.hpp"
 #include "ButtonActionNodeEx.hpp"
 
 class ButtonActionControlEx final : public ButtonActionControl
 {
-
 public:
-
 	struct Description
 	{
 		ssys::ma::lyt::ResAccInterface* resAcc;
@@ -33,12 +30,9 @@ public:
 	void AddNode(ButtonActionNodeEx* node, bool updateAnimations = true);
 
 private:
-
 	Animation m_TouchBack;
 	Animation m_SelectBack;
 	Animation m_TouchOkBack;
 	Animation m_SelectOkBack;
 };
 ASSERT_SIZE(ButtonActionControlEx, 0x184);
-
-#endif

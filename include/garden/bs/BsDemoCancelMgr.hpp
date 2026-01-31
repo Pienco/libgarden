@@ -1,5 +1,4 @@
-#ifndef BS_BSDEMOCANCELMGR_HPP
-#define BS_BSDEMOCANCELMGR_HPP
+#pragma once
 
 #include "Base.hpp"
 
@@ -23,5 +22,3 @@ private:
 	static BsDemoCancelMgr* s_pInstance;
 };
 ASSERT_SIZE(BsDemoCancelMgr, 0x20);
-
-#endif

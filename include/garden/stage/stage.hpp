@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Field.hpp"
+#include "Name.hpp"
+#include "../field/Field.hpp"
 
 namespace stage
 {
@@ -21,27 +22,19 @@ namespace stage
 	}
 
 	/**
-	 * @return `nullptr` if not available
+	 * @return `0` if not found
 	 */
-	Field* GetField(FieldName field);
+	FieldName GetFieldName(Name stage);
 
 	/**
 	 * @return `nullptr` if not available
 	 */
-	inline Field* GetField(Name stage)
-	{
-		if (const auto field = GetFieldName(stage); field != FieldName::NONE)
-			return GetField(field);
-		return nullptr;
-	}
-
-	/**
-	 * @return `nullptr` if not available
-	 */
-	Field* GetCurrentField();
-
-	float GetHeight(const PositionF& pos, FieldName field = FieldName::CURRENT);
-	float GetHeightDefault(const PositionF& pos, FieldName field = FieldName::CURRENT);
+	// inline Field* GetField(Name stage)
+	// {
+	// 	if (const auto field = GetFieldName(stage); field != FieldName::NONE)
+	// 		return GetField(field);
+	// 	return nullptr;
+	// }
 
 	s32 GetRandom(s32 end);
 }

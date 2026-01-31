@@ -4,7 +4,6 @@
 
 namespace item
 {
-
 	enum class Kind : u8
 	{
 		DEFAULT = 0,

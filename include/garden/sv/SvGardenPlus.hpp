@@ -17,7 +17,7 @@ struct SvMainData
 	u8 minigame[0x28f4];
 	u8 data850[0x850];
 	u8 field[0xa480];
-	u8 home [0x48cf];
+	u8 home[0x48cf];
 	u8 data13[0x13];
 	u8 data40[0x40];
 	u8 unknown[0xf6de];

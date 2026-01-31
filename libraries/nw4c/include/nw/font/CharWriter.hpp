@@ -13,7 +13,6 @@ namespace nw::font
 
 	class CharWriter
 	{
-
 	public:
 
 		enum class TextGradient : u8
@@ -24,6 +23,8 @@ namespace nw::font
 		};
 
 		CharWriter();
+
+		CharWriter(const CharWriter&) = delete;
 
 		void SetFont(const Font* font) { m_pFont = font; }
 		void SetDispStringBuffer(DispStringBuffer* buf) { m_pDispBuffer = buf; }
@@ -37,8 +38,8 @@ namespace nw::font
 			UpdateVertexColors();
 		}
 
-		float GetCursorX() const { return m_Cursor[0]; }
-		float GetCursorY() const { return m_Cursor[1]; }
+		float GetCursorX() const { return m_Cursor.x; }
+		float GetCursorY() const { return m_Cursor.y; }
 
 		void StartPrint();
 		u32* UseCommandBuffer(u32* cmdbuf, class RectDrawer* drawer);
@@ -52,7 +53,6 @@ namespace nw::font
 		static DispStringBuffer* InitDispStringBuffer(void *mem, u32 charCount);
 
 	private:
-
 		void UpdateVertexColors();
 
 		ut::Color8 m_Color0;

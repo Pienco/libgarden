@@ -1,17 +1,13 @@
-#ifndef SSYS_MA_LYT_ANIMATION_HPP
-#define SSYS_MA_LYT_ANIMATION_HPP
+#pragma once
 
 #include "FrameCtrl.hpp"
 #include "ResAccInterface.hpp"
 
 namespace ssys::ma::lyt
 {
-
 	class Animation final : public FrameCtrl
 	{
-	
 	public:
-
 		Animation();
 
 		virtual ~Animation() override;
@@ -30,7 +26,6 @@ namespace ssys::ma::lyt
 		}
 
 	private:
-
 		u8 m_IsBound;
 		u8 unk1;
 		s16 unk2;
@@ -39,5 +34,3 @@ namespace ssys::ma::lyt
 	};
 	ASSERT_SIZE(Animation, 0x28);
 }
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef SV_SVBESTFRIENDLIST_HPP
-#define SV_SVBESTFRIENDLIST_HPP
+#pragma once
 
 struct SvBestFriendList
 {
@@ -7,5 +6,3 @@ struct SvBestFriendList
 
 	bool HasFriend() const;
 };
-
-#endif

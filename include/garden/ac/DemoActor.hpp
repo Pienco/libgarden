@@ -1,5 +1,4 @@
-#ifndef AC_DEMOACTOR_HPP
-#define AC_DEMOACTOR_HPP
+#pragma once
 
 #include "../bs/UtlBase.hpp"
 
@@ -17,5 +16,3 @@ private:
 ASSERT_SIZE(DemoActor, 0x68);
 
 using UtlBaseDemoActor = UtlBase<DemoActor>;
-
-#endif

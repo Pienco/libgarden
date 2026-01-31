@@ -1,70 +1,36 @@
 #pragma once
 
-#include "common.hpp"
+#include "PlaceRequest.hpp"
 #include "../netgame/netgame.hpp"
 #include "Handle.hpp"
 
 namespace fgobj
 {
-	enum class TreeShakeType : u8
-	{
-		NONE,
-		FRUIT,
-		ITEM,
-		BEES,
-		FRUIT_DIE
-	};
-
-	struct Param
-	{
-		u8 layer : 1;
-		bool swingType : 1;
-		TreeShakeType treeShakeType : 3;
-		bool isCutdown : 1;
-		u8 cutCounter : 2;
-	};
-
-	struct Action
-	{
-		enum State : u8
-		{
-			NONE,
-			ONGOING,
-			FINISHED,
-			CANCELLED,
-		};
-
-		SvFgName replace;
-		SvFgName fg1;
-		SvFgName fg2;
-		Position8 pos;
-		PlaceType type;
-		State state;
-		u8 index;
-		Param param;
-	};
-	ASSERT_SIZE(Action, 0x12);
-
 	struct Packet
 	{
 		enum Type : u8
 		{
-			BEGIN,
-			FINISH,
-			CANCEL,
+			HANDLE_REQUEST,
+			REQUEST_SUCCEEDED,
+			REQUEST_FAILED,
 			PLACE,
-			UNLOCK_TILE,
-			UNLOCK_TILE_ALL,
-			REQUEST_PLACE,
+			REQUEST_UNLOCK_UNIT,
+			UNLOCK_UNIT_ALL,
+			CONFIRM_PENDING_REQUEST,
 			PLACE_AND_SEND,
-			LOCK_TILE_DIRECT,
-			UNLOCK_TILE_DIRECT,
+			REQUEST_BEGIN_LOCK_UNIT,
+			REQUEST_DONE_UNLOCK_UNIT,
 		};
 
 		Packet();
-		void Assign(const Action& action, Type type = BEGIN);
+		void Assign(const PlaceRequest& request, Type type = HANDLE_REQUEST);
 		void Process();
-		void Send(netgame::PlayerNo target) const { netgame::EnqueuePacket(0x3a, target, this, sizeof(*this)); }
+
+		void Send(netgame::PlayerNo target = netgame::PlayerNo::TARGET_ALL) const
+		{
+			netgame::EnqueuePacket(0x3a, target, this, sizeof(*this));
+		}
+
 		void ProcessShakeItemTree();
 		
 		SvFgName replace;
@@ -74,11 +40,11 @@ namespace fgobj
 		u8 player : 2;
 		PlaceType placeType : 6;
 
-		u8 actionIndex : 2;
+		u8 requestIndex : 2;
 		Type action : 4;
 		u8 unknown : 2;
 
-		Param param;
+		PlaceParam param;
 		std::array<u8, 3> dropOffset;
 		stage::Name stage;
 		Position8 pos;
@@ -104,9 +70,4 @@ namespace fgobj
 		u8 pad;
 	};
 	ASSERT_SIZE(DirectPlacePacket, 8);
-
-	TreeShakeType GetShake(SvFgName& outItemAfterShake, const SvFgName& shaken);
-
-	Handle BeginAction(PlaceType type, SvFgName& replace, SvFgName& fg1, SvFgName& fg2, u8 x, u8 y, u8 u0, u8 u1, TreeShakeType shakeType, u8 u3, u8 u4);
-
 }

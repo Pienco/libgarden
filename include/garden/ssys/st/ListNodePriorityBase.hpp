@@ -1,16 +1,12 @@
-#ifndef SSYS_ST_LISTNODEPRIORITYBASE_HPP
-#define SSYS_ST_LISTNODEPRIORITYBASE_HPP
+#pragma once
 
 #include "ListNode.hpp"
 
 namespace ssys::st
 {
-
 	class ListNodePriorityBase : public ListNode
 	{
 
 	};
 	ASSERT_SIZE(ListNodePriorityBase, 0xc);
 }
-
-#endif

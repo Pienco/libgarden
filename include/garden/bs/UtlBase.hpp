@@ -1,5 +1,4 @@
-#ifndef BS_UTLBASE_HPP
-#define BS_UTLBASE_HPP
+#pragma once
 
 template<typename T>
 class UtlBase : public T
@@ -10,5 +9,3 @@ public:
 private:
 
 };
-
-#endif

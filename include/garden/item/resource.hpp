@@ -1,12 +1,11 @@
 #pragma once
 
+#include "../sv/SvFgName.hpp"
 #include "Kind.hpp"
-#include "ID.hpp"
 #include "ModelID.hpp"
 
 namespace item
 {
-
 	struct ParamItemEntry
 	{
 		u16	iconID;
@@ -27,8 +26,8 @@ namespace item
 
 	struct KindDataEntry
 	{
-		ID beginID;
-		ID endID;
+		SvFgName::Name beginID;
+		SvFgName::Name endID;
 		size_t count;
 		const char* name;
 	};

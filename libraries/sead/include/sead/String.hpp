@@ -1,17 +1,13 @@
-#ifndef SEAD_STRING_HPP
-#define SEAD_STRING_HPP
+#pragma once
 
 #include <nn/types.h>
 
 namespace sead
 {
-
 	template<typename T>
 	class SafeStringBase
 	{
-
 	public:
-
 		constexpr SafeStringBase(const T* string) : m_pString(string)
 		{
 		}
@@ -21,21 +17,17 @@ namespace sead
 		const T* GetString() const { return m_pString; }
 
 	private:
-
 		const T* m_pString;
 	};
 
 	template<typename T>
 	class BufferedSafeStringBase : public SafeStringBase<T>
 	{
-
 	public:
-
 		virtual ~BufferedSafeStringBase() override;
 		virtual void SetNT() override;
 	
 	private:
-
 		size_t m_Size;
 	};
 
@@ -43,7 +35,6 @@ namespace sead
 	template<typename T, size_t Length>
 	class FixedSafeStringBase : public BufferedSafeStringBase<T>
 	{
-
 	public:
 
 	private:
@@ -74,5 +65,3 @@ namespace sead
 	using SafeString = SafeStringBase<char>;
 	using WSafeString = SafeStringBase<char16>;
 }
-
-#endif

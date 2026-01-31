@@ -1,18 +1,9 @@
 #pragma once
 
 #include "../item/Kind.hpp"
-#include "../script/Word.hpp"
-
-using ItemName = script::WordFix<33>;
-
-namespace item
-{
-	struct ParamItemEntry;
-}
 
 struct PACKED SvFgName
 {
-
 	#include "SvFgName_Name.hpp"
 
 	union Flags
@@ -47,7 +38,7 @@ struct PACKED SvFgName
 			} out;
 		} common;
 
-		friend constexpr bool operator==(std::common_with<Flags> auto&& left, std::common_with<Flags> auto&& right)
+		friend constexpr bool operator==(const Flags& left, const Flags& right)
 		{
 			return left.raw == right.raw;
 		}
@@ -75,16 +66,8 @@ struct PACKED SvFgName
 
 	bool IsEmpty() const;
 	bool IsUsual() const;
-	const item::ParamItemEntry* GetParamItemEntry() const;
 	Kind GetKind() const;
-	u16 GetIconID() const;
-	const char* GetIconName() const;
-	ItemName GetName(void* myDesign = nullptr) const;
-	u32 ToInsectFishID() const;
-
-	// static void GetName(script::WordPtr* out, const SvFgName& item, void* myDesign = nullptr);
-
-	s32 GetIndex() const;
+	u8 GetFgKind() const;
 
 	explicit constexpr operator u32() const
 	{

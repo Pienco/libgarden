@@ -1,23 +1,19 @@
-#ifndef BS_BSPIKOHANOBJMGR_HPP
-#define BS_BSPIKOHANOBJMGR_HPP
+#pragma once
 
 #include "../ac/Actor.hpp"
 #include "../g3d/ResourceLoader.hpp"
 
 class BsPikoHanObjMgr : public Base
 {
-
 public:
+	static BsPikoHanObjMgr* Get() { return s_pInstance; }
 
 	Actor* GetPikoHanObj()
 	{
 		return m_pPikoHanObj;
 	}
 
-	static BsPikoHanObjMgr* Get() { return s_pInstance; }
-
 private:
-
 	u8 m_Allocator[8];
 	g3d::ResourceLoader m_Loader;
 	Actor* m_pPikoHanObj;
@@ -26,5 +22,3 @@ private:
 	static BsPikoHanObjMgr* s_pInstance;
 };
 ASSERT_SIZE(BsPikoHanObjMgr, 0x140);
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef BS_COMMONSCROLLBAR_HPP
-#define BS_COMMONSCROLLBAR_HPP
+#pragma once
 
 #include "Layout.hpp"
 
@@ -26,9 +25,7 @@ ASSERT_SIZE(ScrollBarDescription, 0x1c);
 
 class CommonScrollBar
 {
-
 public:
-
 	CommonScrollBar(void* container);
 	~CommonScrollBar();
 	void Initialize(ScrollBarDescription&& desc);
@@ -42,12 +39,9 @@ public:
 	}
 
 private:
-
 	u8 m_Data[0x71c];
 	s32 m_Scroll;
 	u8 m_Data2[0x78];
 
 };
 ASSERT_SIZE(CommonScrollBar, 0x798);
-
-#endif

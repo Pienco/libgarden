@@ -1,5 +1,4 @@
-#ifndef SSYS_MA_LYT_ARCRESOURCEACCESSORVRAM_HPP
-#define SSYS_MA_LYT_ARCRESOURCEACCESSORVRAM_HPP
+#pragma once
 
 #include "nw/lyt/ArcResourceAccessor.hpp"
 
@@ -12,5 +11,3 @@ namespace ssys::ma::lyt
 	};
 	ASSERT_SIZE(ArcResourceAccessorVRAM, 0x13c);
 }
-
-#endif

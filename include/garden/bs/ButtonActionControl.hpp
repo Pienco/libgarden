@@ -1,14 +1,11 @@
-#ifndef BS_BUTTONACTIONCONTROL_HPP
-#define BS_BUTTONACTIONCONTROL_HPP
+#pragma once
 
 #include "ButtonActionNode.hpp"
 #include "../ssys/st/List.hpp"
 
 class ButtonActionControl: ssys::st::List
 {
-
 public:
-
 	enum Flag: u32
 	{
 		OK_DONE = 1,
@@ -93,11 +90,9 @@ public:
 	}
 
 private:
-
 	void State_Selecting();
 
 	using Func = void(ButtonActionControl::*)();
-
 
 	Layout* m_pLayout;
 	Animation m_Touch;
@@ -119,5 +114,3 @@ private:
 	u32 unk;
 };
 ASSERT_SIZE(ButtonActionControl, 0xe4);
-
-#endif

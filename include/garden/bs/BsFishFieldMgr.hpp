@@ -1,5 +1,4 @@
-#ifndef BS_BSFISHFIELDMGR_HPP
-#define BS_BSFISHFIELDMGR_HPP
+#pragma once
 
 #include "../ac/Actor.hpp"
 #include "../netgame/FishState.hpp"
@@ -52,6 +51,3 @@ private:
 	static BsFishFieldMgr* s_pInstance;
 };
 ASSERT_SIZE(BsFishFieldMgr, 0x1304);
-
-
-#endif

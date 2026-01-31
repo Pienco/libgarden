@@ -5,13 +5,10 @@
 
 namespace nw::font
 {
-
 	template<typename T>
 	class TextWriterBase : public CharWriter
 	{
-	
 	public:
-
 		enum Alignment : u32
 		{
 			LEFT = 0,
@@ -39,7 +36,6 @@ namespace nw::font
 		}
 
 	private:
-
 		float m_WidthLimit;
 		float m_CharSpace;
 		float m_LineSpace;

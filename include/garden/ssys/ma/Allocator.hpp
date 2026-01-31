@@ -1,17 +1,13 @@
-#ifndef SSYS_MA_ALLOCATOR_HPP
-#define SSYS_MA_ALLOCATOR_HPP
+#pragma once
 
 #include "sead/Heap.hpp"
 #include "nw/os/IAllocator.hpp"
 
 namespace ssys::ma
 {
-
 	class Allocator : public nw::os::IAllocator
 	{
-	
 	public:
-
 		constexpr Allocator() : m_pHeap { } { }
 		constexpr Allocator(sead::Heap* heap) : m_pHeap { heap } { }
 		virtual ~Allocator() override;
@@ -25,10 +21,7 @@ namespace ssys::ma
 		static Allocator* GetResourceAllocator();
 
 	private:
-
 		sead::Heap* m_pHeap;
 	};
 	ASSERT_SIZE(Allocator, 8);
 }
-
-#endif
