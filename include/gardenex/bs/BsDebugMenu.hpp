@@ -124,7 +124,7 @@ private:
 	Layout m_Layout;
 	ArcReader m_ArcReader;
 	std::array<char16, TEXT_BUFFER_LENGTH> m_Text;
-	script::RenderRuby m_TextRender { TEXT_BUFFER_LENGTH, 0 };
+	::script::RenderRuby m_TextRender { TEXT_BUFFER_LENGTH, 0 };
 };
 
 }

@@ -99,7 +99,7 @@ _ZNK7netgame10NetGameMgr13GetMyPlayerNoEv = 0x75f004;
 _ZNK7netgame10NetGameMgr14GetPlayerCountEv = 0x75eff8;
 _ZN7netgame10NetGameMgr8Unknown15CheckEh = 0x76003c;
 _ZNK7netgame10NetGameMgr10IsAdmittedENS_8PlayerNoE = 0x75f02c;
-_ZN7netgame10NetGameMgr13SendRawPacketENS_8PlayerNoEPKPKvPKjjhmmm = 0x618318;
+_ZN7netgame10NetGameMgr15SendPacketBatchENS_8PlayerNoEPKPKvPKjjhmmm = 0x618318;
 
 
 _ZN7netgame8StageMgr8SetStageENS_8PlayerNoEN5stage4NameE = 0x6229e4;
