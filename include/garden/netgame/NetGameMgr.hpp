@@ -42,12 +42,12 @@ namespace netgame
 		class TransitionMgr
 		{
 		public:
-			enum Mode : u8
+			enum State : u8
 			{
-				NONE,
-				SENDING,
-				RECEIVING,
-				CLOSED,
+				STATE_0,
+				STATE_1,
+				STATE_2,
+				STATE_3,
 			};
 
 		public:
@@ -55,13 +55,12 @@ namespace netgame
 			size_t m_BufferSize;
 			PlayerNo m_PlayerEnteringStage;
 			PlayerNo m_PlayerExitingStage;
-			Mode m_Mode;
+			State m_State;
 		};
 		ASSERT_SIZE(TransitionMgr, 0xc);
 
 		class SaveDemoMgr
 		{
-
 		public:
 
 			auto& GetState() { return m_State; }

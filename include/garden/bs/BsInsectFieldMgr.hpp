@@ -1,11 +1,25 @@
 #pragma once
 
 #include "../ac/Actor.hpp"
-#include "../netgame/InsectState.hpp"
+#include "../item/insect.hpp"
+#include "../netgame/PlayerNo.hpp"
 
 class BsInsectFieldMgr : public Base
 {
 public:
+	struct PACKED NetInsectState
+	{
+		static constexpr u32 positionScale = 4;
+
+		item::InsectID id : 7;
+		u8 state : 4;
+		u16 posX : 10;
+		u16 posZ : 10;
+		netgame::PlayerNo owner : 3;
+		u8 flags;
+	};
+	ASSERT_SIZE(NetInsectState, 0x6);
+
 	struct ListInsectEntry
 	{
 		Actor* actor;
@@ -27,11 +41,10 @@ public:
 	static constexpr size_t MAX_ENTRY = 12;
 
 	using Angle3u16 = Actor::Angle3u16;
-	using InsectState = netgame::InsectState;
 	using InsectID = item::InsectID;
 
-	InsectState* GetNetState(u32 index) { return &m_NetInsectStates[index]; }
-	const InsectState* GetNetState(u32 index) const { return &m_NetInsectStates[index]; }
+	NetInsectState* GetNetState(u32 index) { return &m_NetInsectStates[index]; }
+	const NetInsectState* GetNetState(u32 index) const { return &m_NetInsectStates[index]; }
 
 	ListInsectEntry* GetNewestEntry() { return m_pNewest; }
 	ListInsectEntry* GetFreeEntry() { return m_pFree; }
@@ -52,7 +65,7 @@ private:
 	u8 data[0x2c];
 	std::array<ListInsectEntry, MAX_ENTRY> m_ListInsects;
 	std::array<ListInsectEntry, 2> m_ListInsects2;
-	std::array<InsectState, MAX_ENTRY> m_NetInsectStates;
+	std::array<NetInsectState, MAX_ENTRY> m_NetInsectStates;
 	s32 unk;
 
 	static BsInsectFieldMgr* s_pInstance;

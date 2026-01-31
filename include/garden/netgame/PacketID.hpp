@@ -4,7 +4,6 @@
 
 namespace netgame
 {
-
 	enum class PacketID : u8
 	{
 		PLAYER_0_ACTION = 0x33,
@@ -15,5 +14,4 @@ namespace netgame
 		INSECT_UPDATE = 0x3b,
 		FISH_UPDATE = 0x3c,
 	};
-
 };

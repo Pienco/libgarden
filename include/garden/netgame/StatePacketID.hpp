@@ -4,7 +4,6 @@
 
 namespace netgame
 {
-
 	enum class StatePacketID : u8
 	{
 		NONE = 0x00,
@@ -62,5 +61,4 @@ namespace netgame
 
 		COUNT = 0x96,
 	};
-
 };

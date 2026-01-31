@@ -5,7 +5,6 @@
 
 namespace netgame
 {
-
 	class FriendListMgr
 	{
 	public:

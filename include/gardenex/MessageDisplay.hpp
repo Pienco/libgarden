@@ -9,6 +9,10 @@ namespace gardenex
 	class MessageDisplay
 	{
 	public:
+		MessageDisplay() = default;
+		MessageDisplay(nw::ut::Color8 topColor, nw::ut::Color8 bottomColor)
+			: m_TextColors{topColor, bottomColor} { }
+
 		void Update()
 		{
 			size_t expired = 0;
@@ -36,7 +40,7 @@ namespace gardenex
 
 			nw::font::WideTextWriter writer;
 			writer.SetDispStringBuffer(m_Display.GetBuffer());
-			writer.SetTextColors(nw::ut::Color8::White(), {0x77, 0x77, 0x77, 0xff});
+			writer.SetTextColors(m_TextColors[0], m_TextColors[1]);
 
 			if (m_Dirty)
 			{
@@ -60,7 +64,7 @@ namespace gardenex
 			if (offset > 0) m_Text[offset - 1] = u'\n';
 
 			Traits::copy(m_Text.data() + offset, str.data(), str.size());
-			m_Lines[m_LineCount] = {.end = static_cast<u16>(end), .timer = 240};
+			m_Lines[m_LineCount] = {.end = static_cast<u16>(end), .timer = displayTime};
 			m_LineCount++;
 			m_Dirty = true;
 		}
@@ -77,7 +81,9 @@ namespace gardenex
 		static constexpr size_t textBufSize = 160;
 		static constexpr size_t maxLineCount = 9;
 		static constexpr nn::math::VEC2 textPosition {392.0f, 228.0f};
+		static constexpr u16 displayTime = 180;
 
+		std::array<nw::ut::Color8, 2> m_TextColors {nw::ut::Color8::White(), {0x90, 0x90, 0x90, 0xff}};
 		std::array<Line, maxLineCount> m_Lines {};
 		size_t m_LineCount {};
 		std::array<char16, textBufSize> m_Text;

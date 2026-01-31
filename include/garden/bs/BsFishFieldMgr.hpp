@@ -1,12 +1,26 @@
 #pragma once
 
 #include "../ac/Actor.hpp"
-#include "../netgame/FishState.hpp"
+#include "../item/fish.hpp"
+#include "../netgame/PlayerNo.hpp"
 
 class BsFishFieldMgr : public Base
 {
 
 public:
+
+	struct PACKED NetFishState
+	{
+		static constexpr u32 positionScale = 4;
+
+		item::FishID id : 7;
+		u8 state : 4;
+		u16 posX : 10;
+		u16 posZ : 10;
+		netgame::PlayerNo owner : 3;
+		u8 flags;
+	};
+	ASSERT_SIZE(NetFishState, 0x6);
 
 	struct ListFishEntry
 	{
@@ -23,11 +37,10 @@ public:
 	static constexpr size_t MAX_ENTRY = 8;
 
 	using Angle3u16 = Actor::Angle3u16;
-	using FishState = netgame::FishState;
 	using FishID = item::FishID;
 
-	FishState* GetNetState(u32 index);
-	const FishState* GetNetState(u32 index) const;
+	NetFishState* GetNetState(u32 index);
+	const NetFishState* GetNetState(u32 index) const;
 	bool IsMyFish(u32 index) const;
 	void TakeOwnershipOfNetState(u32 index);
 

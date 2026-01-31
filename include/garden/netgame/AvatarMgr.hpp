@@ -6,7 +6,6 @@
 
 namespace netgame
 {
-
 	class AvatarMgr : public net::SystemCallback
 	{
 	public:

@@ -4,7 +4,6 @@
 
 namespace netgame
 {
-
 	class ConfirmMachine : public MachineBitTable
 	{
 
@@ -16,5 +15,4 @@ namespace netgame
 
 	};
 	ASSERT_SIZE(ConfirmMachine, 0x8);
-
 }

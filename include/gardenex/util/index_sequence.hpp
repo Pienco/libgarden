@@ -98,24 +98,4 @@ namespace util
 		else if constexpr (N == 1) return Fn.template operator() < N - 1 > ();
 		else return Fn.template operator() < N - 1, repeat<N - 1, Fn>() > ();
 	}
-
-	template<size_t N, auto Fn>
-	FORCE_INLINE constexpr auto repeat_feedback()
-	{
-		if constexpr (N == 0) return;
-		else if constexpr (N == 1) return Fn.template operator() < N - 1, Fn.template operator() < N - 1 > () > ();
-		else
-		{
-			if consteval
-			{
-				constexpr auto result = repeat_feedback<N - 1, Fn>();
-				return Fn.template operator() < N - 1, Fn.template operator() < N - 1 > (std::forward<decltype(result)>(result)) > (std::forward<decltype(result)>(result));
-			}
-			else
-			{
-				auto result = repeat_feedback<N - 1, Fn>();
-				return Fn.template operator() < N - 1, Fn.template operator() < N - 1 > (std::forward<decltype(result)>(result)) > (std::forward<decltype(result)>(result));
-			}
-		}
-	}
 }

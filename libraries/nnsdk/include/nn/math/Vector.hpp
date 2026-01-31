@@ -5,7 +5,7 @@
 #include <array>
 #include <cmath>
 
-#include <gardenex/util/pattern.hpp>
+#include <gardenex/util/index_sequence.hpp>
 
 namespace nn::math
 {

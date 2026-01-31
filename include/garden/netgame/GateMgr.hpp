@@ -4,7 +4,6 @@
 
 namespace netgame
 {
-
 	class GateMgr
 	{
 	public:
@@ -21,5 +20,4 @@ namespace netgame
 		extern u16 s_GateParam;
 		return s_GateParam & 1;
 	}
-
 }
