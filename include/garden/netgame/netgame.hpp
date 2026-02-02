@@ -42,6 +42,9 @@ namespace netgame
 	Type GetNetgameType();
 	void SetNetGameType(Type);
 
+	bool RequestOpenGateRandomMatch(GateMgr::Flag flag);
+	bool RequestCloseGateRandomMatch(GateMgr::Flag flag);
+
 	bool InitNet();
 	inline void FiniNet() { NetGameMgr::Get()->FiniNet(); }
 	bool StopNet();

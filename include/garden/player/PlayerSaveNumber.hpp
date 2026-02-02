@@ -9,12 +9,9 @@ enum class PlayerSaveNumber : u8
 	VILLAGE_PLAYER_1,
 	VILLAGE_PLAYER_2,
 	VILLAGE_PLAYER_3,
-	NET_PLAYER_0,
-	NET_PLAYER_1,
-	NET_PLAYER_2,
-	NET_PLAYER_3,
+	NET_PLAYER_SLOT_0,
+	NET_PLAYER_SLOT_1,
+	NET_PLAYER_SLOT_2,
+	NET_PLAYER_SLOT_3, // reserved for host?
 	INVALID
 };
- 
-PlayerSaveNumber GetSvPlayerNo(netgame::PlayerNo id);
-SvPlayer* GetSvPlayer(PlayerSaveNumber no);

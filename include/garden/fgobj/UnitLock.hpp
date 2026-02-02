@@ -4,6 +4,8 @@
 #include "Handle.hpp"
 #include "../player/PlayerNumber.hpp"
 
+#include <array>
+
 namespace fgobj
 {
 	struct UnitLock

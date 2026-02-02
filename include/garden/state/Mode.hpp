@@ -4,7 +4,6 @@
 
 namespace state
 {
-
 	template<typename T>
 	class Mode : public Base<T> 
 	{

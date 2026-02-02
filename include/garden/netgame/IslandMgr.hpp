@@ -32,6 +32,11 @@ namespace netgame
 		 */
 		bool ChooseTour(TourName tour);
 
+		/**
+		 * @return always `true`
+		 */
+		bool CancelTrip();
+
 		void UpdatePlayerTourSplit(u8 depart, u8 stay);
 
 		void StartTourRandomMatch();

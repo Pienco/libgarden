@@ -26,10 +26,7 @@ namespace ssys::ma::lyt
 		virtual ~Layout() override;
 
 		void SetArcResAccReader(ArcResAccReader* reader) { m_pArcReader = reader; }
-		Pane* GetRootPane()
-		{
-			return m_Layout.GetRootPane();
-		}
+		Pane* GetRootPane() { return m_Layout.GetRootPane(); }
 
 		void Animate();
 		bool Build(const char* name, const ArcResAccReader* arcReader = nullptr, u32 cmdCacheSize = 0x100);

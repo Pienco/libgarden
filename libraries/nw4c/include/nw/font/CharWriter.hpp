@@ -41,6 +41,9 @@ namespace nw::font
 		float GetCursorX() const { return m_Cursor.x; }
 		float GetCursorY() const { return m_Cursor.y; }
 
+		void SetCursorX(float value) { m_Cursor.x = value; }
+		void SetCursorY(float value) { m_Cursor.y = value; }
+
 		void StartPrint();
 		u32* UseCommandBuffer(u32* cmdbuf, class RectDrawer* drawer);
 

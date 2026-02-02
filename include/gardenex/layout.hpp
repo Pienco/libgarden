@@ -108,24 +108,24 @@ namespace gardenex
 		0.0f, 0.0f, 1.0f, 0.0f
 	};
 
-	inline size_t DrawText(const nn::math::MTX34& viewMtx, nw::font::WideTextWriter& writer)
+	inline size_t DrawText(const nn::math::MTX34& viewMtx, nw::font::WideTextWriter& writer, bool bottomScreen = false)
 	{
 		auto& drawer = ssys::ma::lyt::LayoutMgr::Get()->GetDrawer();
 		u32* cmdbuf = drawer.DrawBegin();
 		u32* begin = cmdbuf;
-		cmdbuf = drawer.SetProjectionMtx(cmdbuf, gardenex::GetProjectionMatrix(false, true));
+		cmdbuf = drawer.SetProjectionMtx(cmdbuf, gardenex::GetProjectionMatrix(bottomScreen, true));
 		cmdbuf = drawer.SetViewMtx(cmdbuf, viewMtx);
 		cmdbuf = writer.UseCommandBuffer(cmdbuf, &drawer);
 		__cb_current_command_buffer = drawer.DrawEnd(cmdbuf);
 		return __cb_current_command_buffer - begin;
 	}
 
-	inline size_t DrawTextWithShadow(const nn::math::MTX34& viewMtx, nw::font::WideTextWriter& writer)
+	inline size_t DrawTextWithShadow(const nn::math::MTX34& viewMtx, nw::font::WideTextWriter& writer, bool bottomScreen = false)
 	{
 		auto& drawer = ssys::ma::lyt::LayoutMgr::Get()->GetDrawer();
 		u32* cmdbuf = drawer.DrawBegin();
 		u32* begin = cmdbuf;
-		cmdbuf = drawer.SetProjectionMtx(cmdbuf, gardenex::GetProjectionMatrix(false, true));
+		cmdbuf = drawer.SetProjectionMtx(cmdbuf, gardenex::GetProjectionMatrix(bottomScreen, true));
 		u32* save = cmdbuf;
 		cmdbuf = drawer.SetViewMtx(cmdbuf, viewMtx);
 		cmdbuf = writer.UseCommandBuffer(cmdbuf, &drawer);
@@ -145,10 +145,10 @@ namespace gardenex
 		return __cb_current_command_buffer - begin;
 	}
 
-	inline size_t DrawText(nn::math::VEC2 position, nw::font::WideTextWriter& writer)
+	inline size_t DrawText(nn::math::VEC2 position, nw::font::WideTextWriter& writer, bool bottomScreen = false)
 	{
 		textViewMtx.data[0][3] = position.x;
 		textViewMtx.data[1][3] = position.y;
-		return DrawTextWithShadow(textViewMtx, writer);
+		return DrawTextWithShadow(textViewMtx, writer, bottomScreen);
 	}
 }

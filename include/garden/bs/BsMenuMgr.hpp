@@ -56,5 +56,3 @@ private:
 	static BsMenuMgr* s_pInstance;
 };
 ASSERT_SIZE(BsMenuMgr, 0x20c);
-
-#endif

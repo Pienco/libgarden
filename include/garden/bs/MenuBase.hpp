@@ -45,5 +45,3 @@ private:
 	u8 unk2;
 };
 ASSERT_SIZE(MenuBase, 0x28);
-
-#endif

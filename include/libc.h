@@ -2,6 +2,8 @@
 
 #include <nn/types.h>
 
+#include <stdarg.h>
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -25,6 +27,7 @@ size_t  wcslen(const CHAR16_TYPE* wcs);
 CHAR16_TYPE* wcscat(CHAR16_TYPE* destination, const CHAR16_TYPE* source);
 
 int swprintf(CHAR16_TYPE* ws, size_t len, const CHAR16_TYPE* format, ...);
+int	vswprintf (CHAR16_TYPE* __restrict, size_t, const CHAR16_TYPE* __restrict, va_list);
 
 #ifdef __cplusplus
 }

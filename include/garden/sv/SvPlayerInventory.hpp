@@ -2,6 +2,8 @@
 
 #include "SvFgName.hpp"
 
+#include <array>
+
 struct SvPlayerInventory
 {
 	enum ItemAppearance : u8

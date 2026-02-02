@@ -60,7 +60,7 @@ protected:
 			return ProcessResult::RETRY;
 		m_Layout.SetArcResAccReader(&m_ArcReader);
 		m_ArcReader.RegisterFont();
-		m_Layout.Initialize("debug_window.bclyt", &m_ArcReader, 0xff, 0x1000);
+		m_Layout.Initialize("debug_window.bclyt", &m_ArcReader, 0xff, 0xc00);
 
 		m_TextRender.SetTextBoxes(m_Layout.FindTextBox("debug_text"));
 		AddLine(u"Hello world");

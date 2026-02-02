@@ -65,13 +65,12 @@ _ZN7netgame7InitNetEv = 0x617be8;
 _ZN7netgame7StopNetEv = 0x627368;
 _ZN7netgame22StartConnectBestFriendEv = 0x62739c;
 _ZN7netgame21IsConnectedBestFriendEv = 0x626218;
+_ZN7netgame26RequestOpenGateRandomMatchENS_7GateMgr4FlagE = 0x61b2e8;
+_ZN7netgame27RequestCloseGateRandomMatchENS_7GateMgr4FlagE = 0x620840;
 
 _ZN7netgame15MachineBitTable3AddENS_8PlayerNoE = 0x62557c;
 _ZN7netgame15MachineBitTable6RemoveENS_8PlayerNoE = 0x6255fc;
 _ZN7netgame15MachineBitTable5ResetEv = 0x625740;
-
-_ZN7netgame13GetSvPlayerNoENS_8PlayerNoE = 0x2ff6cc;
-_ZN7netgame11GetSvPlayerENS_10SvPlayerNoE = 0x2fba60;
 
 _ZN7netgame11s_TourStateE = 0x94ee08;
 _ZN7netgame21s_TourRequestPlayerNoE = 0x94ee0a;
@@ -101,7 +100,6 @@ _ZN7netgame10NetGameMgr8Unknown15CheckEh = 0x76003c;
 _ZNK7netgame10NetGameMgr10IsAdmittedENS_8PlayerNoE = 0x75f02c;
 _ZN7netgame10NetGameMgr15SendPacketBatchENS_8PlayerNoEPKPKvPKjjhmmm = 0x618318;
 
-
 _ZN7netgame8StageMgr8SetStageENS_8PlayerNoEN5stage4NameE = 0x6229e4;
 _ZN7netgame8StageMgr18UpdateStageControlENS_8PlayerNoEb = 0x62287c;
 _ZN7netgame8StageMgr23PlayerStageUpdatePacket3SetENS_8PlayerNoEbN5stage4NameEbbS2_ = 0x626348;
@@ -117,14 +115,15 @@ _ZN7netgame7JoinMgr10StartEntryEv = 0x6218f0;
 _ZN7netgame8LeaveMgr10StartLeaveEb = 0x624544;
 
 _ZN7netgame9IslandMgr10ChooseTourE8TourName = 0x61fdc0;
+_ZN7netgame9IslandMgr10CancelTripEv = 0x61f8e8;
 _ZN7netgame9IslandMgr21UpdatePlayerTourSplitEhh = 0x61ea30;
-_ZN7netgame10NetGameMgr9IslandMgr15DepartForIslandEv = 0x61e8bc;
+_ZN7netgame9IslandMgr15DepartForIslandEv = 0x61e8bc;
 _ZN7netgame9IslandMgr20StartFindRandomMatchEv = 0x61e3b0;
 _ZN7netgame9IslandMgr16RetireFromIslandEv = 0x61e954;
-_ZN7netgame10NetGameMgr9IslandMgr20CanRetireRandomMatchEv = 0x75f1c4;
-_ZN7netgame10NetGameMgr9IslandMgr24RequestRandomMatchSeeOffEv = 0x61fd78;
-_ZN7netgame10NetGameMgr9IslandMgr16ConfirmLeaveSelfEv = 0x61f018;
-_ZN7netgame10NetGameMgr9IslandMgr21IsRetiringRandomMatchEv = 0x75f140;
+_ZN7netgame9IslandMgr20CanRetireRandomMatchEv = 0x75f1c4;
+_ZN7netgame9IslandMgr24RequestRandomMatchSeeOffEv = 0x61fd78;
+_ZN7netgame9IslandMgr16ConfirmLeaveSelfEv = 0x61f018;
+_ZN7netgame9IslandMgr21IsRetiringRandomMatchEv = 0x75f140;
 _ZN7netgame9IslandMgr23GetRandomMatchingResultEv = 0x75f09c;
 _ZN7netgame9IslandMgr19EndSeaDepartureDemoEb = 0x61e3e8;
 _ZN7netgame9IslandMgr29StartTourDeskArrivalAfterTourEv = 0x61e568;
@@ -500,6 +499,8 @@ _ZN9BsShowMgr4ShowERK8SvFgNameRKN2nn4math6VectorIfLj3EEE = 0x6da7fc;
 _ZN9BsShowMgr20InitializeFromPacketEN7netgame8PlayerNoERKNS_10ShowPacketE = 0x6da6e0;
 
 _Z18SvGetCurrentPlayerv = 0x2fba40;
+_Z11SvGetPlayer16PlayerSaveNumber = 0x2fba60;
+_Z14SvGetNetPlayerN7netgame8PlayerNoE = 0x2feb2c;
 
 _ZNK17SvPlayerInventory7GetItemEjPNS_14ItemAppearanceE = 0x7250dc;
 _ZN17SvPlayerInventory7AddItemERK8SvFgNameENS_14ItemAppearanceEPS1_ = 0x3233a4;

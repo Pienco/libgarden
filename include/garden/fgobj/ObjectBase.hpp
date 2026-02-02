@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../ssys/st/ListNodePriorityBase.hpp"
-#include "../item/Item.hpp"
+#include "../item/ModelID.hpp"
 
 namespace fgobj
 {

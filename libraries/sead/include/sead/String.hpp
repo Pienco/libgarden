@@ -12,11 +12,11 @@ namespace sead
 		{
 		}
 		virtual constexpr ~SafeStringBase() = default;
-		virtual void SetNT();
-
 		const T* GetString() const { return m_pString; }
 
-	private:
+	protected:
+		virtual void assureTerminationImpl_() const;
+
 		const T* m_pString;
 	};
 
@@ -25,30 +25,29 @@ namespace sead
 	{
 	public:
 		virtual ~BufferedSafeStringBase() override;
-		virtual void SetNT() override;
-	
-	private:
-		size_t m_Size;
+
+	protected:
+		virtual void assureTerminationImpl_() const override;
+
+		s32 m_Size;
 	};
 
 
-	template<typename T, size_t Length>
+	template<typename T, s32 Length>
 	class FixedSafeStringBase : public BufferedSafeStringBase<T>
 	{
 	public:
 
-	private:
-
-		T m_String[Length];
+		T m_Buffer[Length];
 	};
 
-	template<size_t Length>
+	template<s32 Length>
 	class FixedSafeString final : public FixedSafeStringBase<char, Length>
 	{
 
 	};
 
-	template<size_t Length>
+	template<s32 Length>
 	class WFixedSafeString final : public FixedSafeStringBase<char16, Length>
 	{
 
@@ -64,4 +63,7 @@ namespace sead
 
 	using SafeString = SafeStringBase<char>;
 	using WSafeString = SafeStringBase<char16>;
+	using BufferedSafeString = BufferedSafeStringBase<char>;
+	using WBufferedSafeString = BufferedSafeStringBase<char16>;
+
 }

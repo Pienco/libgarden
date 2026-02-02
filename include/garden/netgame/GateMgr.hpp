@@ -7,9 +7,25 @@ namespace netgame
 	class GateMgr
 	{
 	public:
-		bool IsOpen() const { return m_CloseFlags != 0; }
+
+		enum Flag
+		{
+			TRAIN_STATION,
+			BOAT_TRIP,
+			RANDOM_MATCH_TOUR,
+			RANDOM_MATCH_PLAYER_JOINING,
+			RANDOM_MATCH_PLAYER_LEAVING,
+			UNKNOWN,
+		};
+
+		bool Open(Flag);
+		bool IsOpen() const { return m_CloseFlags == 0; }
+		bool IsClosed(Flag) const;
+		bool Close(Flag);
+
 	private:
-		u8 data[6];
+		u8 m_CmdQueue[5];
+		u8 m_CurrentCmd;
 		u8 m_CloseFlags;
 		u8 padding;
 	};

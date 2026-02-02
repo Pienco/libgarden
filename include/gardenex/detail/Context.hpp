@@ -83,6 +83,8 @@ namespace gardenex::detail
 			return initialized;
 		}
 
+		bool IsInitialized() const { return initialized; }
+
 		static s32 RegisterCommon(auto& table, const auto& entry)
 		{
 			for (size_t i = 0; i < table.size(); i++)
