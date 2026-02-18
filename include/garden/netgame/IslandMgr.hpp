@@ -99,41 +99,4 @@ namespace netgame
 		u8 m_Data2[7];
 	};
 	ASSERT_SIZE(IslandMgr, 0x14c);
-
-	enum class TourState : u8
-	{
-		NONE,
-		TOUR_SET,
-		RETURN_TO_TOWN,
-	};
-
-	inline bool IsTourSet()
-	{
-		extern TourState s_TourState;
-		return s_TourState == TourState::TOUR_SET;
-	}
-
-	inline bool IsReturnToTownChosen()
-	{
-		extern TourState s_TourState;
-		return s_TourState == TourState::RETURN_TO_TOWN;
-	}
-
-	inline PlayerNo GetTourRequestPlayerNo()
-	{
-		extern PlayerNo s_TourRequestPlayerNo;
-		return s_TourRequestPlayerNo;
-	}
-
-	inline IslandMgr::TourName GetTour()
-	{
-		extern IslandMgr::TourName s_SetTourID;
-		return s_SetTourID;
-	}
-
-	inline bool IsForceLeaveRequest()
-	{
-		extern u8 s_ForceLeaveRequest;
-		return s_ForceLeaveRequest != 0;
-	}
 }
