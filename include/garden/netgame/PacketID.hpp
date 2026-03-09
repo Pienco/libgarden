@@ -13,5 +13,6 @@ namespace netgame
 		ITEM_PLACEMENT = 0x3a,
 		INSECT_UPDATE = 0x3b,
 		FISH_UPDATE = 0x3c,
+		NPC_ASSIST = 0x41,
 	};
 };

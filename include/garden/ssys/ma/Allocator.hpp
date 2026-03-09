@@ -17,9 +17,6 @@ namespace ssys::ma
 		sead::Heap* GetHeap() { return m_pHeap; }
 		void SetHeap(sead::Heap* heap) { m_pHeap = heap; }
 
-		static Allocator* GetGuiAllocator();
-		static Allocator* GetResourceAllocator();
-
 	private:
 		sead::Heap* m_pHeap;
 	};

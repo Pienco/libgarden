@@ -4,8 +4,6 @@
 #include "../stage/Name.hpp"
 #include "../netgame/PlayerNo.hpp"
 
-#include <memory>
-
 struct PACKED PlayerState
 {
 	stage::Name stage; // 0x0

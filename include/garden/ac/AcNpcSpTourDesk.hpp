@@ -89,6 +89,17 @@ public:
 		return s_RequestInfo.kappeiSong;
 	}
 
+	static void QueueTourCore(netgame::PlayerNo requester, TourName tour)
+	{
+		GetTripRequestPlayer() = requester;
+		GetQueuedTrip() = TripType::TOUR;
+		GetQueuedTour() = tour;
+		BsTelop::ShowTourTelop(BsTelop::TOUR_DEPARTING_SOON, tour);
+
+		if (netgame::GetNetgameType() == netgame::Type::RANDOM_MATCH)
+			netgame::RequestCloseGateRandomMatch(netgame::GateMgr::RANDOM_MATCH_TOUR);
+	}
+
 	static void CancelTripSelf()
 	{
 		if (GetQueuedTrip() == TripType::TOUR)

@@ -23,6 +23,7 @@ namespace netgame
 		bool Connect(Connection connection);
 		bool IsConnected(Connection connection) const;
 		bool Disconnect(Connection connection);
+		bool IsConnectingOrDisconnecting(Connection connection) const;
 
 	private:
 
