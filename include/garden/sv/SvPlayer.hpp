@@ -1,14 +1,15 @@
 #pragma once
 
 #include "SvPlayerInventory.hpp"
+#include "SvPlayerInfo.hpp"
 
-struct PACKED SvPlayerCharacter
+struct SvPlayerCharacter
 {
 	static constexpr size_t nameSize = 9;
 
-	u8 data0[0x55a8];
-	std::array<char16_t, nameSize> name;
-	u8 data1[0x147];
+	u8 data0[0x55a6];
+	SvPlayerInfo info;
+	u8 data1[0x12d];
 
 	enum Flags: u8
 	{
@@ -29,12 +30,15 @@ struct PACKED SvPlayerCharacter
 	u8 flags2;
 	u8 data3[0x146c];
 };
+ASSERT_OFFSET(SvPlayerCharacter, SvPlayerCharacter::info.identity.name, 0x55a8);
 ASSERT_OFFSET(SvPlayerCharacter, SvPlayerCharacter::flags, 0x5701);
 ASSERT_OFFSET(SvPlayerCharacter, SvPlayerCharacter::flags2, 0x571f);
 ASSERT_SIZE(SvPlayerCharacter, 0x6b8c);
 
 struct SvPlayer
 {
+	constexpr const SvPlayerInfo& GetInfo() const { return character.info; }
+
 	SvPlayerCharacter character;
 	u8 data[0x44];
 	SvPlayerInventory inventory;

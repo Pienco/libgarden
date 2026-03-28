@@ -13,7 +13,7 @@ namespace ssys::ma::lyt
 		bool SetData(const void* arcData, const char* rootName);
 
 	protected:
-		ArcResourceAccessorVRAM* GetResourceAccessor() { return &m_ArcResourceAccessor; }
+		ArcResourceAccessorVRAM* GetResourceAccessorVRAM() { return &m_ArcResourceAccessor; }
 
 	private:
 		ArcResourceAccessorVRAM m_ArcResourceAccessor; 

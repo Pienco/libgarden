@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../net/SystemCallback.hpp"
+#include "../sv/SvFriendCode.hpp"
 #include "PlayerNo.hpp"
 #include "AvatarId.hpp"
 
@@ -17,31 +18,34 @@ namespace netgame
 			u32 principalId;
 			AvatarId avatarId;
 		};
+		ASSERT_SIZE(Principal, 0x8);
 
 		struct AvatarInfoBase : public Principal
 		{
+			StationId GetStationId() const { return station; }
+
 			StationId station;
 		};
+		ASSERT_SIZE(AvatarInfoBase, 0x10);
 
-		struct AvatarInfo
+		struct AvatarInfo : public AvatarInfoBase
 		{
-			u32 GetPrincipalId() const { return base.principalId; }
-			AvatarId GetAvatarId() const { return base.avatarId; }
-
-			AvatarInfoBase base;
 			void* senderHandle;
 			s32 unk;
 		};
+		ASSERT_SIZE(AvatarInfo, 0x18);
 
 		s32 GetIndex(const StationId& id) const;
 		PlayerNo GetPlayerNo(const StationId& id) const;
 		StationId GetStationId(PlayerNo player) const
 		{
-			if (player < 4) return m_Infos[player].base.station;
+			if (player < 4) return m_Infos[player].GetStationId();
 			return {};
 		}
 
 		const AvatarInfo* GetAvatarInfo(PlayerNo player) const;
+
+		void GetFriendCode(SvFriendCode& out, netgame::PlayerNo player) const;
 
 		void Process();
 

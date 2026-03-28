@@ -20,12 +20,12 @@ namespace ssys::ma::lyt
 
 	class Layout : public Base2D
 	{
-
 	public:
 		Layout();
 		virtual ~Layout() override;
 
 		void SetArcResAccReader(ArcResAccReader* reader) { m_pArcReader = reader; }
+		DummyLayout& GetLayout() { return m_Layout; }
 		Pane* GetRootPane() { return m_Layout.GetRootPane(); }
 
 		void Animate();

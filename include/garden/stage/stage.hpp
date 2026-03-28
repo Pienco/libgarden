@@ -11,15 +11,17 @@ namespace stage
 		return s_Current;
 	}
 
-	inline bool IsCurrent(Name id)
+	inline bool IsCurrent(Name name)
 	{
-		return id == GetCurrent();
+		return name == GetCurrent();
 	}
 
 	inline bool IsCurrent(Kind bits)
 	{
 		return IsKind(bits, GetCurrent());
 	}
+
+	const char* GetName(Name name);
 
 	/**
 	 * @return `0` if not found

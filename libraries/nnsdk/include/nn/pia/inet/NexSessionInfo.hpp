@@ -18,8 +18,12 @@ namespace nn::pia::inet
 		virtual void Unk();
 		virtual Result GetApplicationData(void* buf, size_t bufSize) const;
 		virtual size_t GetApplicationDataSize() const;
-		virtual Result GetAttribute(u32* value, u32 index);
+		virtual Result GetAttribute(u32* value, u32 index) const;
 		virtual Result GetUnkData(void* buf, size_t bufSize) const;
 		virtual size_t GetUnkDataSize() const;
+		virtual bool VFun_3c() const;
+		virtual bool VFun_40() const;
+		virtual u8 VFun_44() const;
+		virtual PrincipalId GetHostPrincipalId() const;
 	};
 }

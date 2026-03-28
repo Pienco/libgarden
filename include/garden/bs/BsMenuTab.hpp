@@ -12,8 +12,7 @@ class BsMenuTab : public Base, public state::Mode<BsMenuTab>
 	friend class state::Mode<BsMenuTab>;
 
 protected:
-
-	enum TabID : u8
+	enum TabName : u8
 	{
 		ITEM,
 		DESIGN,
@@ -28,14 +27,13 @@ protected:
 		BACK,
 		DUMMY,
 		COUNT = DUMMY,
+
+		ANY = 0xf,
 	};
 
 public:
-
-	static constexpr size_t TAB_COUNT = TabID::COUNT;
-
 	template<typename T>
-	using TabArray = std::array<T, TAB_COUNT>;
+	using TabArray = std::array<T, TabName::COUNT>;
 
 	BsMenuTab();
 
@@ -71,7 +69,7 @@ public:
 
 protected:
 
-	using TabBits = sead::EnumBitFlag<TabID, u16>;
+	using TabBits = sead::EnumBitFlag<TabName, u16>;
 
 	enum class Mode : u8
 	{
@@ -93,8 +91,8 @@ protected:
 
 	static bool CheckInput();
 
-	bool IsAnim(TabID tab) const { return m_BoundTabAnimsBits.IsSet(tab); }
-	bool IsVisible(TabID tab) const { return m_VisibleTabsBits.IsSet(tab); }
+	bool IsAnim(TabName tab) const { return m_BoundTabAnimsBits.IsSet(tab); }
+	bool IsVisible(TabName tab) const { return m_VisibleTabsBits.IsSet(tab); }
 
 	bool IsTabOpen() const { return m_CurrentTab >= 0; }
 

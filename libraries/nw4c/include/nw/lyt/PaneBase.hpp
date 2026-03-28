@@ -12,7 +12,6 @@ namespace nw::lyt
 		constexpr PaneBase() = default;
 		virtual ~PaneBase();
 
-	protected:
 		constexpr PaneBase(const PaneBase&) = default;
 		constexpr PaneBase(PaneBase&&) = default;
 		PaneBase& operator=(const PaneBase&);

@@ -42,6 +42,8 @@ namespace netgame
 	Type GetNetgameType();
 	void SetNetGameType(Type);
 
+	const AvatarMgr::AvatarInfo* GetAvatar(PlayerNo player);
+
 	bool RequestOpenGateRandomMatch(GateMgr::Flag flag);
 	bool RequestCloseGateRandomMatch(GateMgr::Flag flag);
 

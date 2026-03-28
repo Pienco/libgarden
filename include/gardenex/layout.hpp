@@ -84,7 +84,9 @@ namespace gardenex
 		{
 			writer.SetFont(font::Mgr::Get()->GetFont(font));
 			writer.SetFontSize(width, height);
-			writer.SetTagProcessor(&GetDummyTagProcessor());
+			auto& tagProc = GetDummyTagProcessor();
+			tagProc.SetDefaultColors(writer.GetTextColorTop(), writer.GetTextColorBottom());
+			writer.SetTagProcessor(&tagProc);
 			writer.StartPrint();
 		}
 

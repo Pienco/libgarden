@@ -164,6 +164,7 @@ namespace stage
 		CAMPING_CAR_B = 162,
 		CHIP_TUTORIAL = 163,
 		AMIIBO_CAMERA = 164,
+		COUNT = 165,
 		DUMMY = 0xa5,
 		CURRENT = 0xa5,
 		INVALID = 0xa5,

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SvPlayer.hpp"
+#include "SvStrc.hpp"
 
 struct SvPlayerData
 {
@@ -8,12 +9,26 @@ struct SvPlayerData
 };
 ASSERT_SIZE(SvPlayerData, 0x29200);
 
+struct SvVillageStrcData
+{
+	u8 data[0xe8];
+};
+
+struct SvStrcData
+{
+	SvVillageStrcData village;
+	SvStrc island[2];
+	u8 info[0x43cc];
+
+};
+ASSERT_SIZE(SvStrcData, 0x44bc);
+
 struct SvMainData
 {
 	u8 header[0x20];
 	SvPlayerData players;
 	u8 villagers[0x22be0];
-	u8 strc[0x44bc];
+	SvStrcData strc;
 	u8 minigame[0x28f4];
 	u8 data850[0x850];
 	u8 field[0xa480];

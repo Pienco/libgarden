@@ -12,5 +12,4 @@ namespace item
 		COUNT = 0x6b,
 		INVALID = COUNT,
 	};
-
 }

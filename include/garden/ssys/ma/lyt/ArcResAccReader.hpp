@@ -23,7 +23,7 @@ namespace ssys::ma::lyt
 		
 		void* RegisterFont(const char* name, const nw::font::Font* font)
 		{
-			return GetResourceAccessor()->RegistFont(name, font);
+			return GetResourceAccessorVRAM()->RegistFont(name, font);
 		}
 
 		void* RegisterFont(font::FontID font = font::FontID::GARDEN_MSG_16)
@@ -34,7 +34,7 @@ namespace ssys::ma::lyt
 
 		nw::lyt::TextureInfo GetTexture(const char* name)
 		{
-			return GetResourceAccessor()->GetTexture(name);
+			return GetResourceAccessorVRAM()->GetTexture(name);
 		}
 
 		bool SetArc(const void* data)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../human/EmoticonName.hpp"
+#include "../human/HumanAnimName.hpp"
 #include "../sv/SvFgName.hpp"
 #include "../fgobj/PlaceType.hpp"
 
@@ -100,7 +101,7 @@ struct PACKED PlayerAction
 	using ActionXYZ = CompactXYZ;
 	using ActionPosition = CompactXZ;
 	using Angle16 = u16;
-	using AnimationName = u16;
+	using AnimationName = HumanAnimName::Name;
 
 	struct PACKED ActNone { };
 

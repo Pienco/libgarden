@@ -38,6 +38,9 @@ namespace nw::font
 			UpdateVertexColors();
 		}
 
+		ut::Color8 GetTextColorTop() const { return m_TextColors[0]; }
+		ut::Color8 GetTextColorBottom() const { return m_TextColors[1]; }
+
 		float GetCursorX() const { return m_Cursor.x; }
 		float GetCursorY() const { return m_Cursor.y; }
 

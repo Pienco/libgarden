@@ -16,8 +16,8 @@ struct PACKED SvFgName
 			{
 				u8 fruitGrowth : 3;
 				bool isPerfect : 1;
-				u8 perfectDecay : 3;
-				u8 isRandomPerfectFruit : 3;
+				u8 perfectFruitDecay : 3;
+				u8 randomPerfectFruitPosition : 3;
 			} fruitTree;
 
 			u16 unique : 14;

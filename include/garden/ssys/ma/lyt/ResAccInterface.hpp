@@ -1,6 +1,6 @@
 #pragma once
 
-#include <nn/types.h>
+#include <nw/lyt/ResourceAccessor.hpp>
 
 namespace ssys::ma::lyt
 {
@@ -8,6 +8,11 @@ namespace ssys::ma::lyt
 	{
 	public:
 		virtual ~ResAccInterface();
+
+		nw::lyt::ResourceAccessor* GetResourceAccessor()
+		{
+			return m_pResourceAccessor;
+		}
 
 	protected:
 		// void SetData(const void* data)
@@ -18,7 +23,7 @@ namespace ssys::ma::lyt
 		// }
 
 	private:
-		void* m_pResourceAccessor;
+		nw::lyt::ResourceAccessor* m_pResourceAccessor;
 		const void* m_pData;
 	};
 	ASSERT_SIZE(ResAccInterface, 0xc);

@@ -2,6 +2,7 @@ wcslen = 0x10082c;
 wcsncpy = 0x1017f4;
 wcscpy = 0x1017d8;
 swprintf = 0x100f5c;
+vswprintf = 0x100e91;
 _ZnwjPN4sead4HeapEj = 0x1328d8;
 _ZnajPN4sead4HeapEj = 0x1328d8;
 
@@ -35,6 +36,8 @@ _ZN10Controller12GetCirclePadEv = 0x522520;
 
 _ZN4math7Angle165Atan2Eff = 0x5667a8;
 
+_ZN8DLLRoMgr11s_pInstanceE = 0x95269c;
+
 _ZN3net3Net10s_InstanceE = 0xa23020;
 _ZNK3net3Net7IsErrorEv = 0x747c44;
 _ZN3net3nex9Framework14ProcessCommandENS0_7Command2IDEPKv = 0x132ac8;
@@ -48,6 +51,7 @@ _ZN7netgame13IsMultiPlayerEv = 0x300838;
 _ZN7netgame16IsMultiplePlayerEv = 0x2fc990;
 _ZN7netgame14GetNetgameTypeEv = 0x305ed8;
 _ZN7netgame14SetNetGameTypeENS_4TypeE = 0x625b88;
+_ZN7netgame9GetAvatarENS_8PlayerNoE = 0x626150;
 _ZN7netgame12ExistsPlayerENS_8PlayerNoE = 0x6259d8;
 _ZN7netgame6IsHostEv = 0x30b824;
 _ZN7netgame7GetMaskENS_8PlayerNoE = 0x625750;
@@ -72,9 +76,6 @@ _ZN7netgame15MachineBitTable3AddENS_8PlayerNoE = 0x62557c;
 _ZN7netgame15MachineBitTable6RemoveENS_8PlayerNoE = 0x6255fc;
 _ZN7netgame15MachineBitTable5ResetEv = 0x625740;
 
-_ZN7netgame11s_TourStateE = 0x94ee08;
-_ZN7netgame21s_TourRequestPlayerNoE = 0x94ee0a;
-
 _ZN7netgame11s_GateParamE = 0x95461c;
 
 _ZN7netgame10NetGameMgr11s_pInstanceE = 0x954648;
@@ -84,6 +85,7 @@ _ZN7netgame11PacketQueue13AddPacketDataEPKvj = 0x62881c;
 _ZN7netgame11PacketQueue9EndPacketEhNS_8PlayerNoE = 0x628af4;
 
 _ZNK7netgame9AvatarMgr13GetAvatarInfoENS_8PlayerNoE = 0x7604f0;
+_ZNK7netgame9AvatarMgr11GetPlayerNoERKN2nn3pia9StationIdE = 0x7603e8;
 
 _ZNK7netgame10NetGameMgr11IsInSessionENS_8PlayerNoEb = 0x760658;
 _ZNK7netgame10NetGameMgr13IsMultiPlayerEv = 0x75f064;
@@ -114,6 +116,8 @@ _ZN7netgame7JoinMgr10StartEntryEv = 0x6218f0;
 
 _ZN7netgame8LeaveMgr10StartLeaveEb = 0x624544;
 
+_ZNK7netgame10ConnectMgr27IsConnectingOrDisconnectingENS0_10ConnectionE = 0x76003c;
+
 _ZN7netgame9IslandMgr10ChooseTourE8TourName = 0x61fdc0;
 _ZN7netgame9IslandMgr10CancelTripEv = 0x61f8e8;
 _ZN7netgame9IslandMgr21UpdatePlayerTourSplitEhh = 0x61ea30;
@@ -129,9 +133,6 @@ _ZN7netgame9IslandMgr19EndSeaDepartureDemoEb = 0x61e3e8;
 _ZN7netgame9IslandMgr29StartTourDeskArrivalAfterTourEv = 0x61e568;
 _ZN7netgame9IslandMgr20StartTourRandomMatchEv = 0x61f760;
 _ZN7netgame9IslandMgr16LeaveRandomMatchENS0_20LeaveRandomMatchModeE = 0x61ebf4;
-_ZN7netgame11s_SetTourIDE = 0x94ee09;
-_ZN7netgame11s_TourStateE = 0x94ee08;
-_ZN7netgame19s_ForceLeaveRequestE = 0x94ee0c;
 
 _ZN7netgame12GetIslandMapEv = 0x6a7988;
 
@@ -165,6 +166,7 @@ _ZN5stage5Field9PlaceItemERK8SvFgNameEN4math6VectorIiLj2EEEh = 0x2fca24;
 
 _ZN5stage10GetCurrentEv = 0x2f7384;
 _ZN5stage7GetNextEv = 0x5b4c08;
+_ZN5stage7GetNameENS_4NameE = 0x5b4be4;
 _ZN5stage9s_CurrentE = 0x958342;
 _ZN5stage6IsKindENS_4KindENS_4NameE = 0x2f7414;
 _ZN5stage8GetFieldENS_9FieldNameE = 0x2fe95c;
@@ -242,6 +244,20 @@ _ZN4font3Mgr11s_pInstanceE = 0x9539cc;
 _ZNK4font3Mgr11GetFontNameENS_6FontIDE = 0x748d88;
 _ZNK4font3Mgr7GetFontENS_6FontIDE = 0x52ed74;
 
+_ZN2nw3lyt6Layout11AllocMemoryEjh = 0x4ba010;
+_ZN2nw3lyt6Layout10FreeMemoryEPv = 0x13bb1c;
+_ZN2nw3lyt6Layout19CreateAnimTransformERKNS0_12AnimResourceEPNS0_16ResourceAccessorE = 0x4ba62c;
+
+_ZN2nw3lyt14GroupContainer11AppendGroupEPNS0_5GroupE = 0x13eeec;
+
+_ZTVN2nw3lyt4PaneE = 0x902b98;
+
+_ZTVN2nw3lyt8BoundingE = 0x902e20;
+
+_ZTVN2nw3lyt5GroupE = 0x902c10;
+
+_ZN2nw3lyt8internal11TexCoordAry7ReserveEh = 0x4be9b4;
+
 _ZN2nw3lyt16GraphicsResource16FinalizeGraphicsEv = 0x4bee70;
 _ZN2nw3lyt16GraphicsResource12ResetGlStateEv = 0x4b5a1c;
 _ZN2nw3lyt16GraphicsResource19ResetGlProgramStateEv = 0x4b5b84;
@@ -269,7 +285,15 @@ _ZN2nw3lyt4Pane11AppendChildEPS1_ = 0x4b73fc;
 _ZN2nw3lyt4Pane11RemoveChildEPS1_ = 0x4b7450;
 _ZN2nw3lyt4Pane12CalculateMtxERKNS0_8DrawInfoE = 0x4b7474;
 
+_ZTVN2nw3lyt7PictureE = 0x902d18;
+_ZN2nw3lyt7Picture6AppendERKNS0_6TexMapE = 0x4bbbc8;
+
 _ZN2nw3lyt7Picture11GetMaterialEj = 0x73e364;
+
+_ZN2nw3lyt6TexMapC1ERKNS0_11TextureInfoE = 0x4bacdc;
+
+_ZN2nw2ut8internal12LinkListImpl5eraseEPNS0_12LinkListNodeE = 0x137580;
+_ZN2nw2ut8internal12LinkListImpl6insertENS2_8iteratorEPNS0_12LinkListNodeE = 0x13eefc;
 
 _ZN2nw3lyt7TextBoxD1Ev = 0x4bc824;
 _ZN2nw3lyt7TextBox19MakeUniformDataSelfEPmRNS0_8DrawInfoERNS0_6DrawerE = 0x73e7a8;
@@ -279,16 +303,20 @@ _ZTVN2nw3lyt7TextBoxE = 0x902d98;
 
 _ZN2nw3lyt8MaterialD1Ev = 0x4be8a8;
 _ZTVN2nw3lyt8MaterialE = 0x902ea8;
+_ZN2nw3lyt8Material10ReserveMemEhhhhbb = 0x4bc900;
+_ZN2nw3lyt8Material12GetTexSRTAryEv = 0x4bcba8;
 
 _ZN2nw3lyt6TexMap6UpdateEv = 0x4bab50;
+_ZN2nw3lyt6TexMap12ResetU32InfoEv = 0x4bab50;
 
 _ZN2nw3gfx8GetModelEPKPKvPKc = 0x4a7240;
 
 _ZTVN4ssys2ma9AllocatorE = 0x9073ac;
 _ZN4ssys2ma9AllocatorD1Ev = 0x56b23c;
-_ZN4ssys2ma9Allocator15GetGuiAllocatorEv = 0x56a838;
-_ZN4ssys2ma9Allocator20GetResourceAllocatorEv = 0x56a8ac;
 
+_ZN4ssys2ma3lyt12GetAllocatorEv = 0x56a838;
+
+_ZN4ssys2ma3lyt9FrameCtrl16SetAnimTransformEPN2nw3lyt13AnimTransformE = 0x56a25c;
 
 _ZN4ssys2ma3lyt9AnimationC1Ev = 0x126200;
 _ZN4ssys2ma3lyt9AnimationD1Ev = 0x56a374;
@@ -327,6 +355,8 @@ _ZN4ssys2ma3lyt6Layout18UnbindAllAnimationEv = 0x133a70;
 _ZN4ssys2ma3lyt6Layout9FindGroupEPKc = 0x4b5648;
 _ZN4ssys2ma3lyt6Layout13BindAnimationEPNS1_9AnimationEPKN2nw3lyt5GroupEb = 0x569118;
 _ZN4ssys2ma3lyt6Layout15UnbindAnimationEPNS1_9AnimationEPKN2nw3lyt5GroupEb = 0x56946c;
+
+_ZN4ssys2ma3lyt11dummyLayoutE = 0xae67b4;
 
 _ZN4ssys2ma3lyt9LayoutMgr3GetEv = 0x133a78;
 _ZN4ssys2ma3lyt9LayoutMgr8RegisterEPNS1_6Base2DEb = 0x56a954;
@@ -417,6 +447,7 @@ _ZN8MenuBase12FUN_006ab3ecEv = 0x6ab3ec;
 _ZN8MenuBase12FUN_00767b30Ev = 0x767b30;
 
 _ZN5state4ModeI9BsMenuTabE6ChangeEMS1_FvvE = 0x81cc74;
+_ZN3oml9framework7Process6CreateI9BsMenuTabEEPS1_v = 0x7f3b04;
 _ZN9BsMenuTabC2Ev = 0x6d98e0;
 _ZN9BsMenuTabD2Ev = 0x6d9ab8;
 _ZN9BsMenuTab8FinalizeEv = 0x6d98c0;
@@ -506,7 +537,7 @@ _ZNK17SvPlayerInventory7GetItemEjPNS_14ItemAppearanceE = 0x7250dc;
 _ZN17SvPlayerInventory7AddItemERK8SvFgNameENS_14ItemAppearanceEPS1_ = 0x3233a4;
 _ZN17SvPlayerInventory7SetItemEjRK8SvFgNameENS_14ItemAppearanceEPS1_ = 0x323484;
 
-_ZN16SvBestFriendList3GetEv = 0x1df8b4;
+_Z19SvGetBestFriendListv = 0x1df8b4;
 _ZNK16SvBestFriendList9HasFriendEv = 0x71e09c;
 
 _ZN4demo10CheckOrderENS_7OrderIDEb = 0x316da4;
@@ -519,6 +550,9 @@ _ZN4demo22RevokeNetgameLockOrderEv = 0x52cc00;
 _ZN8SoundMgr9PlaySoundE4SeIDf = 0x58de9c;
 
 _ZNK5Actor13GetPositionToERN2nn4math6VectorIfLj3EEEtfb = 0x76330c;
+
+_ZN15AcNpcSpTourDesk16SendAssistPacketEN7netgame8PlayerNoERKNS_16AssistPacketDataE = 0x7d1f24;
+_ZN15AcNpcSpTourDesk13s_RequestInfoE = 0x94ee08;
 
 _ZN15AcNpcSpResetsan15s_pMenuDelegateE = 0x950d98;
 

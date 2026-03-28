@@ -1,8 +1,10 @@
 #pragma once
 
 #include "layout.hpp"
+#include "libc.h"
 
 #include <string_view>
+#include <cstdarg>
 
 namespace gardenex
 {
@@ -57,19 +59,39 @@ namespace gardenex
 
 		void Show(std::u16string_view str)
 		{
-			if (m_LineCount == maxLineCount) m_LineCount--;
-			size_t offset = m_LineCount == 0 ? 0 : m_Lines[m_LineCount - 1].end + 1;
+			size_t offset = GetNewLineOffset();
 			size_t end = offset + str.size();
 			if (end >= textBufSize) return;
 			if (offset > 0) m_Text[offset - 1] = u'\n';
 
 			Traits::copy(m_Text.data() + offset, str.data(), str.size());
+			AppendLine(end);
+		}
+
+		void Show(const char16* fmt, std::va_list args)
+		{
+			size_t offset = GetNewLineOffset();
+			int n = vswprintf((wchar_t*)m_Text.data() + offset, textBufSize - offset, (const wchar_t*)fmt, args);
+			if (n < 0) return;
+			if (offset > 0) m_Text[offset - 1] = u'\n';
+			AppendLine(offset + n);
+		}
+
+	private:
+
+		size_t GetNewLineOffset()
+		{
+			if (m_LineCount == maxLineCount) m_LineCount--;
+			return m_LineCount == 0 ? 0 : m_Lines[m_LineCount - 1].end + 1;
+		}
+
+		void AppendLine(size_t end)
+		{
 			m_Lines[m_LineCount] = {.end = static_cast<u16>(end), .timer = displayTime};
 			m_LineCount++;
 			m_Dirty = true;
 		}
 
-	private:
 		using Traits = std::char_traits<char16>;
 
 		struct Line
@@ -79,7 +101,7 @@ namespace gardenex
 		};
 
 		static constexpr size_t textBufSize = 160;
-		static constexpr size_t maxLineCount = 9;
+		static constexpr size_t maxLineCount = 16;
 		static constexpr nn::math::VEC2 textPosition {392.0f, 228.0f};
 		static constexpr u16 displayTime = 180;
 

@@ -1,16 +1,18 @@
 #pragma once
 
-#include "nw/lyt/PaneBase.hpp"
-#include "nw/lyt/Material.hpp"
-#include "nw/lyt/Drawer.hpp"
-#include "nw/lyt/DrawInfo.hpp"
-#include "nn/math/Vector.hpp"
+#include <nw/lyt/PaneBase.hpp>
+#include <nw/lyt/AnimationLink.hpp>
+#include <nw/lyt/Material.hpp>
+#include <nw/lyt/Drawer.hpp>
+#include <nw/lyt/DrawInfo.hpp>
+#include <nn/math/Vector.hpp>
 
+#include <cstring>
 #include <utility>
 
 namespace nw::lyt
 {
-	class Pane : protected PaneBase
+	class Pane : public PaneBase
 	{
 	public:
 		enum class OriginX : u8
@@ -29,10 +31,13 @@ namespace nw::lyt
 
 		Pane(const void* res);
 
-		constexpr Pane(nn::math::VEC2 size = {1.0f, 1.0f}, Pane* parent = nullptr) :
-			m_pParent {parent},
-			m_Size {size}
-		{ }
+		constexpr Pane() = default;
+		constexpr Pane(nn::math::VEC2 size) : m_Size {size} { }
+		constexpr Pane(nn::math::VEC2 size, const char* name) : Pane {size}
+		{
+			strncpy(m_Name.data(), name, m_Name.size());
+			m_Name.back() = 0;
+		}
 
 		virtual ~Pane() override;
 		virtual void GetRuntimeTypeInfo();
@@ -48,10 +53,10 @@ namespace nw::lyt
 		virtual Material* FindMaterial(const char* name, bool recursive = true);
 		virtual void Animate(u32 options);
 		virtual void AnimateSelf(u32 options);
-		virtual void BindAnimation(void* anim, bool recursive, bool disable);
-		virtual void UnbindAnimation(void* anim, bool recursive);
+		virtual void BindAnimation(class AnimTransform* anim, bool recursive, bool disable);
+		virtual void UnbindAnimation(class AnimTransform* anim, bool recursive);
 		virtual void Unk_44();
-		virtual void UnbindAnimationSelf(void* anim);
+		virtual void UnbindAnimationSelf(class AnimTransform* anim);
 		virtual void Unk_4c();
 		virtual void Unk_50();
 		virtual void Unk_54();
@@ -69,9 +74,12 @@ namespace nw::lyt
 
 		void SetVisible(bool visible = true)
 		{
-			m_Flags = visible 
-				? m_Flags | VISIBLE 
-				: m_Flags & (u8)(~VISIBLE);
+			m_Flags = visible  ? m_Flags | VISIBLE : m_Flags & (u8)(~VISIBLE);
+		}
+
+		void SetInfluencedAlpha(bool set = true)
+		{
+			m_Flags = set  ? m_Flags | INFLUENCED_ALPHA : m_Flags & (u8)(~INFLUENCED_ALPHA);
 		}
 
 		bool IsVisible() const { return m_Flags & VISIBLE; }
@@ -85,12 +93,20 @@ namespace nw::lyt
 		}
 		void SetTranslation(const nn::math::VEC3& translation) { m_Translation = translation; }
 
+		nn::math::VEC3& GetRotation() { return m_Rotation; }
+
 		const auto& GetGlobalMatrix() const { return m_GlobalMatrix; }
 
 		void SetMatrix(const auto& matrix)
 		{
 			m_GlobalMatrix = matrix;
 		}
+
+		void SetAlpha(u8 value) { m_Alpha = value; }
+		u8 GetAlpha() const { return m_Alpha; }
+
+		auto& GetName() { return m_Name; }
+		const auto& GetName() const { return m_Name; }
 
 		Pane* GetParent() { return m_pParent; }
 		void AppendChild(Pane* child);
@@ -114,24 +130,29 @@ namespace nw::lyt
 			VISIBLE = 1,
 			INFLUENCED_ALPHA = 2,
 			LOCATION_ADJUST = 4,
+			USER_OWNED = 8,
 		};
 
-		Pane* m_pParent;
-		ut::LinkList<&Pane::m_Node> m_Children;
-		u8 m_Anims[0xc] {};
+		Pane* m_pParent {};
+		#pragma GCC diagnostic push
+		#pragma GCC diagnostic ignored "-Winvalid-offsetof"
+		ut::LinkList<Pane, offsetof(PaneBase, PaneBase::m_Node)> m_Children;
+		ut::LinkList<AnimationLink, offsetof(AnimationLink, AnimationLink::node)> m_Animations;
+		#pragma GCC diagnostic pop
 		nn::math::VEC3 m_Translation {};
 		nn::math::VEC3 m_Rotation {};
 		nn::math::VEC2 m_Scale {1.0f, 1.0f};
-		nn::math::VEC2 m_Size;
+		nn::math::VEC2 m_Size {};
 		nn::math::MTX34 m_Matrix {};
 		nn::math::MTX34 m_GlobalMatrix {};
 		void* m_pUnk0 {};
 		u8 m_Alpha {0xff};
 		u8 m_GlobalAlpha {0xff};
-		u8 m_Origin {std::to_underlying(OriginX::LEFT) + std::to_underlying(OriginY::TOP) * 3u};
+		u8 m_Origin {EncodeOrigin(OriginX::LEFT, OriginY::TOP)};
 		u8 m_Flags {VISIBLE};
-		char m_Name[17] {};
-		char m_Data[9] {};
+		std::array<char, 17> m_Name {};
+		std::array<char, 9> m_Data {};
+		u8 padding[2] {};
 	};
 	ASSERT_SIZE(Pane, 0xd4);
 }
